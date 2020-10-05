@@ -136,7 +136,7 @@ def intersection(l1, l2):
     return res
   
   
-  # merge
+# merge
 def merge(l1, l2): 
     temp = dummy = ListNode(0)
     p1, p2 = l1, l2
