@@ -2,8 +2,8 @@
 # intersection of two sorted array  - two pointers O(m + n)    - m ≈ n
                                     - binary search O(m.logn)  - m ≫ n
                                     
-# intersection of two BST  - recursion  O(m + n)    - m ≈ n
-                           - iteration  O(m + n)    - m ≫ n       
+# intersection of two BST  - recursion traversal then merge  O(m + n)    - m ≈ n
+                           - iteration meanwhile mrege  O(m + n)    - m ≫ n       
                            
 # intersection of two Linked List 
 # merge two Linked List 
