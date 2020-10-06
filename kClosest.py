@@ -142,11 +142,11 @@ class Solution:
         path = self.pathToTarget(root, target) # path = [5, 7, 6] target = 6.1
         stack = list(path) 
         if stack[-1].val < target:
-            self.findSuccessor(stack)           
+            self.getSuccessor(stack)           
             upperStack = stack          # upper [5, 7]
             lowerStack = path           # lower [5, 7, 6]
         else:
-            self.findPredecessor(stack)
+            self.getPredecessor(stack)
             lowerStack = stack
             upperStack = path
         
@@ -154,10 +154,10 @@ class Solution:
         for i in range(k):
             if self.isPredecessorCloser(lowerStack, upperStack, target):
                 result.append(lowerStack[-1].val)
-                self.findPredecessor(lowerStack) #  lower [5]
+                self.getPredecessor(lowerStack) #  lower [5]
             else:
                 result.append(upperStack[-1].val)
-                self.findSuccessor(upperStack)
+                self.getSuccessor(upperStack)
                 
         return result
         
@@ -172,7 +172,7 @@ class Solution:
                 
         return stack
         
-    def findSuccessor(self, stack):     # successor
+    def getSuccessor(self, stack):     # successor
         if stack[-1].right:
             node = stack[-1].right
             while node:
@@ -183,7 +183,7 @@ class Solution:
             while stack and stack[-1].right == node:
                 node = stack.pop()
                 
-    def findPredecessor(self, stack):   # predecessor
+    def getPredecessor(self, stack):   # predecessor
         if stack[-1].left:
             node = stack[-1].left
             while node:
