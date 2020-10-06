@@ -94,25 +94,25 @@ class Solution:
 class Solution:
     def intersection(self, root1, root2):
         stack1, stack2 = [], []
-        self.getStack(stack1, root1)
-        self.getStack(stack2, root2)
+        self.getSuccessor(stack1, root1)
+        self.getSuccessor(stack2, root2)
         
         res = []
         while stack1 and stack2:
             if stack1[-1].val < stack2[-1].val:
                 node = stack1.pop()
-                self.getStack(stack1, node.right)
+                self.getSuccessor(stack1, node.right)
             elif stack1[-1].val > stack2[-1].val:
                 node = stack2.pop()
-                self.getStack(stack2, node.right)
+                self.getSuccessor(stack2, node.right)
             else:
                 node = stack1.pop()
-                self.getStack(stack1, node.right)
+                self.getSuccessor(stack1, node.right)
                 res.append(node.val)
                       
         return res
 
-    def getStack(self, stack, root):
+    def getSuccessor(self, stack, root):
         while root:
             stack.append(root)
             root = root.left
