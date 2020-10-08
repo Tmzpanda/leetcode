@@ -6,7 +6,7 @@
   kSum
   
 # kSum (all possible solutions - deduplicate)
-# combinationSum 
+# combinationSum (all possible solutions - deduplicate)
 
 """
 
