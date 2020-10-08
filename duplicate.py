@@ -1,8 +1,9 @@
 """
-duplication - sort    O(nlogn) O(1)
-            - set     O(n) O(n)
-            - value index mapping   O(n) O(1)
+# duplication - sort O(nlogn) O(1)
+              - set  O(n) O(n)
+              - value index mapping O(n) O(1)
 
+# findDisappearedNumbers
 """
 
 # sort 
@@ -45,3 +46,8 @@ def findDuplicates(nums):
         nums[index] = - nums[index]
         
     return res
+
+
+
+
+# findDisappearedNumbers
