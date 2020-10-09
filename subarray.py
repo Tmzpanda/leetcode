@@ -20,10 +20,9 @@ class Solution:
         
         longest = ""
         for middle in range(len(s)):
-            sub = self.findPalindrome(s, middle, middle)
-            if len(sub) > len(longest):
-                longest = sub
-            sub = self.findPalindrome(s, middle, middle + 1)
+            sub1 = self.findPalindrome(s, middle, middle)
+            sub2 = self.findPalindrome(s, middle, middle + 1)
+            sub = max(sub1, sub2, key=lambda x: len(x))
             if len(sub) > len(longest):
                 longest = sub
                 
