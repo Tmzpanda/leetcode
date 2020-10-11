@@ -9,6 +9,8 @@
 # combinationSum - number of possible solutions O(n*S)
   
 # Longest Increasing Subsequence  O(n^2)
+# Longest Palindrome Subsequence O(n^2)
+# Longest Common Subsequence O(n^2)
 
 """
 
@@ -30,7 +32,7 @@ def fib(n):
 
 
 #********************************* combinatorial optimization **********************************************
-# rob
+# rob O(n)
 def rob(nums):
     if not nums:
         return 0
@@ -47,7 +49,7 @@ def rob(nums):
     return dp[n]
     
     
-# rob - houses are arranged in a circle
+# rob - houses are arranged in a circle - O(n)
 def rob2(nums):
     if not nums:
         return 0
@@ -67,6 +69,20 @@ def rob2(nums):
     
     
 # knapsack  O(n*S)
+"""
+wt = [1, 3, 4, 5]
+val = [1, 4, 5, 7]
+W = 7
+
+      w
+      0 1 2 3 4 5 6 7
+ wt 0 0 0 0 0 0 0 0 0
+    1 0
+    3 0
+    4 0     x = dp[i-1][w], when wt[i - 1] > w
+    5 0             x =  max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w]), when wt[i-1] <= w
+                             
+"""
 def knapSack(wt, val, W): 
     n = len(wt)
     dp = [[0 for x in range(W + 1)] for x in range(n + 1)] 
@@ -120,9 +136,8 @@ def combinationSum(arr, S):
     
     return dp[n][S]
 
-
-
-#********************************* Longest Increasing Subsequence ****************************************
+  
+#********************************* Longest Subsequence ****************************************
 # Longest Increasing Subsequence  O(n^2)
 def LIS(nums):
     if not nums:
@@ -138,10 +153,66 @@ def LIS(nums):
                 
     return max(dp)
 
+  
+# Longest Palindrome Subsequence O(n^2)
+"""
+
+  a d b b c a
+a 1         x = dp[i + 1][j - 1] + 2, when s[i] == s[j] 
+d   1     x = max(dp[i + 1][j], dp[i][j - 1]), when s[i]! = s[j]
+b     1
+b       1
+c         1
+a           1
+
+"""
+def LPS(s):
+    if not s:
+        return 0
+  
+    n = len(s)
+    dp = [[0 for _ in range(n)] for _ in range(n)]
+    for i in range(n - 1, -1, -1):
+        dp[i][i] = 1
+        for j in range(i + 1, n):
+            if s[i] == s[j]:
+                dp[i][j] = dp[i + 1][j - 1] + 2
+            else:
+                dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
+                
+    return dp[0][n - 1]
 
 
+# Longest Common Subsequence O(n^2)
+"""
+  "" A G G T A B
+"" 0 0 0 0 0 0 0 
+G  0 
+X  0
+T  0
+X  0
+A  0
+Y  0         x = max(dp[i - 1][j], dp[i][j - 1]), when s[i] != s[j]
+B  0           x = dp[i - 1][j - 1] + 1, when s[i] == s[j]
 
 
+"""
+def LCS(A, B):
+        
+    if not A or not B:
+        return 0
+        
+    m, n = len(A), len(B)
+    dp = [[0] * (n + 1) for i in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n +  1):
+            if A[i - 1] == B[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1])
+
+    return dp[m][n]
 
 
 
