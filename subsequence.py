@@ -2,7 +2,9 @@
 # subsequence
 # sell stock - greedy O(n)
 # LIS - dp O(n^2)
-# LCS
+# LPS - dp O(n^2)
+# LCS - dp O(n^2)
+# Minimum Window Subsequence - pointers O(ST) O((# of pattern found)*S*T)
 
 
 # subset
@@ -12,8 +14,6 @@
                  - number of possible solutions - dp O(n*S)
            
 """
-
-
 
 # sell stock - greedy O(n)
 import sys
@@ -30,5 +30,14 @@ def maxProfit(prices):
     return profit
  
 
-# 
+# M
+
+
+
+
+
+
+
+
+
 
