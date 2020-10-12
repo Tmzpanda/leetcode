@@ -1,6 +1,7 @@
 """
 # Fibonacci O(n)
 
+
 # optimization - opt(i) = max(A, B), where A = v(i) + opt(prev(i)), B = opt(i - 1)
 # rob  O(n)
 # rob - houses are arranged in a circle  O(n)
@@ -8,7 +9,10 @@
 # combinationSum - if possible solution exists  O(n*S)
 # combinationSum - number of possible solutions O(n*S)
   
-# Longest Increasing Subsequence  O(n^2)
+  
+  
+# Longest Increasing Subsequence  O(n^2) - length
+                                         - path
 # Longest Palindrome Subsequence O(n^2)
 # Longest Common Subsequence O(n^2)
 
@@ -152,8 +156,36 @@ def LIS(nums):
                 dp[j] = max(dp[j], dp[i] + 1)
                 
     return max(dp)
-
   
+# path
+def LIS(nums):
+    if not nums:
+        return 0
+    
+    n = len(nums)        
+    dp = [1] * len(nums)
+    prev = [-1] * len(nums)
+    
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] < nums[j] and dp[j] < dp[i] + 1:
+                dp[j] = dp[i] + 1
+                prev[j] = i
+    
+    longest, index = 1, -1      # find path
+    for i in range(len(nums)):
+        if dp[i] > longest:
+            longest = dp[i]
+            index = i
+    
+    path = []
+    while index != -1:
+        path.append(nums[index])
+        index = prev[index]
+    
+    return path[::-1]
+
+
 # Longest Palindrome Subsequence O(n^2)
 """
 
