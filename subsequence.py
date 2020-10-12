@@ -4,7 +4,6 @@
 # LIS - dp O(n^2)
 # LPS - dp O(n^2)
 # LCS - dp O(n^2)
-# Minimum Window Subsequence - pointers O(ST) O((# of pattern found)*S*T)
 
 
 # subset
@@ -30,7 +29,6 @@ def maxProfit(prices):
     return profit
  
 
-# M
 
 
 
