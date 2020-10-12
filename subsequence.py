@@ -18,15 +18,13 @@
 import sys
 def maxProfit(prices):
     minPrice = sys.maxsize
-    profit = 0
+    maxProfit = 0
     
     for price in prices:
-        if price - minPrice > profit:
-            profit = price - minPrice
-        if price < minPrice:
-            minPrice = price
+        maxProfit = max(price - minPrice, maxProfit)
+        minPrice = min(price, minPrice)
             
-    return profit
+    return maxProfit
  
 
 
