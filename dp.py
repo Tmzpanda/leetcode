@@ -158,8 +158,8 @@ def LIS(nums):
 """
 
   a d b b c a
-a 1         x = dp[i + 1][j - 1] + 2, when s[i] == s[j] 
-d   1     x = max(dp[i + 1][j], dp[i][j - 1]), when s[i]! = s[j]
+a 1         x = dp[i + 1][j - 1] + 2, when A[i - 1] == B[j - 1] 
+d   1     x = max(dp[i + 1][j], dp[i][j - 1]), when A[i - 1]! = B[j - 1]
 b     1
 b       1
 c         1
