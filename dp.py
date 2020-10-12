@@ -85,7 +85,21 @@ W = 7
     3 0
     4 0     x = dp[i-1][w], when wt[i - 1] > w
     5 0             x =  max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w]), when wt[i-1] <= w
-                             
+    
+"""
+
+"""                             
+space optimization:
+dp[i][j] only depends on previous row, so we can optimize the space by using 2 rows instead of the matrix
+
+      w
+      0 1 2 3 4 5 6 7
+ wt 0 0 0 0 0 0 0 0 0
+    1 0
+    3 0
+    4 0   #         #
+    5 0             x =  max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w]), when wt[i-1] <= w
+ 
 """
 def knapSack(wt, val, W): 
     n = len(wt)
@@ -140,7 +154,7 @@ def combinationSum(arr, S):
     
     return dp[n][S]
 
-  
+
 #********************************* Longest Subsequence ****************************************
 # Longest Increasing Subsequence  O(n^2)
 def LIS(nums):
