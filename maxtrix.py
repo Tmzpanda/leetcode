@@ -1,16 +1,13 @@
 """
-# matrix
 # Spiral Matrix 
 # Maximal Sqaure - dp O(m*n)
 # Number of Islands - bfs
 
 
-# chessboard
 # Unique Paths - dp O(m*n)
 # Knight Probability in Chessboard - O(K*n^2)
 
 """
-
 
 #********************************* Matrix ****************************************
 # Spiral Matrix
