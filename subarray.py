@@ -11,12 +11,10 @@
 # Subarray Sum Equals K - hashmap O(n)
 
 
-
-
+# Shortest Subarray with Sum at Least K - sliding window O(n)
+# Minimum Window Substring - two pointers O(S + T)
 # Minimum Window Subsequence - dp O(ST)
                              - two pointers O(ST) = O((# of pattern found)*S*T)
-# Minimum Window Substring - two pointers O(S + T)
-# Shortest Subarray with Sum at Least K - sliding window O(n)
 
 
 
@@ -202,73 +200,6 @@ def checkSubarraySum(nums, k):
   
   
 #********************************* Minimum Window **********************************************
-# Minimum Window Subsequence 
-# dp - O(S*T)
-"""
-        "" X Y
-      "" 0 ∞ ∞ 
-      G  0 
-      X  0 
-      T  0 
-      X  0 
-      A  0 
-      Y  0   x = dp[i - 1][j - 1] + 1, when S[i - 1] == T[j - 1]
-      B  0   x = dp[i - 1][j] + 1,     when S[i - 1] != T[j - 1]
-
-dp[i][j] represents window length of S which contains T[0 to j - 1]
-"""
-def minWindow(S, T):
-        
-    m, n = len(S), len(T)
-    dp = [[0] * (n + 1) for _ in range (m + 1)]
-    for j in range(1, n + 1):
-        dp[0][j] = sys.maxsize 
-
-    for i in range(1, m + 1):
-        for j in range(1, n +  1):
-            if S[i - 1] == T[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-            else:
-                dp[i][j] = dp[i - 1][j] + 1
-
-    minLen = sys.maxsize
-    for i in range(1, m + 1):
-        if dp[i][n] < minLen:
-            minLen = dp[i][n]
-            end = i - 1
-
-    if minLen == sys.maxsize:
-        return ""
-
-    return S[end - minLen + 1: end + 1]
-
-
-# two pointers - O((# of pattern found)*S*T) = O(ST)
-def minWindow(S, T):
-        
-    minLen = len(S) + 1
-    window = ""
-
-    i, j = 0, 0
-    while i < len(S):
-        if S[i] == T[j]:
-            j += 1
-        if j == len(T):
-            end = i 
-            j -= 1
-            while j >= 0:
-                if S[i] == T[j]:
-                    j -= 1
-                i -= 1
-            i += 1
-            j += 1
-            if end - i + 1< minLen:
-                minLen = end - i + 1
-                window = S[i:end + 1]
-        i += 1
-    return window
-  
-
 # Minimum Window Substring
 """
 S = "azjskfzts"      T = "sz"
