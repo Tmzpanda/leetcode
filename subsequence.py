@@ -1,9 +1,11 @@
 """
 # subsequence
 # sell stock - greedy O(n)
-# LIS - dp O(n^2)
-# LPS - dp O(n^2)
-# LCS - dp O(n^2)
+# LIS  O(n^2) - length
+              - path
+# LPS O(n^2)
+# LCS O(n^2)
+
 
 
 # subset
@@ -11,6 +13,7 @@
 # combinationSum - all possible solutions - backtrack O(2^n)
                  - if possible solution exists - dp O(n*S)
                  - number of possible solutions - dp O(n*S)
+
 
 
 # Minimum Window Subsequence - dp O(ST)
