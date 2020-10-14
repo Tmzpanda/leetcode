@@ -15,6 +15,13 @@
 # Longest Palindrome Subsequence O(n^2)
 # Longest Common Subsequence O(n^2)
 
+# Minimum Window Subsequence - dp O(ST)
+# Maximal Sqaure - dp O(m*n)
+
+
+# Unique Paths - dp O(m*n)
+# Knight Probability in Chessboard - O(K*n^2)
+
 """
 
 #********************************* Fibonacci **********************************************
