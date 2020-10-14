@@ -1,12 +1,16 @@
 """
+# One Possible Solution
 # 2Sum - hashmap
        - 2 pointers (if sorted)
-  3Sum
-  4Sum
-  kSum
+# 3Sum
+# 4Sum
+# kSum
   
-# kSum (all possible solutions - deduplicate)
-# combinationSum (all possible solutions - deduplicate)
+  
+# All Possible Solutions - deduplicate
+# 4Sum 
+# kSum 
+# combinationSum 
 
 """
 
@@ -188,8 +192,7 @@ k = 4
 kSum(arr, s, k)
 
 
-# ************************ Combination Sum - All Possible Solutions ****************************************
-# O(2^n)
+# Combination Sum - O(2^n)
 class Solution:
 
     def combinationSum(self, nums, target):
