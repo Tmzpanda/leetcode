@@ -32,9 +32,7 @@ x -> x -> x  indegree[t]
 
 
 
-
 #********************************* Shortest Path **********************************************
-
 # Word Ladder - shortest path - bfs O(n*26*len(s))
 """
         26*len(s)
@@ -55,7 +53,7 @@ class Solution:
         
         dictionary = set(dict)
         dictionary.add(end)
-        queue = collections.deque([start])
+        queue = deque([start])
         level = 0
         visited = set()
         
@@ -140,13 +138,10 @@ class Solution:
             self.dfs(next_word, end, word_to_distance, path, result, dictionary)
             path.pop()
 
-
-
             
             
             
 #********************************* Topological Sort **********************************************
-
 # Course Schedule - if possible solution exists/one possible solution - bfs
 from collections import deque
 
@@ -161,7 +156,7 @@ def findOrder(numCourses, prerequisites):
     queue = deque([node for node in range(numCourses) if in_degrees[node] == 0])
     order = []
     while queue:
-        node = queue.popleft()
+        node = queue.popleft()      # not necessarily queue.popoleft() in tops
         order.append(node)
         for next_node in out_edges[node]:
             in_degrees[next_node] -= 1
@@ -209,16 +204,5 @@ def sequenceReconstruction(org, seqs):
                 queue.append(next_node)
 
     return org == order         # reconstruct
-
-
-
-
-
-
-
-
-
-
-
 
 
