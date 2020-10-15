@@ -6,8 +6,7 @@
 # rob  O(n)
 # rob - houses are arranged in a circle  O(n)
 # knapsack  O(n*S)
-# combinationSum - if possible solution exists  O(n*S)
-# combinationSum - number of possible solutions O(n*S)
+# combinationSum - if possible solution exists/ number of possible solutions O(n*S)
   
   
 # Longest Increasing Subsequence  O(n^2) - length/path
