@@ -4,7 +4,8 @@
 # LIS  O(n^2) - length
               - path
 # LPS O(n^2)
-# LCS O(n^2)
+# LCS - 1d array - dp O(n^2)
+      - 2d matrix 
 
 
 
