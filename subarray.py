@@ -1,7 +1,8 @@
 """
 # subarrays O(n^2)
 
-# Longest Increasing Substring - greedy O(n)
+# Longest Increasing Substring - 1d - greedy O(n)
+                               - 2d matrix
 # Longest Palindrome Substring - middle out O(n^2)
                                - dp O(n^2)
       
