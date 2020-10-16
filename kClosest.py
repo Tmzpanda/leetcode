@@ -6,6 +6,7 @@
                                - recursion two stacks O(n)
                                - two stacks iterator  O(logn + k)
 
+# k closest Points - heap
 """
 
 #********************************* k closest numbers in a sorted array **********************************************
