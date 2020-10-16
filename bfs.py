@@ -39,7 +39,7 @@ x -> x -> x  indegree[t]
         x 
         x
 hit -> hot -> dot -> dog -> cog
-        x  ->  o ->   o  -> cog
+        o  ->  o ->   o  -> cog
         .      
         .      
         o  ->  o ->   o  ->  o -> o -> cog  
