@@ -1,7 +1,6 @@
 """
 # Fibonacci O(n)
 
-
 # optimization - opt(i) = max(A, B), where A = v(i) + opt(prev(i)), B = opt(i - 1)
 # rob  O(n)
 # rob - houses are arranged in a circle  O(n)
@@ -20,6 +19,40 @@
 # Unique Paths - dp O(m*n)
 # Knight Probability in Chessboard - O(K*n^2)
 
+# Word Break - dp O(n^2)
+# Decode Ways - dp O(n)
+
+
+
+# summary
+- dp array
+  - i, j in 1d array - LIS
+  - expand to 2d matrix - LPS
+  - coordinate 2d matrix - Knight 
+
+- bottom-up 
+  - visit once (2d, prev(i) is sure) - Knapsack, Maximal Square, 
+  - visit multiple times (1d, prev(i) not sure) - Word Break, LIS
+  
+- return
+  - dp[n] - Word Break, Decode Ways
+  - max(dp) - Maximal Square, LIS
+
+
+
+
+                          
+# space optimization:
+dp[i][j] only depends on previous row, so we can optimize the space by using 2 rows instead of the matrix
+
+      w
+      0 1 2 3 4 5 6 7
+ wt 0 0 0 0 0 0 0 0 0
+    1 0
+    3 0
+    4 0   #         #
+    5 0             x =  max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w]), when wt[i-1] <= w
+ 
 """
 
 #********************************* Fibonacci **********************************************
@@ -92,19 +125,6 @@ W = 7
     
 """
 
-"""                             
-space optimization:
-dp[i][j] only depends on previous row, so we can optimize the space by using 2 rows instead of the matrix
-
-      w
-      0 1 2 3 4 5 6 7
- wt 0 0 0 0 0 0 0 0 0
-    1 0
-    3 0
-    4 0   #         #
-    5 0             x =  max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w]), when wt[i-1] <= w
- 
-"""
 def knapSack(wt, val, W): 
     n = len(wt)
     dp = [[0 for x in range(W + 1)] for x in range(n + 1)] 
