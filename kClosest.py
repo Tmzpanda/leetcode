@@ -1,12 +1,20 @@
 """
+# closest
 # k closest numbers in a sorted array   - O(logn + k)
 
 # closest value in a BST    - O(logn)
 # k closest values in a BST    - recursion O(n)
                                - recursion two stacks O(n)
                                - two stacks iterator  O(logn + k)
-
 # k closest Points - heap
+
+
+
+
+# smallest
+# Kth Smallest in an Array - quick select
+# K Smallest Elements in a BST - iterator
+
 """
 
 #********************************* k closest numbers in a sorted array **********************************************
