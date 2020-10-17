@@ -1,13 +1,13 @@
 """
 # intersection of two sorted array  - two pointers O(m + n)    - m ≈ n
-                                    - binary search O(m.logn)  - m ≫ n
+                                    - binary search O(n.logm)  - m ≫ n
                                     
 # intersection of two BST  - recursion traversal then merge  O(m + n)    - m ≈ n
-                           - iteration meanwhile mrege  O(m + n)    - m ≫ n       
+                           - iteration meanwhile merge  O(m + n)    - m ≈ n   
+                           - binary search O(n.longm) - m ≫ n
                            
-# intersection of two Linked List 
-# merge two Linked List 
-
+# intersection of two Linked List - and
+# merge two Linked List - or
 
 
 """
