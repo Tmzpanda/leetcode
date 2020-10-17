@@ -6,7 +6,7 @@
 
 # Unique Paths - dp O(m*n)
 # Knight Probability in Chessboard - O(K*n^2)
-
+# Queens
 """
 
 #********************************* Matrix ****************************************
