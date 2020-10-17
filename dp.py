@@ -31,7 +31,7 @@
   - coordinate 2d matrix - Knight 
 
 - bottom-up 
-  - visit once (2d, prev(i) is sure) - Knapsack, Maximal Square, 
+  - visit once (2d, prev(i) is sure) - Knapsack, Maximal Square, Knight
   - visit multiple times (1d, prev(i) not sure) - Word Break, LIS
   
 - return
