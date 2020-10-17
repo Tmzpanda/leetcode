@@ -5,8 +5,8 @@
 
 
 
-# Word Break - if possible solution exists
-             - number of possible solutions
+# Word Break - if possible solution exists - dp O(n^2)
+             - number of possible solutions - dp O(n^2)
              - all possible solutions           
 # Decode Ways - dfs 
               - dp
