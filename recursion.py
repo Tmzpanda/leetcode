@@ -9,14 +9,30 @@
 
 
 
-
 # comparison
 # Word Break - dfs memoization
-# combinationSum - backtrack
+# Word Ladder - backtrack
+
+
+                                    "2263"
+                          2 "263"               22 "63" <-------------- same 
+    same  -------> 2 "63"        26 "3"             6 "3"
+                      6 "3"          3 ""              3 ""
+                         3 ""
+
+
+        26*len(s)
+        x 
+        x
+hit -> hot -> dot -> dog -> cog
+        o  ->  o ->   o  -> cog
+        .      
+        .      
+        o  ->  o ->   o  ->  o -> o -> cog  
+        x
+
 
 """
-
-
 #********************************* top-down ****************************************
 # Decode Ways
 """         
