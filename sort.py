@@ -2,6 +2,7 @@
 # partition
 # sort by parity - partition O(n)
 # sort colors
+# quick select
 
 # merge
 # kClosest O(logn + k)
