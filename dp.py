@@ -11,6 +11,7 @@
 # Longest Increasing Subsequence  O(n^2) - length/path
 # Longest Palindrome Subsequence O(n^2)
 # Longest Common Subsequence O(n^2)
+# LIS 2d
 
 # Minimum Window Subsequence - dp O(ST)
 # Maximal Sqaure - dp O(m*n)
@@ -21,6 +22,7 @@
 
 # Word Break - dp O(n^2)
 # Decode Ways - dp O(n)
+
 
 
 
@@ -286,7 +288,21 @@ def LCS(A, B):
 
 
 
+# LIS 2d
+"""
+        0 1 2 3 4..... n
+      0 p1
+      1 
+      2     
+      3      p2
+      4
+      .
+      .
+      m
+       
 
+
+"""
     
 
 
