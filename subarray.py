@@ -1,8 +1,8 @@
 """
 # subarrays O(n^2)
 
-# Longest Increasing Substring - 1d - greedy O(n)
-                               - 2d matrix
+# Longest Increasing Substring - 1d increasing/monotonous - greedy O(n)
+                               - 2d matrix - dfs memoization
 # Longest Palindrome Substring - middle out O(n^2)
                                - dp O(n^2)
       
@@ -20,7 +20,7 @@
 
 
 """
-#********************************* Subarray O(n^2) **********************************************
+#*********************************************************** Subarray O(n^2) ************************************************************************
 # subarrays O(n^3)
 def findSubarrays(nums):
     n = len(nums)
@@ -37,7 +37,7 @@ nums = [1, 2, 3, 4, 5]
 findSubarray(nums)
   
 
-#********************************* Longest Subarray **********************************************
+#************************************************************ Longest Subarray ********************************************************************
 # Longest Increasing Subarray - greedy O(n)
 def LIS(nums):
     if not nums:
@@ -75,7 +75,60 @@ def LIS(nums):
 
     return longest
 
-  
+ 
+ 
+# LIS 2d
+# dfs memoization
+"""
+        0 1 2 3 4..... n
+      0     #
+      1   # x #
+      2     #
+      3      
+      4
+      .
+      .
+      m
+
+""" 
+DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+class Solution:
+    def longestContinuousIncreasingSubsequence2(self, matrix):
+        if not matrix:
+            return 0
+        
+        n, m = len(matrix), len(matrix[0])
+        dp = [[1 for _ in range(m)] for _ in range(n)]
+        memo = {}
+        longest = 0
+        for i in range(n):
+            for j in range(m):
+                dp[i][j] = self.dfs(matrix, i, j,  memo)
+                
+        return max(map(max, dp))
+        
+    
+    def dfs(self, matrix, x, y, memo):
+        if (x, y) in memo:
+            return memo[(x, y)]
+        
+        longest = 1
+        for delta_x, delta_y in DIRECTIONS:
+            x_prev, y_prev = x - delta_x, y - delta_y
+            if not self.isValid(matrix, x_prev, y_prev) or matrix[x][y] <= matrix[x_prev][y_prev]:
+                continue
+            longest = max(longest, self.dfs(matrix, x_prev, y_prev, memo) + 1)
+            
+        memo[(x, y)] = longest
+        return longest
+        
+        
+    def isValid(self, matrix, x, y):
+        return 0 <= x < len(matrix) and 0 <= y < len(matrix[0])
+      
+      
+      
+
 # Longest Palindrome Substring - middle out O(n^2)
 class Solution:
     def LPS(self, s):
@@ -138,7 +191,7 @@ def LPS(s):
       return s[start:end + 1]
 
 
-#********************************* Subarray Sum ***********************************************
+#*********************************************************** Subarray Sum *************************************************************************
 # Maximum Subarray - greedy O(n) 
 def maxSubArray(nums):
     minSum, maxSum = 0, -sys.maxsize
@@ -200,7 +253,7 @@ def checkSubarraySum(nums, k):
     return False
   
   
-#********************************* Minimum Window **********************************************
+#*********************************************************** Minimum Window ************************************************************************
 # Minimum Window Substring
 """
 S = "azjskfzts"      T = "sz"
