@@ -1,12 +1,12 @@
 """
 
 # shortest path
-# Word Ladder - length - bfs O(m^2 * n) O(m^2 * n)
+# Word Ladder - length - bfs O(m^2 * n) O(m^2 * n), where m = len(s)
                        - bidirectional bfs O(m^2 * n) O(m^2 * n)
               - all possible solutions - bfs + dfs backtrack
 # Number Of Islands
 # Knight Shortest Path
-# All nodes Distance K in a Binary Tree - bfs(+hashmap) O(n)
+# All nodes Distance K in a Binary Tree - bfs(+hashmap) O(m + n) = O(n-1 + 1) = O(n), where m = # of edges, n = # of vertices (nodes)
 
 
 # topological sort 
