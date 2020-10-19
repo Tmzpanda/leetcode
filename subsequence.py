@@ -1,20 +1,24 @@
 """
 # subsequence
 # sell stock - greedy O(n)
-# LIS  O(n^2) - length
-              - path
+# LIS  - length - dp O(n^2)
+                - binary search O(nlogn)
+       - path - dp O(n^2)
 # LPS O(n^2)
-# LCS - 1d array - dp O(n^2)
-      - 2d matrix 
-# Largest Divisible Subset - dp O(n^2)
+# LCS - dp O(n^2)
+
 
 
 
 # subset
+# Largest Divisible Subset - dp O(n^2)
+# Russian Dolls Envelopes - dp(nlogn)
+
 # kSum O(n^(k-1))
 # combinationSum - all possible solutions - backtrack O(2^n)
                  - if possible solution exists - dp O(n*S)
                  - number of possible solutions - dp O(n*S)
+
 
 
 
