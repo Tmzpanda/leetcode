@@ -11,7 +11,10 @@
 # Longest Increasing Subsequence  O(n^2) - length/path
 # Longest Palindrome Subsequence O(n^2)
 # Longest Common Subsequence O(n^2)
+
 # Largest Divisible Subset - dp O(n^2)
+# Russian Doll Envelopes - dp O(n^2)
+                         - binary search O(nlogn)
 
 # Minimum Window Subsequence - dp O(ST)
 # Maximal Sqaure - dp O(m*n)
@@ -316,7 +319,40 @@ def largestDivisibleSubset(nums):
     return path[::-1]
     
 
+# Russian Doll Envelopes
+# dp O(n^2)
+# binary search O(nlogn)
+class Solution:
+    def maxEnvelopes(self, envelopes):
 
+        if not envelopes:
+            return 0
+            
+        envelopes.sort(key=lambda x: (x[0], -x[1]))
+        n = len(envelopes)
+        temp = [float('inf')] * (n + 1)
+        temp[0] = -float('inf')
+        
+        longest = 0
+        for _, h in envelopes:
+            index = self.searchInsert(temp, h)
+            temp[index] = h
+            longest = max(longest, index)
+        
+        return longest
+    
+    
+    def searchInsert(self, nums, target):
+        l, r = 0, len(nums) - 1
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if target == nums[mid]:
+                return mid
+            elif target < nums[mid]:
+                r = mid
+            else:
+                l = mid
+        return r
 
 
 
