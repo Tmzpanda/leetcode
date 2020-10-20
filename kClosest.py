@@ -5,14 +5,13 @@
 # closest value in a BST    - O(logn)
 # k closest values in a BST    - recursion O(n)
                                - two stacks iterator  O(logn + k)
-# k closest Points - heap
-
+# k closest Points - heap O(nlogk)
 
 
 
 # smallest
-# Kth Smallest in an Array - quick select
-# K Smallest Elements in a BST - iterator
+# kth smallest in an array - quick select - partition
+# k smallest elements in a BST - iterator
 
 """
 
