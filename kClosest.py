@@ -4,7 +4,6 @@
 
 # closest value in a BST    - O(logn)
 # k closest values in a BST    - recursion O(n)
-                               - recursion two stacks O(n)
                                - two stacks iterator  O(logn + k)
 # k closest Points - heap
 
@@ -92,52 +91,6 @@ def kClosestValues(root, target, k):
     rec(root)
     return list(res)
 
-
-# recursion two stacks O(n)
-def closestKValues(root, target, k):
-    res = []
-    predecessors, successors = [], []
-    
-    inorderTraverse(root, predecessors, target)
-    reverseInorderTraverse(root, successors, target)
-    
-    for _ in range(k):
-        if isPredecessorSmaller(predecessors, successors):
-            res.append(predecessors.pop())
-        else:
-            res.append(successors.pop())
-            
-    return res
-
-
-def inorderTraverse(node, predecessors, target):
-    if not node:
-        return 
-    
-    inorderTraverse(node.left, predecessors, target)
-    if node.val >= target:
-        return
-    predecessors.append(node.val)
-    inorderTraverse(node.right, predecessors, target)
-    
-    
-def reverseInorderTraverse(node, successors, target):
-    if not node:
-        return 
-    
-    reverseInorderTraverse(node.right, successors, target)
-    if node.val < target:
-        return
-    successors.append(node.val)
-    reverseInorderTraverse(node.left, successors, target)
-    
-    
-def isPredecessorSmaller(predecessors, successors):
-    if not predecessors:
-        return False
-    if not successors:
-        return True
-    return target - predecessors[-1] <= successors[-1] - target
 
 
 
