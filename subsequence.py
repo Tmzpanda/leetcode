@@ -20,10 +20,6 @@
                  - number of possible solutions - dp O(n*S)
 
 
-
-
-# Minimum Window Subsequence - dp O(ST)
-                             - two pointers O(ST) = O((# of pattern found)*S*T)
                              
 """
 
