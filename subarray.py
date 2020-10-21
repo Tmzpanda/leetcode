@@ -1,15 +1,16 @@
 """
 # subarrays O(n^2)
-
 # Longest Increasing Substring - 1d increasing/monotonous - greedy O(n)
                                - 2d matrix - dfs memoization
 # Longest Palindrome Substring - middle out O(n^2)
                                - dp O(n^2)
       
       
+      
 # subarraySum - prefix sum
 # Maximum Subarray - greedy O(n)
 # Subarray Sum Equals K - hashmap O(n)
+
 
 
 # Shortest Subarray with Sum at Least K - sliding window O(n)
@@ -20,7 +21,10 @@
 
 
 """
-#*********************************************************** Subarray O(n^2) ************************************************************************
+
+  
+
+#************************************************************ Longest Subarray ********************************************************************
 # subarrays O(n^3)
 def findSubarrays(nums):
     n = len(nums)
@@ -35,9 +39,9 @@ def findSubarrays(nums):
                 
 nums = [1, 2, 3, 4, 5]
 findSubarray(nums)
-  
 
-#************************************************************ Longest Subarray ********************************************************************
+
+
 # Longest Increasing Subarray - greedy O(n)
 def LIS(nums):
     if not nums:
