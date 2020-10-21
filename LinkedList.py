@@ -130,7 +130,6 @@ class Node:
         self.next = next
 
 class LRUCache:
-
     def __init__(self, capacity):
         self.key_to_prev = {} 
         self.dummy = Node()
@@ -158,9 +157,12 @@ class LRUCache:
         if node == self.tail:
             return
         
+        # prev
         prev = self.key_to_prev[node.key]
         prev.next = node.next
+        # next
         self.key_to_prev[node.next.key] = prev
+        # curr
         node.next = None
         
         self.append(node)
@@ -178,6 +180,60 @@ class LRUCache:
 
 
 
+# First Unique Number in Data Stream 
+"""
+      x - o1 - o - o - o   o1    o1   o1
+          -                2     3    4
+          
+      x - o - o - o     key_to_prev      duplicates
+      -   -                 -                -
+
+
+add - first time - append
+    - second time - pop, duplicate
+    - third time - return 
+
+"""
+class DataStream:
+    def __init__(self):
+        self.dummy = ListNode(0)
+        self.tail = self.dummy
+        self.num_to_prev = {}
+        self.duplicates = set()
+
+    def add(self, num):
+        if num in self.duplicates:
+            return 
+        
+        if num in self.num_to_prev:
+            self.pop(num)
+            self.duplicates.add(num)
+        else: 
+            self.append(num)
+
+    def firstUnique(self):
+        if not self.dummy.next:
+            return None
+        return self.dummy.next.val
+        
+    def pop(self, num):
+        # prev
+        prev = self.num_to_prev[num]
+        prev.next = prev.next.next
+        # curr
+        del self.num_to_prev[num]  
+        # next
+        if prev.next:
+            self.num_to_prev[prev.next.val] = prev
+        else:
+            self.tail = prev
+            
+    def append(self, num):
+        self.tail.next = ListNode(num)
+        self.num_to_prev[num] = self.tail
+        self.tail = self.tail.next
+
+    
 
 
 
