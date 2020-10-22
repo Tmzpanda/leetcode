@@ -2,12 +2,18 @@
 # partition
 # sort by parity - partition O(n)
 # sort colors
-# quick select
+# kth largest
+# quick sort
+
+
 
 # merge
 # kClosest O(logn + k)
 # intersection - O(m + n)
                - O(m*logn)
+# merge sort
+# merge range
+
 
 
 # absSort
@@ -32,7 +38,61 @@ def sortArrayByParity(self, nums):
     return nums
     
 
-# sort color
+# sort color 
+"""
+2 0 2 0 1 0     nums[index] == 2: switch(nums[index], nums[r]), r--
+l         r
+^
+
+0 0 2 0 1 2     nums[index] == 0: switch(nums[index], nums[l]), l++ index++
+l       r
+^
+
+0 0 2 0 1 2
+    l   r
+    ^  
+    
+0 0 1 0 2 2     nums[index] == 1: index++
+    l r
+    ^
+  
+0 0 1 0 2 2    
+    l r
+      ^
+      
+0 0 0 1 2 2
+      lr
+        ^
+"""
+def sortColors(nums):
+        
+    l, r = 0, len(nums) - 1
+    index = 0
+
+    while index <= r:
+        if nums[index] == 0:
+            nums[index], nums[l] = nums[l], nums[index]
+            l += 1
+            index += 1
+        elif nums[index] == 2:
+            nums[index], nums[r] = nums[r], nums[index]
+            r -= 1
+        else:
+            index += 1
+
+
+# Kth smallest
+# sort O(nlong)
+# heap O(nlogk)
+# quick select - partition O(n)
+
+
+#********************************* merge **********************************************
+
+
+
+
+
 
 
 
