@@ -10,11 +10,11 @@
 
 
 # smallest
-# kth smallest in an array - quick select - partition
-     - largest
+# kth smallest in an array - quick select - partition O(n)
+                           - heap O(nlogk)
 
 # k smallest elements in a BST - iterator
-    - largest
+# k largest elements in a BST
 
 """
 
