@@ -11,6 +11,27 @@
 
 #********************************* Matrix ****************************************
 # Spiral Matrix
+"""
+4x4
+           l1
+           ^
+        t  t  t  t
+   b2 > l  t  t  r  < t1
+   b1 > l  b  r  r  < t2
+        b  b  b  r
+           ^  ^
+           r2 r1
+
+
+3x4
+           l1
+           ^
+        t  t  t  t
+   b1 > l  t  t  r  < t1
+        b  b  b  r  < t2
+              ^
+              r1
+"""
 def spiralOrder(matrix):
     if not matrix: 
         return []
