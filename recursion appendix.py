@@ -55,8 +55,6 @@ A.
                                                                 
  
  
- 
- 
 # recursion with/without return 
 # insert star - iteration
               - recursion bottom-up with return
@@ -71,8 +69,6 @@ A.
 # LCA in a BST - iteration
                - recursion
                
-                
-                
 
 
 
