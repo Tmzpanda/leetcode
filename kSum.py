@@ -14,7 +14,7 @@
 
 """
 
-# ************************ One Possible Solution ***************************************
+# *********************************** One Possible Solution ***************************************
 # two sum
 # hashmap O(n) O(n) 
 def twoSum(nums, target):
@@ -116,7 +116,7 @@ k = 4
 kSum(arr, s, k)
 
 
-# ************************ All Possible Solutions ****************************************
+# *********************************** All Possible Solutions ****************************************
 # four sum 
 def fourSum(nums, target):
     nums.sort()
