@@ -53,5 +53,53 @@ A.
  return                          return
                                                                 
                                                                 
-                                                                
+ 
+ 
+ 
+ 
+# recursion with/without return 
+# insert star - iteration
+              - recursion top-down with return
+              - recursion bottom-up
+
+# quick select - recursion top-down with return
+               - recursion bottom up
+
+# binary search - iteration
+                - recursion top-down with return
+                
+                
+
+
+
+# string vs array with index
+# array with index - (nums, start, end) - quick sort
+                                        - combination sum
+# string - (s[i:]) - insert star
+                   - word break
+                   - merge sort
+
+
 """
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
