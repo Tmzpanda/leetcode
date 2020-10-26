@@ -85,7 +85,7 @@ A.
 
 
 """
-#********************************* insert star ****************************************
+#************************************************* insert star *****************************************************
 # insert star
 # iteration
 def insertStar(string):
@@ -131,7 +131,7 @@ def rec(string, index, result):
     rec(string, index + 1, result)
 
 
-#********************************* quick select ****************************************     
+#******************************************** quick select ***************************************************     
 # recursion top-down with return
 def partition(nums, start, end, k):
 
@@ -185,7 +185,7 @@ def partition(nums, start, end, k):
 
 
 
-#********************************* binary search ****************************************
+#******************************************** binary search ***************************************************
 # iteration
 def binary_search(nums, target):
     l, r = 0, len(nums) - 1
@@ -228,7 +228,7 @@ def dfs(nums, start, end, target):
         return dfs(nums, start, mid, target)
 
 
-#********************************* LCA in a BST ****************************************
+#******************************************** LCA in a BST ***************************************************
 # iteration
 def lowestCommonAncestorInBST(root, p, q):
     node = root
