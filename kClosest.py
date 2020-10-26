@@ -13,12 +13,12 @@
 # kth smallest in an array - quick select - partition O(n)
                            - heap O(nlogk)
 
-# k smallest elements in a BST - iterator
-# k largest elements in a BST
+# k smallest/largest elements in a BST - iterator
+
 
 """
 
-#********************************* k closest numbers in a sorted array **********************************************
+#****************************************** k closest numbers in a sorted array **********************************************
 # iteration O(logn + k)
 class Solution:
     def kClosestNumbers(self, A, target, k):
@@ -55,7 +55,7 @@ class Solution:
         return target - A[l] <= A[r] - target
     
     
-#********************************* closest value in a BST ********************************************** 
+#****************************************** closest value in a BST ********************************************** 
 # iteration O(logn)
 def closestValue(root, target):
     p1, p2 = None, None
@@ -74,7 +74,7 @@ def closestValue(root, target):
     return min(p1.val, p2.val, key = lambda x: abs(x - target))
 
 
-#********************************* k closest values in a BST **********************************************    
+#****************************************** k closest values in a BST **********************************************    
 # recursion O(n)
 def kClosestValues(root, target, k):
     res = deque()
@@ -168,9 +168,12 @@ class Solution:
         return target - lowerStack[-1].val <= upperStack[-1].val - target
 
 
+#****************************************** k largest elements in a BST - iterator **********************************************
+# k smallest elements in a BST - iterator
 
 
 
+# k largest elements in a BST - iterator
 
 
 
