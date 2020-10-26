@@ -34,7 +34,7 @@ x -> x -> x  indegree[t]
 
 
 
-#********************************* Shortest Path **********************************************
+#********************************************* Shortest Path **********************************************************
 # Word Ladder - shortest path - bfs O(m^2 * n), where m = len(s)
 """
         26*len(s)
@@ -204,7 +204,7 @@ class Solution:
         
 
             
-#********************************* Topological Sort **********************************************
+#********************************************* Topological Sort **********************************************************
 # Course Schedule - if possible solution exists/one possible solution - bfs
 from collections import deque
 
