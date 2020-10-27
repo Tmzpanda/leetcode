@@ -6,7 +6,7 @@
               - all possible solutions - bfs + dfs backtrack
 # Number Of Islands
 # Knight Shortest Path
-# All nodes Distance K in a Binary Tree - bfs(+hashmap) O(m + n) = O(n-1 + 1) = O(n), where m = # of edges, n = # of vertices (nodes)
+# All nodes Distance K in a Binary Tree - bfs O(n)
 
 
 # topological sort 
