@@ -1,6 +1,8 @@
 """
 # min heap
 # Top K Largest Number
+# Nth Ugly Number 
+
 
 
 # max heap 
@@ -13,7 +15,6 @@
 
 #********************************* min heap **********************************************
 # Top K Largest Number - O(nlogk)
-
 from heapq import heappush, heappop
 def topk(self, nums, k):   
     if not nums:
@@ -28,7 +29,25 @@ def topk(self, nums, k):
 
     ans.sort(reverse=True)
     return ans
-    
+
+
+# Nth Ugly Number
+def nthUglyNumber(n):
+        
+    heap = []
+    heapq.heappush(heap, 1)
+    seen = set([1])
+    factors = [2, 3, 5]
+
+    for _ in range(n):
+        current = heapq.heappop(heap)
+        for f in factors:
+            new = current * f
+            if new not in seen:
+                seen.add(new)
+                heapq.heappush(heap, new)
+                
+    return current
     
     
     
