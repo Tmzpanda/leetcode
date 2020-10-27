@@ -38,6 +38,79 @@ hit -> hot -> dot -> dog -> cog
 
 """
 #******************************************** top-down ***************************************************
+# Word Break
+"""
+
+                              "catsanddogs"
+                  cat "sanddogs"        cats "anddogs"    
+                    sand "dogs"               and "dogs"     
+                         dogs ""                   dogs ""
+
+
+
+
+
+dp O(n^2)
+    s     l e e t c o d e
+   dp   T       x = dp[i] and s[i to j-1] in wordSet    
+        i       j
+        
+"""
+# if solution exists
+class Solution:
+
+    def wordBreak(self, s, wordDict):
+        return self.dfs(s, wordDict, {})
+        
+
+    def dfs(self, s, wordDict, memo):
+        if s in memo:
+            return memo[s]
+        
+        if not s:
+            return True
+        
+        flag = False
+        for i in range(0, len(s)):
+            prefix = s[:i + 1]
+            if prefix not in wordDict:
+                continue
+
+            if self.dfs(s[i + 1:], wordDict, memo):
+                flag = True
+                
+        memo[s] = flag      
+        return flag
+
+
+# number of solutions
+class Solution:
+
+    def wordBreak(self, s, wordDict):
+        return self.dfs(s, wordDict, {})
+        
+
+    def dfs(self, s, wordDict, memo):
+        if s in memo:
+            return memo[s]
+        
+        if not s:
+            return 1
+        
+        res = 0
+        for i in range(0, len(s)):
+            prefix = s[:i + 1]
+            if prefix not in wordDict:
+                continue
+
+            res += self.dfs(s[i + 1:], wordDict, memo)
+                
+                
+        memo[s] = res   
+        return res
+
+
+
 # Decode Ways
 """         
 dfs memoization
