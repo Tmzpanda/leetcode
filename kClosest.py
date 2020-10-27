@@ -71,7 +71,7 @@ def closestValue(root, target):
         else:
             return node.val
  
-    return min(p1.val, p2.val, key = lambda x: abs(x - target))
+    return min(p1.val, p2.val, key=lambda x: abs(x - target))
 
 
 #****************************************** k closest values in a BST **********************************************    
