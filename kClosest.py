@@ -80,7 +80,7 @@ def closestValue(root, target):
 def kClosestValues(root, target, k):
     res = deque()
 
-    def rec(root):
+    def rec(root):        # traverse
         if root is None:
             return
         rec(root.left)
