@@ -229,7 +229,7 @@ class Solution:
         return []
     
         
-    def findParent(self, root, parent, nodeToParent):
+    def findParent(self, root, parent, nodeToParent):       # traverse
         node = root
         if node:
             nodeToParent[node] = parent
