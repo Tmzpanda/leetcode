@@ -97,13 +97,52 @@ def kClosestValues(root, target, k):
 
 
 # iteration two stakcs O(logn + k)
+"""
+                   5 <            BST = [2,3,4, 5, 6,7,8]
+                 /   \            target = 6.1
+                3     7 <
+               / \   / \
+              2   4 6   8
+                    ^
+          
+          
+- closest itreator                   
+stack = path = [5, 7, 6]
+lower               upper                result
+[5, 7, 6]           [5, 7]               6
+[5]                                      7
+                    [5, 7, 8]            5
+[5, 3, 4]                                8
+                    []                   4 
+[5, 3]                                   3
+[5, 3, 2]                                2
+[]
+
+
+
+- smallest iterator
+getSuccessor              pop
+[5, 3, 2]                 2
+                          3
+[5, 4]                    4
+                          5
+[7, 6]                    6
+                          7
+[8]                       8
+[]
+
+
+
+
+
+"""
 class Solution:
     
-    def closestKValues(self, root, target, k): # BST = [2,3,4, 5, 6,7,8]
+    def closestKValues(self, root, target, k):
         if root is None or k == 0:
             return []
         
-        path = self.pathToTarget(root, target) # path = [5, 7, 6] target = 6.1
+        path = self.pathToTarget(root, target) # path = [5, 7, 6] 
         stack = list(path) 
         if stack[-1].val < target:
             self.getSuccessor(stack)           
@@ -118,7 +157,7 @@ class Solution:
         for i in range(k):
             if self.isPredecessorCloser(lowerStack, upperStack, target):
                 result.append(lowerStack[-1].val)
-                self.getPredecessor(lowerStack) #  lower [5]
+                self.getPredecessor(lowerStack) 
             else:
                 result.append(upperStack[-1].val)
                 self.getSuccessor(upperStack)
@@ -168,13 +207,26 @@ class Solution:
         return target - lowerStack[-1].val <= upperStack[-1].val - target
 
 
-#****************************************** k largest elements in a BST - iterator **********************************************
-# k smallest elements in a BST - iterator
+#****************************************** k smallest **********************************************
+# k smallest elements in a BST 
+# iterator
+def kthSmallest(root, k):
+    stack = []
+    node = root
+    while node:     # getSuccessor
+        stack.append(node)
+        node = node.left
+        
+    for i in range(k):
+        node = stack.pop()
+        res = node
 
-
-
-# k largest elements in a BST - iterator
-
+        node = node.right
+        while node:         # getSuccessor
+            stack.append(node)
+            node = node.left
+            
+    return res.val
 
 
 
