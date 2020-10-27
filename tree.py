@@ -1,8 +1,18 @@
 """
-# LCA in BST
-# LCA in Binary Tree
-# LCA in Binary Tree - node may not exist
+# d&q
+# LCA in BST - iteration O(logn)
+# LCA in Binary Tree - d&q O(n) O(n)(recursion stack)
+# LCA in Binary Tree - node may not exist - d&q
 
+
+# traverse recursion
+# K Closest Values in a BST - inorder O(n)
+# All nodes Distance K in a Binary Tree - preorder O(n)
+
+
+# BST iterator
+# K Smallest Values in a BST - O(k)
+# K Closest Values in a BST - O(logn + k)
 
 """
 
