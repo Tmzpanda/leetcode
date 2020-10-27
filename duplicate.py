@@ -49,5 +49,19 @@ def findDuplicates(nums):
 
 
 
-
 # findDisappearedNumbers
+def findDisappearedNumbers(nums):
+    res = []
+    
+    for i in range(len(nums)):
+        index = abs(nums[i]) - 1
+        if nums[index] > 0:
+            nums[index] = - nums[index]
+
+    return [index + 1 for index in range(len(nums)) if nums[index] > 0]
+
+
+
+
+
+
