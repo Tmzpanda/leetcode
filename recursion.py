@@ -104,8 +104,7 @@ class Solution:
                 continue
 
             res += self.dfs(s[i + 1:], wordDict, memo)
-                
-                
+                      
         memo[s] = res   
         return res
 
