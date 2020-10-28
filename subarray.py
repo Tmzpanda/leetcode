@@ -1,7 +1,7 @@
 """
 # subarrays O(n^2)
 # Longest Increasing Subarray - 1d increasing/monotonous - greedy O(n)
-                               - 2d matrix - dfs memoization
+                              - 2d matrix - dfs memoization
 # Longest Palindrome Substring - middle out O(n^2)
                                - dp O(n^2)
       
