@@ -60,7 +60,7 @@ dp[i][j] only depends on previous row, so we can optimize the space by using 2 r
  
 """
 
-#********************************* Fibonacci **********************************************
+#****************************************** Fibonacci **********************************************
 # Fibonacci
 def fib(n):   
     if n == 0:
@@ -77,7 +77,7 @@ def fib(n):
     
 
 
-#********************************* combinatorial optimization **********************************************
+#***************************************** combinatorial optimization **********************************************
 # rob O(n)
 def rob(nums):
     if not nums:
@@ -184,7 +184,7 @@ def combinationSum(arr, S):
     return dp[n][S]
 
 
-#********************************* Longest Subsequence ****************************************
+#****************************************************** Longest Subsequence ***********************************************************
 # Longest Increasing Subsequence  O(n^2)
 def LIS(nums):
     if not nums:
