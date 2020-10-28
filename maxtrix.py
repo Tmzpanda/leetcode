@@ -1,7 +1,12 @@
 """
 # Spiral Matrix 
 # Maximal Sqaure - dp O(m*n)
+
 # Number of Islands - bfs
+# Word Search - dfs
+# Longest Increasing Subarray - dfs memoization
+
+
 
 
 # Unique Paths - dp O(m*n)
