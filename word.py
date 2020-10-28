@@ -3,8 +3,6 @@
                        - bidirectional bfs O(m^2 * n) O(m^2 * n)
               - all possible solutions - bfs + dfs backtrack
               
-# Word Search - one word - dfs
-              - several words - 
 
 
 
@@ -17,8 +15,12 @@
 # Decode Ways - dfs memoization
               - dp - O(n)   
               
-# Word Pattern       
-# Wildcard Matching
+# Word Search - one word - dfs
+              - several words - 
+              
+# Word Pattern 
+
+# Wildcard 
 
 
 
