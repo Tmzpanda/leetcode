@@ -81,7 +81,7 @@ def LIS(nums):
 
  
  
-# LIS 2d
+# Longest Increasing Subarray 2d
 # dfs memoization
 """
         0 1 2 3 4..... n
