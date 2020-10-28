@@ -1,15 +1,22 @@
 """"
-# Word Ladder - bfs
-              - dp
+# Word Ladder - length - bfs O(m^2 * n) O(m^2 * n), where m = len(s)
+                       - bidirectional bfs O(m^2 * n) O(m^2 * n)
+              - all possible solutions - bfs + dfs backtrack
+              
+# Word Search - one word - dfs
+              - several words - 
 
 
 
 
-# Word Break - if possible solution exists - dp O(n^2)
-             - number of possible solutions - dp O(n^2)
-             - all possible solutions           
-# Decode Ways - dfs 
-              - dp
+# Word Break - world - if possible solution exists - dp O(n^2)
+                     - number of possible solutions - dp O(n^2)
+                     - all possible solutions - dfs memoization (recursion top-down with return)  
+             - wildcard
+
+# Decode Ways - dfs memoization
+              - dp - O(n)   
+              
 # Word Pattern       
 # Wildcard Matching
 
@@ -18,20 +25,12 @@
 
 
 
-# Levenshtein distance
+
 
 
 
 """
-# Word Ladder - dp
-
-
-
-
-
-
 # *********************************************** Word Break **************************************************************
-
 # Word Break - if solution exists - dp O(n^2)
 """
     s     l e e t c o d e
@@ -90,12 +89,12 @@ class Solution:
         if s in wordDict:
             partitions.append(s)
         
-        for i in range(1, len(s)):
-            prefix = s[:i]
+        for i in range(0, len(s)): 
+            prefix = s[:i + 1]
             if prefix not in wordDict:
                 continue
             
-            sub_partitions = self.dfs(s[i:], wordDict, memo)
+            sub_partitions = self.dfs(s[i + 1:], wordDict, memo)
             for partition in sub_partitions:
                 partitions.append(prefix + " " + partition)
                 
@@ -105,7 +104,7 @@ class Solution:
 
 
 # Decode Ways      
-# dp
+# dp O(n)
 """
 
                                     "2263"
