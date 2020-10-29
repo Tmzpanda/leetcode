@@ -4,14 +4,14 @@
 # Word Ladder - length - bfs O(m^2 * n) O(m^2 * n), where m = len(s)
                        - bidirectional bfs O(m^2 * n) O(m^2 * n)
               - all possible solutions - bfs + dfs backtrack
-# Number Of Islands
-# Knight Shortest Path
+# Number Of Islands - bfs
+# Knight Shortest Path - bfs
 # All nodes Distance K in a Binary Tree - bfs O(n)
 
 
 # topological sort 
 # Course Schedule - if possible solution exists/one possible solution - bfs
-# Sequence Reconstruction 
+# Sequence Reconstruction - bfs
 
 
 
