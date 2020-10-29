@@ -1,6 +1,7 @@
 
 """
         bottom-up                                                               top-down
+                                                                                
         
                         A. if directed, then alternative - LIS 1d vs Longest Increasing Subarray 2d 
         1. dp          <---------------------------------------------------->  
@@ -44,16 +45,16 @@ A.
                                                                 dfs
                                                                 1. branches and duplicatee sub x
                                                                 2. reduce and return ✓
-   
-   
+ 
    
    dp  <------------------------> dfs memoization
  initialization                  break condition
  bottom-up                       top-down
  return                          return
                                                                 
-                                                                
- 
+                
+                
+                
  
 # recursion with/without return 
 # insert star - iteration
@@ -72,6 +73,7 @@ A.
 
 
 
+
 # string vs array with index
 # array with index - (nums, start, end) - quick sort
                                         - combination sum
@@ -80,8 +82,20 @@ A.
                    - merge sort
 
 
+
+
+
+
+# time complexity analysis
+# backtrack - O(m^n), where m = number of choices for each recursion, n = number of recursions
+  Word Pattern (not separated) - O(len(string) ^ len(pattern))
+  Word Search - O(m*n * 3^len(word))
+  Subset - O(2^n)
+# memoization - NP->P
+  
+
 """
-#************************************************* insert star *****************************************************
+#****************************************************** insert star **********************************************************
 # insert star
 # iteration
 def insertStar(string):
@@ -127,7 +141,7 @@ def rec(string, index, result):
     rec(string, index + 1, result)
 
 
-#******************************************** quick select ***************************************************     
+#******************************************************** quick select *************************************************************     
 # recursion top-down with return
 def partition(nums, start, end, k):
 
@@ -181,7 +195,7 @@ def partition(nums, start, end, k):
 
 
 
-#******************************************** binary search ***************************************************
+#************************************************* binary search ********************************************************
 # iteration
 def binary_search(nums, target):
     l, r = 0, len(nums) - 1
@@ -224,7 +238,7 @@ def dfs(nums, start, end, target):
         return dfs(nums, start, mid, target)
 
 
-#******************************************** LCA in a BST ***************************************************
+#***************************************************** LCA in a BST *************************************************************
 # iteration
 def lowestCommonAncestorInBST(root, p, q):
     node = root
