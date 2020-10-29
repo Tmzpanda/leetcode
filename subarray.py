@@ -258,6 +258,42 @@ def checkSubarraySum(nums, k):
   
   
 #*********************************************************** Minimum Window ************************************************************************
+# Shortest Subarray with Sum at Least K - sliding window O(n)
+"""
+A =       [1, 3, -1, 3, 1]    K = 5
+psum = [0, 1, 4,  3, 6, 7]
+
+queue [0, 1, 4]
+      [0, 1, 3]
+      [0, 1, 3, 6]
+         [1, 3, 6]   shortest = i - queue.popleft()
+            [3, 6, 7]
+"""
+import sys
+from collections import deque
+
+def shortestSubarray(A, K):
+    n = len(A)
+    psum = [0] * (n + 1)
+    
+    for i in range(1, n + 1):
+        psum[i] = psum[i - 1] + A[i - 1] 
+    
+    queue = deque()
+    shortest = sys.maxsize
+    for i, s in enumerate(psum):
+        while queue and s <= psum[queue[-1]]:
+            queue.pop()
+        
+        while queue and  s - psum[queue[0]] >= K:
+            shortest = min(shortest, i - queue.popleft())
+            
+        queue.append(i)
+        
+    return shortest if shortest != sys.maxsize else -1
+            
+
+
 # Minimum Window Substring
 """
 S = "azjskfzts"      T = "sz"
@@ -303,42 +339,80 @@ class Solution:
             targetCharToFreq[c] = targetCharToFreq.get(c, 0) + 1
         return targetCharToFreq
         
-        
-# Shortest Subarray with Sum at Least K - sliding window O(n)
-"""
-A =       [1, 3, -1, 3, 1]    K = 5
-psum = [0, 1, 4,  3, 6, 7]
+  
+  
 
-queue [0, 1, 4]
-      [0, 1, 3]
-      [0, 1, 3, 6]
-         [1, 3, 6]   shortest = i - queue.popleft()
-            [3, 6, 7]
+# Minimum Window Subsequence 
+# dp - O(S*T)
 """
-import sys
-from collections import deque
+        "" X Y
+      "" 0 ∞ ∞ 
+      G  0 
+      X  0 
+      T  0 
+      X  0 
+      A  0 
+      Y  0   x = dp[i - 1][j - 1] + 1, when S[i - 1] == T[j - 1]
+      B  0   x = dp[i - 1][j] + 1,     when S[i - 1] != T[j - 1]
 
-def shortestSubarray(A, K):
-    n = len(A)
-    psum = [0] * (n + 1)
-    
-    for i in range(1, n + 1):
-        psum[i] = psum[i - 1] + A[i - 1] 
-    
-    queue = deque()
-    shortest = sys.maxsize
-    for i, s in enumerate(psum):
-        while queue and s <= psum[queue[-1]]:
-            queue.pop()
+dp[i][j] represents window length of S which contains T[0 to j - 1]
+"""
+def minWindow(S, T):
         
-        while queue and  s - psum[queue[0]] >= K:
-            shortest = min(shortest, i - queue.popleft())
-            
-        queue.append(i)
+    m, n = len(S), len(T)
+    dp = [[0] * (n + 1) for _ in range (m + 1)]
+    for j in range(1, n + 1):
+        dp[0][j] = sys.maxsize 
+
+    for i in range(1, m + 1):
+        for j in range(1, n +  1):
+            if S[i - 1] == T[j - 1]:
+                dp[i][j] = dp[i - 1][j - 1] + 1
+            else:
+                dp[i][j] = dp[i - 1][j] + 1
+
+    minLen = sys.maxsize
+    for i in range(1, m + 1):
+        if dp[i][n] < minLen:
+            minLen = dp[i][n]
+            end = i - 1
+
+    if minLen == sys.maxsize:
+        return ""
+
+    return S[end - minLen + 1: end + 1]
+
+
+# two pointers - O((# of pattern found)*S*T) = O(ST)
+def minWindow(S, T):
         
-    return shortest if shortest != sys.maxsize else -1
-            
-            
+    minLen = len(S) + 1
+    window = ""
+
+    i, j = 0, 0
+    while i < len(S):
+        if S[i] == T[j]:
+            j += 1
+        if j == len(T):
+            end = i 
+            j -= 1
+            while j >= 0:
+                if S[i] == T[j]:
+                    j -= 1
+                i -= 1
+            i += 1
+            j += 1
+            if end - i + 1< minLen:
+                minLen = end - i + 1
+                window = S[i:end + 1]
+        i += 1
+    return window
+  
+
+
+
+
+           
             
         
 
