@@ -123,7 +123,8 @@ dfs memoization
 
 
 dp O(n)
-dp[i] = dp[i - 1]*(if "s[i - 1]" is valid) + dp[i - 2]*(if "s[i - 2]s[i - 1]" is valid)
+            s   2 2 6 3
+           dp 1 1 x        = dp[i - 1]*(if "s[i - 1]" is valid) + dp[i - 2]*(if "s[i - 2]s[i - 1]" is valid)
 
 """
 class Solution:
