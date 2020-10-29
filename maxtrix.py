@@ -1,24 +1,21 @@
 """
 # directed matrix
-# Spiral Matrix 
+# Spiral Matrix - O(m*n)
 # Maximal Sqaure - dp O(m*n)
 
 
-
 # undirected matrix
-# Number of Islands - bfs (preferred)
-                    - dfs
-# Word Search - dfs (preferred)
-              - bfs
-# Longest Increasing Subarray - dfs memoization
-
+# Number of Islands - bfs - O(m*n)
+# Word Search - dfs T << O(m*n * 3^len(word))
+# Longest Increasing Subarray 2d - dfs memoization - 
 
 
 
 # chessboard
 # Unique Paths - dp O(m*n)
-# Knight Probability in Chessboard - O(K*n^2)
+# Knight Probability in Chessboard - dp O(K*n^2)
 # Queens
+
 """
 
 #************************************************** Directed Matrix ***********************************************************
@@ -150,6 +147,7 @@ class Solution:
 
 
 # Word Search - dfs
+# T << O(m*n * 3^len(word))
 DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 class Solution:
     def exist(self, board, word):
@@ -163,7 +161,6 @@ class Solution:
     
     
     def dfs(self, board, x, y, visited, word, index):
-        print(board[x][y])
         if index == len(word):
             return True
         
@@ -171,12 +168,11 @@ class Solution:
             x_next, y_next = x + delta_x, y + delta_y
             if not self.isValid(board, x_next, y_next, visited, word, index):
                 continue
-            print(x_next, y_next)
             
             visited.add((x_next, y_next))        # backtrack
             if self.dfs(board, x_next, y_next, visited, word, index + 1):
                 return True
-            visited.discard((x_next, y_next))
+            visited.remove((x_next, y_next))
         
         return False
             
@@ -190,6 +186,7 @@ class Solution:
         return grid[i][j] == word[index]
         
            
+          
 # Longest Increasing Subarray 2d
 # dfs memoization
 """
@@ -237,6 +234,7 @@ class Solution:
         
     def isValid(self, matrix, x, y):
         return 0 <= x < len(matrix) and 0 <= y < len(matrix[0])
+      
       
 #**************************************************** Chessboard ********************************************************************
 # Unique Paths O(m*n)
