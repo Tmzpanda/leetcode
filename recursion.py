@@ -1,6 +1,6 @@
 """
 # top-down
-# dfs memoization
+# dfs memoization 
 # d&q
 
 
@@ -10,7 +10,7 @@
 
 
 # comparison
-# Word Break - dfs memoization
+# Word Break - dfs memoization 
 # Word Ladder - backtrack
 
 
@@ -38,16 +38,12 @@ hit -> hot -> dot -> dog -> cog
 
 """
 #******************************************** top-down ***************************************************
-# Word Break
+# Word Break - O(n^2)
 """
-
                               "catsanddogs"
                   cat "sanddogs"        cats "anddogs"    
                     sand "dogs"               and "dogs"     
                          dogs ""                   dogs ""
-
-
-
 
 
 dp O(n^2)
@@ -110,7 +106,7 @@ class Solution:
 
 
 
-# Decode Ways
+# Decode Ways O(n)
 """         
 dfs memoization
 
