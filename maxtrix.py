@@ -7,7 +7,7 @@
 # undirected matrix
 # Number of Islands - bfs - O(m*n)
 # Word Search - dfs T << O(m*n * 3^len(word))
-# Longest Increasing Subarray 2d - dfs memoization - 
+# Longest Increasing Subarray 2d - dfs memoization - NP->P
 
 
 
