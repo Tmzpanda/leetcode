@@ -87,7 +87,7 @@ def reverseList(head):
     return head
 
 
-# pointers
+# 3 pointers
 """
      o -> o -> o -> o -> None
  p   ^        
