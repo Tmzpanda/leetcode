@@ -1,14 +1,80 @@
 """
 # data structure
-# First Unique
+# First Unique 
 
 # stats
 # Moving Average
 # Median
 
 """
+#************************************************ Data Structure ************************************
+# Fisrt Unique Number - batch
+def firstUniqueNumber(nums):
+    counter = {}
+    for num in nums:
+        counter[num] = counter.get(num, 0) + 1
 
-#********************************* stats **********************************************
+    for num in nums:
+        if counter[num] == 1:
+            return num
+        
+    return -1
+
+
+# First Unique Number in Data Stream 
+"""
+      x - o1 - o - o - o   o1    o1   o1
+          -                2     3    4
+          
+      x - o - o - o     key_to_prev      duplicates
+      -   -                 -                -
+      
+add - first time - append
+    - second time - pop, duplicate
+    - third time - return 
+    
+"""
+class DataStream:
+    def __init__(self):
+        self.dummy = ListNode(0)
+        self.tail = self.dummy
+        self.num_to_prev = {}
+        self.duplicates = set()
+
+    def add(self, num):
+        if num in self.duplicates:
+            return 
+        
+        if num in self.num_to_prev:
+            self.pop(num)
+            self.duplicates.add(num)
+        else: 
+            self.append(num)
+
+    def firstUnique(self):
+        if not self.dummy.next:
+            return None
+        return self.dummy.next.val
+        
+    def pop(self, num):
+        # prev
+        prev = self.num_to_prev[num]
+        prev.next = prev.next.next
+        # curr
+        del self.num_to_prev[num]  
+        # next
+        if prev.next:
+            self.num_to_prev[prev.next.val] = prev
+        else:
+            self.tail = prev
+            
+    def append(self, num):
+        self.tail.next = ListNode(num)
+        self.num_to_prev[num] = self.tail
+        self.tail = self.tail.next
+
+
+#************************************************ stats **********************************************
 # Moving Average
 class MovingAverage:
     
