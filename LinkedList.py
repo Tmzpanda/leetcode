@@ -3,14 +3,12 @@
 # merge
 
 
-# 2 pointers
+# pointers
 # hasCycle
 # middleNode
-
-
-# node_to_prev
-# reverse - hashmap O(n) O(n)
-          - pointers O(n) O(1)
+# Remove Nth Node from the end - one pass
+# reverse 
+          
 
 
 # data structure
@@ -45,8 +43,9 @@ def isFirstSmaller(p1, p2):
     
  
 
-#********************************* 2 pointers **********************************************
+#********************************* pointers **********************************************
 # hasCycle
+# 2 pointers
 def hasCycle(head):
     if head is None:            
         return False    
@@ -63,61 +62,83 @@ def hasCycle(head):
     return True
 
 
-
-#********************************* node_to_prev **********************************************
-# reverse
-# hashmap
+# middle node
 """
- o -> o -> o -> o -> None
- ^
-                ^
+ 1 -> 2 -> 3 -> 4
+           f
+      s
 """
-def reverseList(head):
-    if not head:
+def middleNode(head):
+    if head is None:
         return None
+
+    slow = head
+    fast = head
+    while fast is not None and fast.next is not None:
+        slow = slow.next
+        fast = fast.next.next
+
+    return slow
+
+
+# Remove Nth Node from the end - one pass
+"""
+ dummy -> 1 -> 2 -> 3 -> 4              n = 2
+                         f          
+               s
+"""
+
+def removeNthFromEnd(head, n):
+    dummy = ListNode(0)
+    dummy.next = head
+    slow = fast = dummy
     
-    node_to_prev = {head: None}
-    while head.next:
-        node_to_prev[head.next] = head
-        head = head.next
-    
-    for node in node_to_prev:
-        node.next = node_to_prev[node]
+    for _ in range(n):
+        fast = fast.next   
         
-    return head
+    while fast.next:
+        slow = slow.next
+        fast = fast.next
+        
+    slow.next = slow.next.next
+    
+    return dummy.next
 
 
+
+# reverse
 # 3 pointers
 """
-     o -> o -> o -> o -> None
- p   ^        
-                    p     ^          
+prev cur next
+      1 -> 2 -> 3 -> None
+     
 """
 def reverse(head):
     prev = None
     while head:
-        temp = head.next
-        head.next = prev
+        nxt = head.next
 
+        head.next = prev
         prev = head
-        head = temp
+        head = nxt
 
     return prev
+
+
+
+    
+
 
 
 
 #********************************* data structure **********************************************
 # LRU
 """
-      x - o1 - o - o - o 
-          -
-          
-      x - o - o - o - o1    key_to_prev
-      -   -           -        -
-
+                  tail
+dummy <- 1 <- 2 <- 3
 
 set - if exists - pop and append
-    - if not - append, *popleft
+    - if not - append, popleft
     
 get - if exists - pop and append
     - if not - return -1
@@ -131,7 +152,7 @@ class Node:
 
 class LRUCache:
     def __init__(self, capacity):
-        self.key_to_prev = {} 
+        self.key_to_prev = {}           # key_to_prev
         self.dummy = Node()
         self.tail = self.dummy
         self.capacity = capacity
@@ -163,8 +184,6 @@ class LRUCache:
         # next
         self.key_to_prev[node.next.key] = prev
         # curr
-        node.next = None
-        
         self.append(node)
         
     def append(self, node):
@@ -182,12 +201,8 @@ class LRUCache:
 
 # First Unique Number in Data Stream 
 """
-      x - o1 - o - o - o   o1    o1   o1
-          -                2     3    4
-          
-      x - o - o - o     key_to_prev      duplicates
-      -   -                 -                -
-
+                  tail
+dummy <- 1 <- 2 <- 3
 
 add - first time - append
     - second time - pop, duplicate
