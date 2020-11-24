@@ -91,5 +91,20 @@ def longestSubarray(A, K):
     
     
     
+ def longestSubarray(A, K):
+    longest = -sys.maxsize
+    window_sum = 0
+    start, end = 0, 0
     
+    for end in range(len(A)):
+        window_sum += A[end]
+        
+        while window_sum > K:
+            window_sum -= A[start]
+            start += 1
+            
+        longest = max(longest, end - start + 1)
+            
+              
+    return longest if longest != -sys.maxsize else -1       
 
