@@ -57,11 +57,11 @@ def shortestSubarray(A, K):
     for end in range(len(A)):
         psum += A[end]
 
-        while queue and psum <= queue[-1][1]:
-            queue.pop()
-
         while queue and psum - queue[0][1] >= K:
             shortest = min(shortest, end - queue.popleft()[0])
+        
+        while queue and psum <= queue[-1][1]:
+            queue.pop()
             
         queue.append((end, psum))
 
