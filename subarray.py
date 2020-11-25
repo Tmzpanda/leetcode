@@ -11,8 +11,6 @@
 # Maximum Subarray - greedy O(n)
 # Subarray Sum Equals K - hashmap O(n)
 
-
-
 # Shortest Subarray with Sum at Least K - sliding window O(n)
 # Minimum Window Substring - two pointers O(S + T)
 # Minimum Window Subsequence - dp O(ST)
@@ -296,7 +294,7 @@ def shortestSubarray(A, K):
 
 # Minimum Window Substring
 """
-S = "azjskfzts"      T = "sz"
+S = "azjskfzs"      T = "sz"
      -  -      expand
       - -      contract 
        --   
@@ -312,7 +310,7 @@ class Solution:
         window = ""
         minLen = sys.maxsize
         l, r = 0, 0
-        while r < len(s):
+        for r in range(len(s)):
             sourceCharToFreq[s[r]] = sourceCharToFreq.get(s[r], 0) + 1
             if s[r] in targetCharToFreq and sourceCharToFreq[s[r]] == targetCharToFreq[s[r]]:
                     matched += 1
@@ -326,9 +324,8 @@ class Solution:
                 sourceCharToFreq[s[l]] -= 1
                 if s[l] in targetCharToFreq and sourceCharToFreq[s[l]] < targetCharToFreq[s[l]]:
                     matched -= 1
+                    
                 l += 1      
-                
-            r += 1
 
         return window
 
