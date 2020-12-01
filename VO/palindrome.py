@@ -13,10 +13,11 @@ K-Palindrome Substring  - dfs
 Longest K-Palindrome Substring
     
     
-Palindrome Partioning - all solutions
-                      - minimum cuts
+Palindrome Partioning - all solutions - backtrack
+                      - minimum cuts - memoizaiton
                         
-Word Break
+Word Break - number of solutions - memoization
+           - all solutions - memoization 
 Subset
 Permutation
 
