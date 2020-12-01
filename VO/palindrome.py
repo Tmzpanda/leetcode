@@ -20,6 +20,7 @@ Word Break - number of solutions - memoization
            - all solutions - memoization 
 Subset
 Permutation
+KSum
 
 """
 
