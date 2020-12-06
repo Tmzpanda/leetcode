@@ -46,12 +46,13 @@ Knapsack - combinatorial optimization
                              - memoization
                               
 131. Palindrome Partioning - all solutions - backtrack
-                           - minimum cuts - memoizaiton
+132.                       - minimum cuts - memoizaiton
                            
 139. Word Break - number of solutions - memoization
                 - all solutions - memoization 
                 
 90. Subset
+77. Combinations
 47. Permutation
 
 39. Combination Sum - all solutions
