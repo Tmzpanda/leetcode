@@ -16,12 +16,11 @@
 674. Longest Increasing Subarray - greedy O(n)
 300. Longest Increasing Subsequence - dp O(n)
 
-
-121. Sell Stock - Maximum Diff Sum - one transaction - greedy O(n)
-122.                               - ∞ transactions - 
-188.                               - at most K transactions - dp
-309.                               - ∞ transactions with cooldown - 
-714.                               - ∞ transactions with transaction fee -
+121. Sell Stock - Subsequence Maximum Diff - one transaction - greedy O(n)
+122.                                       - ∞ transactions - greedy O(n) 
+188.                                       - at most K transactions - dp O(n*k)
+309.                                       - ∞ transactions with cooldown - 
+714.                                       - ∞ transactions with transaction fee -
 
 Knapsack - combinatorial optimization  
 198. Rob House - Non-adjacent Elements Sum - array
