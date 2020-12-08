@@ -16,21 +16,32 @@
 674. Longest Increasing Subarray - greedy O(n)
 300. Longest Increasing Subsequence - dp O(n)
 
-121. Sell Stock - Subsequence Maximum Diff - one transaction - greedy O(n)
-122.                                       - ∞ transactions - greedy O(n) 
-188.                                       - at most K transactions - dp O(n*k)
-309.                                       - ∞ transactions with cooldown - 
-714.                                       - ∞ transactions with transaction fee -
 
-Knapsack - combinatorial optimization  
+121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
+122.                                        - ∞ transactions - greedy O(n) 
+188.                                        - at most K transactions - dp O(n*k)
+309.                                        - ∞ transactions with cooldown - dp O(n)
+714.                                        - ∞ transactions with transaction fee - dp O(n)
+
 198. Rob House - Non-adjacent Elements Sum - array
 213.                                       - cycle
 337.                                       - tree
 
-322. Coin Change - Combination Sum - all solutions
-518.                               - fewest coins
+322. Coin Change - Combination Sum - number of solutions - dp ----------------------------------------------------------
+518.                               - fewest coins ----------------------------------------------------------
 
 
+39. Combination Sum - all solutions - repeated use - backtrack O(2^n)
+40.                                 - deduplicate num exists - backtrack O(2^n)
+377.                - number of solutions - different sequences are different combinations - dp O(n*S) ----------------------------------------------------------
+416. Partiton Equal Subset Sum - if possible - dp O(n*S) ----------------------------------------------------------
+
+216. K Sum - positive - all solutions - backtrack O(2^n)
+                      - number of solutions - dp O(n*S*K) ----------------------------------------------------------
+18.        - negative exists - all solutions - two pointers O(n^(k-1))
+
+47. Permutation - all solutions - duplicate num exists - backtrack O(n!)
+90. Subset -  all solutions - duplicate num exists - backtrack O(2^n)
 
 
 718. Longest Common Substring - dp O(m*n)
@@ -40,26 +51,16 @@ Knapsack - combinatorial optimization
                                  - dp O(n^2)
 516. Longest Palindromic Subsequence - dp O(n^2)
 
-
-
 1216. K-Palindrome Substring - LPS
-                             - memoization
-                              
+                             - dfs memoization - dp
+                             
 131. Palindrome Partioning - all solutions - backtrack
-132.                       - minimum cuts - memoizaiton
+132.                       - minimum cuts - memoizaiton - dp
                            
 139. Word Break - number of solutions - memoization
                 - all solutions - memoization 
                 
-90. Subset
-77. Combinations
-47. Permutation
-
-39. Combination Sum - all solutions
-416.                - if possible
-                    
-
-
+word laddeer
 """
 
 """
