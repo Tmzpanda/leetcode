@@ -12,7 +12,155 @@
 # kSum 
 # combinationSum 
 
+39. Combination Sum - all solutions - repeated use - backtrack O(2^n)
+40.                                 - deduplicate num exists - backtrack O(2^n)
+377.                - number of solutions - different sequences are different combinations - dp O(n*S)
+416. Partiton Equal Subset Sum - if possible - dp O(n*S)
+
+216. K Sum - positive - all solutions - backtrack O(2^n)
+                      - number of solutions - dp O(n*S*K)
+18.        - negative exists - all solutions - two pointers O(n^(k-1))
+
+
 """
+
+
+# 39 Combination Sum
+class Solution:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        result = []
+        self.dfs(nums, 0, target, [], result)
+        return result
+        
+        
+    def dfs(self, nums, index, target, subset, result):
+        if target < 0:
+            return 
+        
+        if target == 0:
+            result.append(list(subset)) 
+            return
+        
+        for i in range(index, len(nums)):
+            subset.append(nums[i])
+            self.dfs(nums, i, target - nums[i], subset, result) # unique combinations, repeated use
+            subset.pop()
+
+# 40. Combination Sum
+class Solution:
+    def combinationSum2(self, nums: List[int], target: int) -> List[List[int]]:
+        nums.sort()
+        result = []
+        self.dfs(nums, 0, target, [], result)
+        return result
+        
+        
+    def dfs(self, nums, index, target, subset, result):
+        if target < 0:
+            return 
+        
+        if target == 0:
+            result.append(list(subset)) 
+            return
+        
+        for i in range(index, len(nums)):
+            if i != 0 and nums[i] == nums[i - 1] and i != index:    # deduplicate
+                continue
+            subset.append(nums[i])
+            self.dfs(nums, i + 1, target - nums[i], subset, result)   # used once
+            subset.pop()
+
+
+# 377. Combination Sum
+class Solution:
+    def combinationSum4(self, nums: List[int], target: int) -> int:
+        result = []
+        self.dfs(nums, target, [], result)
+        return len(result)
+        
+        
+    def dfs(self, nums, target, subset, result):
+        if target < 0:
+            return 
+        
+        if target == 0:
+            result.append(list(subset)) 
+            return
+        
+        for i in range(len(nums)):
+            subset.append(nums[i])
+            self.dfs(nums, target - nums[i], subset, result) # different sequence are counted as different combinations
+            subset.pop()
+
+
+# 216. K Sum
+class Solution:
+    def combinationSum3(self, k: int, target: int) -> List[List[int]]:
+       
+        res = []
+        self.dfs(1, target, [], k, res)
+        return res
+
+    def dfs(self, index, target, subset, k, res):
+        if target < 0 or k < 0:
+            return 
+        
+        if k == 0 and target == 0:
+            res.append(list(subset))
+            return
+        
+        for i in range(index, 10):
+            subset.append(i)
+            self.dfs(i + 1, target - i, subset, k - 1, res)
+            subset.pop()
+        
+        
+# 90. Subset 
+class Solution:
+    def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        result = []
+        self.dfs(nums, 0, [], result)
+        return result
+        
+        
+    def dfs(self, nums, index, subset, result):
+ 
+        result.append(list(subset)) 
+        
+        for i in range(index, len(nums)):
+            if i != 0 and nums[i] == nums[i - 1] and i != index:    # deduplicate
+                continue
+            subset.append(nums[i])
+            self.dfs(nums, i + 1, subset, result)   # used once
+            subset.pop()
+        
+              
+# 47. Permutation
+class Solution:
+    def permuteUnique(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+        used = [False] * len(nums)
+        result = []
+        self.dfs(nums, used, [], result)
+        return result
+        
+    def dfs(self, nums, used, path, result):
+        if len(path) == len(nums):
+            result.append(list(path)) 
+            return 
+        
+        for i in range(len(nums)):
+            if used[i] or (i > 0 and nums[i] == nums[i - 1] and not used[i - 1]):
+                continue
+            used[i] = True
+            self.dfs(nums, used, path + [nums[i]], result)   # used once
+            used[i] = False
+       
+       
+ # 60. Kth Permutation Sequence
+
+
 
 # *********************************** One Possible Solution ***************************************
 # two sum
