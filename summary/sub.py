@@ -14,6 +14,7 @@
 
 674. Longest Increasing Subarray - greedy O(n)
 300. Longest Increasing Subsequence - dp O(n)
+                                    - path
 
 """
 
@@ -226,3 +227,64 @@ def minWindow(S, T):
         i += 1
     return window
   
+     
+# 674. Longest Increasing Subarray - greedy O(n)
+# 300. Longest Increasing Subsequence - dp O(n)
+#                                     - path
+
+# 674. subarray
+def LIS(nums):
+    if not nums:
+        return 0
+    
+    longest = 1
+    flag = 0
+    for i in range(1, len(nums)):
+        if nums[i] < nums[i - 1]: 
+            flag = i
+        longest = max(longest, i - flag + 1)
+        
+    return longest
+
+# 300 subsequence
+def LIS(nums):
+    if not nums:
+        return 0
+    
+    n = len(nums)        
+    dp = [1] * len(nums)
+    
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] < nums[j]:
+                dp[j] = max(dp[j], dp[i] + 1)
+                
+    return max(dp)
+  
+# path
+def LIS(nums):
+    if not nums:
+        return 0
+    
+    n = len(nums)        
+    dp = [1] * len(nums)
+    prev = [-1] * len(nums)
+    
+    for i in range(n):
+        for j in range(i + 1, n):
+            if nums[i] < nums[j] and dp[j] < dp[i] + 1:
+                dp[j] = dp[i] + 1
+                prev[j] = i
+    
+    longest, index = 1, -1      # find path
+    for i in range(len(nums)):
+        if dp[i] > longest:
+            longest = dp[i]
+            index = i
+    
+    path = []
+    while index != -1:
+        path.append(nums[index])
+        index = prev[index]
+    
+    return path[::-1]
