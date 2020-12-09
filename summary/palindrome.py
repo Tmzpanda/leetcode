@@ -15,9 +15,9 @@
 """
 
 
-718. Longest Common Substring - dp O(m*n)
-                              - two pointers O(m * n * min(m,n)) TLE
-1143. Longest Common Subsequence - dp O(m*n)
+# 718. Longest Common Substring - dp O(m*n)
+#                               - two pointers O(m * n * min(m,n)) TLE
+# 1143. Longest Common Subsequence - dp O(m*n)
 
 # Longest Common Substring O(n^2)
 def longestCommonSubstring(A, B):
@@ -135,3 +135,128 @@ def longestPalindromeSubseq(s):
                 dp[i][j] = max(dp[i + 1][j], dp[i][j - 1])
          
     return dp[0][n - 1]
+  
+  
+  
+  
+  
+  #********************************************* K-Palindrome *************************************************************
+# K-Palindrome Substring
+# dfs
+def isKPalindrome(s, k):
+    if len(s) == 1:
+        return True
+    
+    while s[0] == s[-1]:
+        s = s[1: -1]
+        if len(s) <= 1:
+            return True
+          
+    if k == 0:
+        return False
+    
+    return isKPalindrome(s[1:], k - 1) or isKPalindrome(s[:-1], k - 1)    # memoization
+
+  
+# Longest K-Palindrome Substring
+def longestKPalindrome(s, k):
+    longest = len(LPS(s))
+    
+    if len(s) - longest <= k
+        return longest
+    else:
+        return max(longestKPalindrome(s[1:], k), longestKPalindrome(s[:-1], k))   # memoization
+
+      
+      
+#********************************************** Partition *************************************************************
+# All Partition Solutions
+# backtrack
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        res = []
+        self.dfs(s, [], res)
+        return res
+    
+    def dfs(self, s, substrings, res):
+        if not s:
+            res.append(substrings[:])
+            return 
+        
+        for i in range(len(s)):
+            prefix = s[:i + 1]
+            if self.isPalindrome(prefix):
+                substrings.append(prefix)
+                self.dfs(s[i + 1:], substrings, res)
+                substrings.pop()
+            
+    def isPalindrome(self, s):
+        return s == s[::-1]
+    
+
+# Minimum Cut
+# dfs memoization 
+import sys
+class Solution:
+    def minCut(self, s):
+        return self.dfs(s, {})
+        
+    def dfs(self, s, memo):
+        if s in memo:
+            return memo[s]
+        
+        if len(s) <= 1 or self.isPalindrome(s):
+            return 0
+        
+        res = sys.maxsize
+        for i in range(len(s)):
+            if self.isPalindrome(s[: i + 1]):
+                res = min(res, 1 + self.dfs(s[i + 1:], memo))
+            
+        memo[s] = res
+        return res
+    
+    def isPalindrome(self, s):
+        return s == s[::-1]
+      
+# dp
+import sys
+class Solution:
+    def minCut(self, s):
+        n = len(s) 
+        palindrome = self.palindrome(s)
+        cuts = [sys.maxsize] * n
+        
+        
+        for i in range(n):
+            if palindrome[0][i]:
+                cuts[i] = 0
+            else:
+                for j in range(0, i):
+                    if palindrome[j + 1][i]:
+                        cuts[i] = min(cuts[i], cuts[j] + 1)
+                    
+        return cuts[n - 1]
+                    
+    
+    def palindrome(self, s):
+        if not s:
+            return 0
+  
+        n = len(s)
+        dp = [[False] * n for _ in range(n)]
+        
+        for i in range(n):
+            dp[i][i] = True
+        for i in range(1, n):
+            dp[i][i - 1] = True
+           
+        longest = 0
+        start, end = 0, 0
+        for length in range(2, n + 1):
+            for i in range(n - length + 1):
+                j = i + length - 1
+                dp[i][j] = s[i] == s[j] and dp[i + 1][j - 1]
+                
+        return dp
+
