@@ -17,7 +17,6 @@
 300. Longest Increasing Subsequence - dp O(n)
                                     
 
-
 121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
 122.                                        - ∞ transactions - greedy O(n) 
 188.                                        - at most K transactions - dp O(n*k)
@@ -42,7 +41,6 @@
 
 47. Permutation - all solutions - duplicate num exists - backtrack O(n!)
 90. Subset -  all solutions - duplicate num exists - backtrack O(2^n)
-
 
 
 718. Longest Common Substring - dp O(m*n)
