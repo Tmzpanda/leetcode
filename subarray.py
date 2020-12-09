@@ -194,67 +194,7 @@ def LPS(s):
 
 
 #*********************************************************** Subarray Sum *************************************************************************
-# Maximum Subarray - greedy O(n) 
-def maxSubArray(nums):
-    minSum, maxSum = 0, -sys.maxsize
-    prefixSum = 0
-    
-    for num in nums:
-        prefixSum += num
-        maxSum = max(maxSum, prefixSum - minSum)
-        minSum = min(minSum, prefixSum)
-        
-    return maxSum
 
-  
-# Subarray Sum Equals K  O(n) 
-from collections import defaultdict
-def subarraySum(nums, k):
-    
-    n = len(nums)
-    psum = 0
-    psum_to_freq = defaultdict(int)
-    psum_to_freq[0] = 1
-    res = 0
-    
-    for i in range(n): 
-        psum += nums[i]
-        if psum - k in psum_to_freq:
-            res += psum_to_freq[psum - k]
-            
-        psum_to_freq[psum] += 1
-    return res
-
-  
-# Subarray Sum Equals nK  O(n) 
-"""
-sum(nums[0 to i]) = aK + b
-sum(nums[0 to j]) = cK + d
-sum(nums[i+1 to j]) = (c-a)K + (d-b)
-
-"""
-def checkSubarraySum(nums, k):
-    n = len(nums)
-    psum = 0
-    psum_mod_k_to_index = {0: -1}     
-    res = 0
-
-    for i in range(n): 
-        psum += nums[i]
-        if k != 0:                             
-            psum_mod_k = psum % k
-        else:
-            psum_mod_k = psum
-            
-        if psum_mod_k in psum_mod_k_to_index:
-            if i - psum_mod_k_to_index[psum_mod_k] >= 2:    # psum_mod_k_to_index[psum_mod_k] + 1 to i
-                return True
-        else:
-            psum_mod_k_to_index[psum_mod_k] = i             # do not replace index of the same psum_mod_k value
-
-    return False
-  
-  
 #*********************************************************** Minimum Window ************************************************************************
 # Shortest Subarray with Sum at Least K - sliding window O(n)
 """
