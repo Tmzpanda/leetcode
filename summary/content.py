@@ -15,6 +15,7 @@
 
 674. Longest Increasing Subarray - greedy O(n)
 300. Longest Increasing Subsequence - dp O(n)
+                                    
 
 
 121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
@@ -30,7 +31,6 @@
 322. Coin Change - Combination Sum - number of solutions - dp O(n*S)
 518.                               - fewest coins dp O(S*n)
 
-
 39. Combination Sum - all solutions - repeated use - backtrack O(2^n)
 40.                                 - deduplicate num exists - backtrack O(2^n)
 377.                - number of solutions - different sequences are different combinations - dp O(S*n)
@@ -44,13 +44,13 @@
 90. Subset -  all solutions - duplicate num exists - backtrack O(2^n)
 
 
+
 718. Longest Common Substring - dp O(m*n)
                               - two pointers O(m * n * min(m,n)) TLE
 1143. Longest Common Subsequence - dp O(m*n)
 5. Longest Panlindrome Substring - two pointers O(n^2)
                                  - dp O(n^2)
 516. Longest Palindromic Subsequence - dp O(n^2)
-
 
 1216. K-Palindrome Substring - LPS
                              - dfs memoization - dp
