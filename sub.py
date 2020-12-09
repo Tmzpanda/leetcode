@@ -70,6 +70,25 @@ def subarraysDivByK(nums, k):
 # 209. Shortest Subarray with Sum at Least K - positive - sliding window O(n)
 # 862.                                       - negative - mono-queue O(n)
 # Longest Subarray with Sum at Most K
+
+# 209. positive
+import sys
+class Solution:
+    def shortestSubarray(self, A: List[int], K: int) -> int:
+        window_sum = 0
+        shortest = sys.maxsize
+        start = 0
+        
+        for end in range(0, len(A)):
+            window_sum += A[end]
+            while window_sum >= K:
+                shortest = min(shortest, end - start + 1)
+                window_sum -= A[start]
+                start += 1
+                
+        return shortest if shortest != sys.maxsize else -1
+
+# 862. negative
 def shortestSubarray(A, K):   
     shortest = sys.maxsize
     psum = 0
@@ -87,6 +106,29 @@ def shortestSubarray(A, K):
         queue.append((end, psum))
 
     return shortest if shortest != sys.maxsize else -1
+
+# Longest Subarray with Sum at Most K
+def longestSubarray(A, K):
+    psum = 0
+    longest = -sys.maxsize
+    temp = [(-1, 0)]      # (end index, psum)
+    
+    for end in range(len(A)):
+        psum += A[end]
+                
+        if psum <= K:            # if psum <= k, return end - 0 + 1, that is the longest one
+            longest = end + 1  
+            
+        else:                    # if psum > k, increment start pointer in temp array to shrink the window and reduce psum, we may find a new subarray satisfies the condition of subarray sum <= K, then check if this subarray is the longest one
+            for i in range(len(temp)):
+                if psum - temp[i][1] <= K:
+                    longest = max(longest, end - temp[i][0])
+                    break
+                    
+        while temp and psum > temp[-1][1]:       # maintain increasing prefix sum in temp array, so each time we increment start pointer in the temp array, we may find the new subarray satisfies the condition of subarray sum <= K
+            temp.append((end, psum))
+
+    return longest if longest != -sys.maxsize else -1
 
 
 # 1438. Longest Subarray With Absolute Diff at most K - sliding window O(n)
