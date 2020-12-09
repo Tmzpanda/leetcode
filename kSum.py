@@ -1,4 +1,10 @@
 """
+
+# 2 sum - closest
+        - data structure
+        
+        
+        
 # One Possible Solution
 # 2Sum - hashmap
        - 2 pointers (if sorted)
