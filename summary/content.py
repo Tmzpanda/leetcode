@@ -14,7 +14,7 @@
 727.                    - Target Subsequence - two pointers O(ST) = O((# of pattern found)*S*T)
 
 674. Longest Increasing Subarray - greedy O(n)
-300. Longest Increasing Subsequence - dp O(n)
+300. Longest Increasing Subsequence - dp O(n^2)
                                     
 
 121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
@@ -51,15 +51,18 @@
 516. Longest Palindromic Subsequence - dp O(n^2)
 
 1216. K-Palindrome Substring - LPS
-                             - dfs memoization - dp
+                             - dfs memoization - dp 
                              
-131. Palindrome Partioning - all solutions - backtrack
-132.                       - minimum cuts - memoizaiton - dp
+131. Palindrome Partioning - all solutions - backtrack O(2^n * n) O(n)
+132.                       - minimum cuts - memoizaiton - dp O(n^2)
                            
-139. Word Break - number of solutions - memoization
-                - all solutions - memoization 
+139. Word Break - if possible - memoization
+140.            - all solutions - memoization 
                 
-                
+
+if possible/number of solutions/max
+all solutions/
+
 word pattern                
 word ladder
 
