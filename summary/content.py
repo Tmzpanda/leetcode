@@ -49,26 +49,14 @@
 5. Longest Panlindrome Substring - two pointers O(n^2)
                                  - dp O(n^2)
 516. Longest Palindromic Subsequence - dp O(n^2)
-
-1216. K-Palindrome Substring - LPS
-                             - dfs memoization - dp 
+1216. K-Palindrome Substring - LPS - dp O(n^2)
+                             - dfs memoization - dp O(n^2)
                              
 131. Palindrome Partioning - all solutions - backtrack O(2^n * n) O(n)
-132.                       - minimum cuts - memoizaiton - dp O(n^2)
-                           
-139. Word Break - if possible - memoization
-140.            - all solutions - memoization 
+132.                       - minimum cuts - memoizaiton - dp O(n^2)                           
+139. Word Break - if possible - memoization - dp O(n^2)
+140.            - all solutions - memoization - dp O(n^2)
+                                - backtrack O(2^n) TLE
                 
-
-if possible/number of solutions/max
-all solutions/
-
-word pattern                
-word ladder
-
-"""
-
-"""
-Distance 
 
 """
