@@ -40,7 +40,8 @@ def wordBreak(s, wordSet):
    
     for i in range(n + 1):
        for j in range(i + 1, n + 1):
-           dp[j] = dp[i] and s[i: j] in wordSet
+           if dp[i] and s[i: j] in wordDict:
+               dp[j] = True
               
     return dp[n]
 
