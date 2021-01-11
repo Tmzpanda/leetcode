@@ -252,7 +252,154 @@ class DataStream:
 
 
 
+# LinkedArrayList
+class Node:  # DoubleLinkedList 
+    def __init__(self, idx, val):
+        self.idx = index
+        self.val = value
+        self.prev = None  
+        self.next = None
+        
 
+class LinkedArrayList:
+    def __init__(self):
+        self.size = 0
+        self.index_to_node = {}    # O(1) search
+        self.head = self.tail = None 
+        
+        
+    def appendFirst(self, val):
+        if self.size == 0:
+            head = tail = Node(0, val)
+            self.index_to_node[0] = head 
+        else
+            head.prev = Node(head.idx - 1, val)
+            head.prev.next = head
+            head = head.prev
+            self.index_to_node[head.idx] = head
+        
+        self.size += 1    
+        
+    def appendLast(self, val):
+        if self.size == 0:
+            head = tail = Node(0, val)
+            self.index_to_node[0] = head 
+        else:
+            tail.next = Node(tail.idx + 1, val)
+            tail.next.prev = tail
+            tail = tail.next
+            self.index_to_node[tail.idx] = tail
+            
+        self.size += 1 
+        
+    def removeFirst():
+        del self.index_to_node[head.idx]
+        res = head.val
+        head = head.next
+        size -= 1
+        return res
+    
+    def removeLast():
+        del self.index_to_node[tail.idx]
+        res = tail.val;
+        tail = tail.prev;
+        size -= 1
+        return res
+    
+    def get(index):
+        return self.index_to_node[head.idx + index].val
+    
+    def set(index,value):
+        self.index_to_node[head.idx + index].val = value
+
+
+
+# CircularArray
+# public class CircularArray {
+#     private int[] A;
+#     private int size, head, tail;
+    
+#     public CircularArray() {
+#         A = new int[10];
+#     }
+    
+#     public void appendFirst(int val) {
+#         if (size == 0) {
+#             A[head] = val;
+#             size = 1;
+#             return;
+#         }
+        
+#         if (size == A.length) {
+#             extend();
+#         }
+        
+#         head = getIndexInArray(head - 1);
+#         A[head] = val;
+#         size++;
+#     }
+    
+#     public void appendLast(int val) {
+#         if (size == 0) {
+#             A[head] = val;
+#             size = 1;
+#             return;
+#         }
+        
+#         if (size == A.length) {
+#             extend();
+#         }
+        
+#         tail = getIndexInArray(tail + 1);
+#         A[tail] = val;
+#         size++;
+#     }
+    
+#     public int removeFirst() {
+#         int res = A[head];
+#         if (size != 1) {
+#             head = getIndexInArray(head + 1);
+#         }
+        
+#         size--;
+#         return res;
+#     }
+    
+#     public int removeLast() {
+#         int res = A[tail];
+#         if (size != 1) {
+#             tail = getIndexInArray(tail - 1);
+#         }
+        
+#         size--;
+#         return res;
+#     }
+    
+#     public int get(int index) {
+#         return A[getIndexInArray(head + index)];
+#     }
+    
+#     public void set(int index, int value) {
+#         A[getIndexInArray(head + index)] = value;
+#     }
+    
+#     private int getIndexInArray(int idx) {
+#         return (idx + A.length) % A.length;
+#     }
+    
+#     private void extend() {
+#         int[] B = new int[A.length * 2];
+#         for (int i = 0; i < size; i++) {
+#             B[i] = A[(head + i) % A.length];
+#         }
+        
+#         A = B;
+#         head = 0;
+#         tail = size - 1;
+#     }
+# }      
+        
+            
 
 
 
