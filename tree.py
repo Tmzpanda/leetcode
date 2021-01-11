@@ -376,3 +376,29 @@ class Codec:
         lst = data.split(",")
         q = collections.deque(lst)
         return helper(q)
+    
+    
+    
+    
+    
+#****************************************** k smallest **********************************************
+# k smallest elements in a BST 
+# iterator
+def kthSmallest(root, k):
+    stack = []
+    node = root
+    while node:     # getSuccessor
+        stack.append(node)
+        node = node.left
+        
+    for i in range(k):
+        node = stack.pop()
+        res = node
+
+        node = node.right
+        while node:         # getSuccessor
+            stack.append(node)
+            node = node.left
+            
+    return res.val
+
