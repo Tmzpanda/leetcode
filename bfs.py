@@ -1,6 +1,6 @@
 """
 
-# shortest path   
+# shortest path 
 # 127. Word Ladder - shortest path - bfs O(n * m^2)
                                    - bidirectional bfs
 # 126. Word Ladder - all possible solutions - bfs + dfs
@@ -13,20 +13,20 @@
 # topological sort 
 # 207. Course Schedule - if possible solution exists
                        - one possible solution - bfs
-# Sequence Reconstruction - bfs
+# 444. Sequence Reconstruction  - bfs
 
 
 
 # difference 
-visited = set()
-indegree[t]
+bfs - visited = set()
+tops - indegree[t]
      
 
 """
 
 
 
-#********************************************* Shortest Path **********************************************************
+# ********************************************* Shortest Path **********************************************************
 # 127. Word Ladder - shortest path - bfs O(n * m^2), where m = len(s)
 from collections import deque
 class Solution:
@@ -291,7 +291,7 @@ class Solution:
             
             
             
-#********************************************* Topological Sort **********************************************************
+# ********************************************* Topological Sort ********************************************************
 # 207. Course Schedule - one possible solution - bfs
 from collections import deque
 
