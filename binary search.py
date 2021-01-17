@@ -210,31 +210,30 @@ def findMin(nums):
 
 # 33. Search in Rotated Sorted Array
 def search(nums, target):
-    if not A:
+    if not nums:
         return -1
 
-    l, r = 0, len(A) - 1
+    l, r = 0, len(nums) - 1
     while l + 1 < r:
         mid = (l + r) // 2
         
-        if A[mid] >= A[l]:
-            if A[l] <= target <= A[mid]:
+        if nums[mid] >= nums[l]:
+            if nums[l] <= target <= nums[mid]:
                 r = mid
             else:
                 l = mid       
         else:
-            if A[mid] <= target <= A[r]:
+            if nums[mid] <= target <= nums[r]:
                 l = mid
             else:
                 r = mid
 
-    if A[l] == target:
+    if nums[l] == target:
         return l
-    if A[r] == target:
+    if nums[r] == target:
         return r
     
     return -1
-
 
 
 # 852. Peak Index in a Mountain Array
