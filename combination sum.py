@@ -1,10 +1,10 @@
 """
 
 # 40. Combination Sum - all solutions - backtrack O(2^n)
-# 377. Combination Sum - number of solutions - dp O(S*n)
+# 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
 # 518. Coin Change - number of solutions - dp O(n*S)
 # 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
-# 322. Coin Change - fewest coins - dp O(S)
+# 322. Coin Change - fewest coins - dp O(S*n)
 # 47. Permutation - O(n!)
 
 
