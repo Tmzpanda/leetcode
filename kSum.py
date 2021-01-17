@@ -1,12 +1,5 @@
 """
 
-# 2Sum - hashmap
-       - 2 pointers (if sorted)
-       
-# 2 sum - closest
-        - data structure
-
-
 # 40. Combination Sum - all solutions - backtrack O(2^n)
 # 377. Combination Sum - number of solutions - dp O(S*n)
 # 518. Coin Change - number of solutions - dp O(n*S)
@@ -182,7 +175,6 @@ def fourSum(nums, target):
                     l += 1
                 
     return res
-
 
 # K Sum O(n^(k-1))
 def kSum(nums, target, k):
