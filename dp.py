@@ -1,33 +1,67 @@
 """
-# Fibonacci O(n)
+M1 - time complexity
+O(n)
+# 198. House Robber - dp O(n)
+# 91. Decode Ways - dp O(n)
 
-# optimization - opt(i) = max(A, B), where A = v(i) + opt(prev(i)), B = opt(i - 1)
-# rob  O(n)
-# rob - houses are arranged in a circle  O(n)
-# knapsack  O(n*S)
-# combinationSum - if possible solution exists/ number of possible solutions O(n*S)
-  
-  
-# Longest Increasing Subsequence  O(n^2) - length/path
-# Longest Palindrome Subsequence O(n^2)
-# Longest Common Subsequence O(n^2)
+O(n^2) 
+# 139. Word Break - if possible - dp O(n^2)
+# 300. Longest Increasing Subsequence -O(n^2) - length/path
+# 354. Russian Doll Envelopes - dp O(n^2)
+                              - binary search O(nlogn)
+
+O(n*S)
+# knapsack
+# 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
+# 518. Coin Change - number of solutions - dp O(n*S)
+
+O(S*n) 
+# 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
+# 322. Coin Change - fewest coins - dp O(S*n)
+
+O(m*n)
+# 688. Knight Probability in Chessboard - O(K*n^2)
+# 221. Maximal Square - dp O(n^2) 
+# 1143. Longest Common Subsequence - dp O(n^2)                         
+# 516. Longest Palindromic Subsequence - dp O(n^2)
+ 
+
+
+
+M2 - dp
+if possible -> "or"
+# 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
+
+number of solutions -> "+"
+# 518. Coin Change - number of solutions - dp O(n*S)
+
+fewest -> "min()"
+# 322. Coin Change - fewest coins - dp O(S*n)
+# 300. Longest Increasing Subsequence - dp O(n^2)
+
+
+
+
+M3 - return
+dp[n]
+# 198. House Robber - dp O(n)
+# 322. Coin Change - fewest coins - dp O(S*n)
+
+max(dp)
+# 300. Longest Increasing Subsequence - dp O(n^2)
+# 221. Maximal Square - dp O(n^2)
+
+
+
+
+
+
 
 # Largest Divisible Subset - dp O(n^2)
-# Russian Doll Envelopes - dp O(n^2)
-                         - binary search O(nlogn)
 
 # Minimum Window Subsequence - dp O(ST)
-# Maximal Sqaure - dp O(m*n)
-
 
 # Unique Paths - dp O(m*n)
-# Knight Probability in Chessboard - O(K*n^2)
-
-# Word Break - dp O(n^2)
-# Decode Ways - dp O(n)
-
-
-
 
 # summary
 - dp array
