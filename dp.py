@@ -6,9 +6,10 @@ O(n)
 
 O(n^2) 
 # 139. Word Break - if possible - dp O(n^2)
-# 300. Longest Increasing Subsequence -O(n^2) - length/path
+# 300. Longest Increasing Subsequence - O(n^2)
 # 354. Russian Doll Envelopes - dp O(n^2)
                               - binary search O(nlogn)
+# 368. Largest Divisible Subset - path - dp O(n^2)
 
 O(n*S)
 # knapsack
@@ -22,10 +23,11 @@ O(S*n)
 O(m*n)
 # 688. Knight Probability in Chessboard - O(K*n^2)
 # 221. Maximal Square - dp O(n^2) 
+# 62. Unique Paths - dp O(m*n)
 # 1143. Longest Common Subsequence - dp O(n^2)                         
 # 516. Longest Palindromic Subsequence - dp O(n^2)
- 
 
+ 
 
 
 M2 - dp
@@ -36,8 +38,9 @@ number of solutions -> "+"
 # 518. Coin Change - number of solutions - dp O(n*S)
 
 fewest -> "min()"
-# 322. Coin Change - fewest coins - dp O(S*n)
 # 300. Longest Increasing Subsequence - dp O(n^2)
+# 322. Coin Change - fewest coins - dp O(S*n)
+
 
 
 
@@ -53,35 +56,8 @@ max(dp)
 
 
 
-
-
-
-
-# Largest Divisible Subset - dp O(n^2)
-
-# Minimum Window Subsequence - dp O(ST)
-
-# Unique Paths - dp O(m*n)
-
-# summary
-- dp array
-  - i, j in 1d array - LIS
-  - expand to 2d matrix - LPS
-  - coordinate 2d matrix - Knight 
-
-- bottom-up 
-  - visit once (2d, prev(i) is sure) - Knapsack, Maximal Square, Knight
-  - visit multiple times (1d, prev(i) not sure) - Word Break, LIS
-  
-- return
-  - dp[n] - Word Break, Decode Ways
-  - max(dp) - Maximal Square, LIS
-
-
-
-
-                          
-# space optimization:
+                         
+space optimization:
 dp[i][j] only depends on previous row, so we can optimize the space by using 2 rows instead of the matrix
 
       w
@@ -90,11 +66,12 @@ dp[i][j] only depends on previous row, so we can optimize the space by using 2 r
     1 0
     3 0
     4 0   #         #
-    5 0             x =  max(val[i-1] + dp[i-1][w-wt[i-1]], dp[i-1][w]), when wt[i-1] <= w
+    5 0             x =  max(dp[i-1][w-wt[i-1]] + val[i-1], dp[i-1][w]), when wt[i-1] <= w
+    
  
 """
 
-#****************************************** Fibonacci **********************************************
+# ****************************************** O(n) **********************************************
 # Fibonacci
 def fib(n):   
     if n == 0:
@@ -110,9 +87,8 @@ def fib(n):
     return dp[n]
     
 
-
-#***************************************** combinatorial optimization **********************************************
-# rob O(n)
+    
+# 198. House Robber - dp O(n)
 def rob(nums):
     if not nums:
         return 0
@@ -129,7 +105,7 @@ def rob(nums):
     return dp[n]
     
     
-# rob - houses are arranged in a circle - O(n)
+# 213. House Robber - houses are arranged in a circle - O(n)
 def rob2(nums):
     if not nums:
         return 0
@@ -225,14 +201,15 @@ def LIS(nums):
         return 0
     
     n = len(nums)        
-    dp = [1] * len(nums)
+    dp = [1] * n
     
-    for i in range(n):
-        for j in range(i + 1, n):
-            if nums[i] < nums[j]:
-                dp[j] = max(dp[j], dp[i] + 1)
-                
+    for i in range(1, n):
+        for j in range(i):
+            if nums[j] < nums[i]:
+                dp[i] = max(dp[i], dp[j] + 1)
+    
     return max(dp)
+  
   
 # path
 def LIS(nums):
@@ -244,12 +221,12 @@ def LIS(nums):
     prev = [-1] * len(nums)
     
     for i in range(n):
-        for j in range(i + 1, n):
-            if nums[i] < nums[j] and dp[j] < dp[i] + 1:
-                dp[j] = dp[i] + 1
-                prev[j] = i
+        for j in range(i):
+            if nums[j] < nums[i] and dp[i] < dp[j] + 1:
+                dp[i] = dp[j] + 1
+                prev[i] = j
     
-    longest, index = 1, -1      # find path
+    longest, index = 0, -1      
     for i in range(len(nums)):
         if dp[i] > longest:
             longest = dp[i]
