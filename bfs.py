@@ -1,5 +1,5 @@
 """
-# shortest path 
+shortest path 
 # 127. Word Ladder - shortest path - bfs O(n * m^2)
                                    - bidirectional bfs
 # 126. Word Ladder - all possible solutions - bfs + dfs
@@ -10,7 +10,7 @@
 
 
 
-# topological sort 
+topological sort 
 # 207. Course Schedule - if possible solution exists
                        - one possible solution - bfs
 # 444. Sequence Reconstruction  - bfs
