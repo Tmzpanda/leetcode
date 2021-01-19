@@ -1,5 +1,4 @@
 """
-
 # shortest path 
 # 127. Word Ladder - shortest path - bfs O(n * m^2)
                                    - bidirectional bfs
@@ -22,7 +21,6 @@
 bfs - visited = set()
 tops - indegree[t]
      
-
 """
 
 
