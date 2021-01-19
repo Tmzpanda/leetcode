@@ -17,9 +17,9 @@ topological sort
 
 
 
-# difference 
-bfs - visited = set()
-tops - indegree[t]
+difference 
+# bfs - visited = set()
+# tops - indegree[t]
      
 """
 
