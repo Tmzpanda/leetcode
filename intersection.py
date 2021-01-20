@@ -1,18 +1,26 @@
 """
-# intersection of two sorted array  - two pointers O(m + n)    - m ≈ n
-                                    - binary search O(n.logm)  - m ≫ n
+Array
+# 349. Intersection of Two Arrays (and) - m ≈ n - two pointers O(m + n)    
+                                        - m ≫ n - binary search O(n.logm)  
+# 658. K Closest Elements in a Sorted Array (or) - binary search O(logn + k)
                                     
-# intersection of two BST  - recursion traversal then merge  O(m + n)    - m ≈ n
-                           - iteration meanwhile merge  O(m + n)    - m ≈ n   
-                           - binary search O(n.longm) - m ≫ n
+
+LinkedList
+# Intersection (and)
+# Merge (or)
+
+
+BST
+# intersection of two BST - m ≈ n - recursion traversal then merge O(m + n)   
+                                  - iteration meanwhile merge O(m + n)    
+                          - m ≫ n - binary search O(n.logm)
                            
-# intersection of two Linked List - and
-# merge two Linked List - or
+
 
 
 """
-#********************************* intersection of two sorted array **********************************************
-# two pointers O(m + n) 
+# ********************************* Array **********************************************
+# 349. Intersection of Two Arrays (and) - m ≈ n - two pointers O(m + n)  
 def intersection(nums1, nums2):
     nums1.sort()
     nums2.sort()
@@ -32,7 +40,7 @@ def intersection(nums1, nums2):
     return res
     
     
-# binary search O(m.logn) 
+# m ≫ n - binary search O(n.logm)  
 def intersection(arr1, arr2):
     result = []
     
@@ -58,8 +66,83 @@ def binarySearchFound(nums, target):
         return True
     return False
 
+
+# 658. K Closest Elements in a Sorted Array (or) - binary search O(logn + k)
+class Solution:
+    def kClosestNumbers(self, A, target, k):
+        r = self.findUpperClosest(A, target)
+        l = r - 1
     
-#********************************* intersection of two BST **********************************************
+        res = []
+        for _ in range(k):
+            if self.isLeftCloser(A, target, l, r):
+                res.append(A[l])
+                l -= 1
+            else:
+                res.append(A[r])
+                r += 1
+                
+        return res
+    
+    def findUpperClosest(self, A, target):
+        l, r = 0, len(A) - 1
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if target == A[mid]:
+                return mid
+            elif target < A[mid]:
+                r = mid
+            else:
+                l = mid
+                
+        return r
+        
+    def isLeftCloser(self, A, target, l, r):
+        if l < 0:
+            return False
+        if r >= len(A):
+            return True
+          
+        return target - A[l] <= A[r] - target
+
+
+# ********************************* LinkedList ****************************************
+# intersection 
+def intersection(l1, l2):      
+    res = []
+    p1, p2 = l1, l2
+    while p1 and p2:
+        if p1.val < p2.val:
+            p1 = p1.next
+        elif p1.val > p2.val:
+            p2 = p2.next
+        else:
+            res.append(p1.val)
+            p1 = p1.next
+            p2 = p2.next
+        
+    return res
+  
+  
+# merge
+def mergeTwoLists(l1, l2):
+
+    temp = dummy = ListNode(0)
+    p1, p2 = l1, l2
+    while p1 and p2:
+        if p1.val <= p2.val:
+            temp.next = p1
+            p1 = p1.next
+        else:
+            temp.next = p2
+            p2 = p2.next
+        temp = temp.next
+        
+    temp.next = p1 or p2
+    
+    return dummy.next 
+  
+# ********************************* BST **********************************************
 # recursion O(m + n)  
 class Solution:
     def intersection(self, root1, root2):
@@ -118,45 +201,8 @@ class Solution:
             root = root.left
 
 
-#********************************* two LinkedList **********************************************
-# intersection 
-def intersection(l1, l2):      
-    res = []
-    p1, p2 = l1, l2
-    while p1 and p2:
-        if p1.val < p2.val:
-            p1 = p1.next
-        elif p1.val > p2.val:
-            p2 = p2.next
-        else:
-            res.append(p1.val)
-            p1 = p1.next
-            p2 = p2.next
-        
-    return res
-  
-  
-# merge
-def merge(l1, l2): 
-    temp = dummy = ListNode(0)
-    p1, p2 = l1, l2
-    while p1 or p2:
-        if isFirstPointerSmaller(p1, p2):
-            temp.next = p1
-            p1 = p1.next
-        else:
-            temp.next = p2
-            p2 = p2.next
-        temp = temp.next
 
-    return dummy.next
 
-def isFirstSmaller(p1, p2):
-    if p1 is None:
-        return False
-    if p2 is None:
-        return True
-    return p1.val <= p2.val
 
 
 
