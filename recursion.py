@@ -2,11 +2,15 @@
 memoization 
 # 139. Word Break - if possible - dp O(n^2)
                   - all solutions - dfs memoization
+# 236. LCA of a Binary Tree - d&q O(n) O(n)(recursion stack)
+
 
 
 
 backtrack
-# 126. Word Ladder - all possible solutions - bfs + dfs
+# 126. Word Ladder - all possible solutions - bfs + dfs backtrack
+# 40. Combination Sum - all solutions - backtrack O(2^n)
+# 113. Binary Tree Path Sum - all solutions - traverse O(n)
 
 """
 
