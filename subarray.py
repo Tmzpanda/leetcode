@@ -33,15 +33,7 @@
 5. Longest Palindromic - Substring - 2 pointers O(n^2)                  
 516.                   - Subsequence - dp O(n^2)
 
-121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
-122.                                        - ∞ transactions - greedy O(n) 
-188.                                        - at most K transactions - dp O(n*k)
-309.                                        - ∞ transactions with cooldown - dp O(n)
-714.                                        - ∞ transactions with transaction fee - dp O(n)
 
-198. Rob House - Non-adjacent Elements Sum - array - dp O(n)
-213.                                       - cycle - dp O(n)
-337.                                       - tree - d&q O(n)
 
 
 """
