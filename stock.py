@@ -1,15 +1,20 @@
+"""
+121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
+122.                                        - ∞ transactions - greedy O(n) 
+188.                                        - at most K transactions - dp O(n*k)
+309.                                        - ∞ transactions with cooldown - dp O(n)
+714.                                        - ∞ transactions with transaction fee - dp O(n)
+
+198. Rob House - Non-adjacent Elements Sum - array - dp O(n)
+213.                                       - cycle - dp O(n)
+337.                                       - tree - d&q O(n)
 
 
-
-
-
-
-
-
+"""
 
 
 # ************************************************* Stock ***********************************************************
-# 121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
+# 121. Sell Stock - one transaction - greedy O(n)
 import sys
 def maxProfit(prices):
     minPrice = sys.maxsize
@@ -22,45 +27,9 @@ def maxProfit(prices):
     return maxProfit
   
   
-# 122. Sell Stock - Subsequence Maximum Diffs - ∞ transactions - greedy O(n) 
-# 188.                                        - at most K transactions - dp O(n*k)
-# 309.                                        - ∞ transactions with cooldown - dp O(n)
-# 714.                                        - ∞ transactions with transaction fee - dp O(n)
-
-
-
-
-
-
-
-
-          
-        
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-           
-            
-        
-
+# 122. Sell Stock - ∞ transactions - greedy O(n) 
+# 188. Sell Stock - at most K transactions - dp O(n^2 * k) -> O(n*k)
   
-
-
-
-# sell stock - at most K transactions - O(n^2 * k)
 """
 prices = [3,2,6,5,0,3] k = 2
 
@@ -89,10 +58,9 @@ def maxProfit(k, prices):
             dp[i][j] = max(dp[i - 1][j], prices[i] + profit)
 
     return dp[-1][-1]
-  
-  
-  
-# sell stock - cool down
+ 
+    
+# 309. Sell Stock - ∞ transactions with cooldown - dp O(n)
 """
      3 2 6 5 0 3
  0 0 0 x = max(dp[i - 1],
@@ -111,9 +79,9 @@ def maxProfit(prices):
         dp[i] = max(dp[i - 1], prices[i - 2] + profit)
 
     return dp[-1]
-  
 
-# sell stock - transaction fee
+
+# 714. Sell Stock - ∞ transactions with transaction fee - dp O(n)
 """
   1, 3, 2, 8, 4, 9
 0 0  x = max(dp[i - 1],
@@ -137,8 +105,8 @@ def maxProfit(prices, fee):
 
 
 
-
-  # 198. House Robber - array        
+# ************************************************* Rob ***********************************************************
+# 198. House Robber - array        
 class Solution:
     def rob(self, nums):
         if not nums:
@@ -155,6 +123,7 @@ class Solution:
 
         return dp[n]
 
+    
 # 213. House Robber - cycle
 class Solution:
     def rob(self, nums):
