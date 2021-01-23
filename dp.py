@@ -29,6 +29,9 @@ O(m*n)
 # 1143. Longest Common Subsequence - dp O(n^2)                         
 # 516. Longest Palindromic Subsequence - dp O(n^2)
 
+O(2*n) - state transfer
+
+
  
 
 
