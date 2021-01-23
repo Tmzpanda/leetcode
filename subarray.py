@@ -12,118 +12,20 @@
 
 """
 
-# Longest Increasing Subarray 2d
-# dfs memoization
-"""
-        0 1 2 3 4..... n
-      0     #
-      1   # x #
-      2     #
-      3      
-      4
-      .
-      .
-      m
-
-""" 
-DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
-class Solution:
-    def longestContinuousIncreasingSubsequence2(self, matrix):
-        if not matrix:
-            return 0
-        
-        n, m = len(matrix), len(matrix[0])
-        dp = [[1 for _ in range(m)] for _ in range(n)]
-        memo = {}
-        longest = 0
-        for i in range(n):
-            for j in range(m):
-                dp[i][j] = self.dfs(matrix, i, j,  memo)
-                
-        return max(map(max, dp))
-        
-    
-    def dfs(self, matrix, x, y, memo):
-        if (x, y) in memo:
-            return memo[(x, y)]
-        
-        longest = 1
-        for delta_x, delta_y in DIRECTIONS:
-            x_prev, y_prev = x - delta_x, y - delta_y
-            if not self.isValid(matrix, x_prev, y_prev) or matrix[x][y] <= matrix[x_prev][y_prev]:
-                continue
-            longest = max(longest, self.dfs(matrix, x_prev, y_prev, memo) + 1)
-            
-        memo[(x, y)] = longest
-        return longest
-        
-        
-    def isValid(self, matrix, x, y):
-        return 0 <= x < len(matrix) and 0 <= y < len(matrix[0])
-      
       
       
 
-# Longest Palindrome Substring - middle out O(n^2)
-class Solution:
-    def LPS(self, s):
-        if not s:
-            return ""
-        
-        longest = ""
-        for middle in range(len(s)):
-            sub1 = self.findPalindrome(s, middle, middle)
-            sub2 = self.findPalindrome(s, middle, middle + 1)
-            sub = max(sub1, sub2, key=lambda x: len(x))
-            if len(sub) > len(longest):
-                longest = sub
-                
-        return longest
-        
-    def findPalindrome(self, string, l, r):
-        while l >= 0 and r < len(string):
-            if string[l] != string[r]:
-                break
-            l -= 1
-            r += 1
-        
-        l, r = l + 1, r - 1
-        return string[l:r + 1]
+
+
+
+
+
+
+
+
           
         
-# dp O(n^2)
-"""
-  a d b b c a
-a T         x = s[i] == s[j] && dp[i + 1][j - 1]
-d T T     
-b   T T
-b     T T
-c       T T
-a         T T
-"""
-def LPS(s):
-      if not s:
-          return ""
 
-      n = len(s)
-      dp = [[False] * n for _ in range(n)]
-
-      for i in range(n):
-          dp[i][i] = True
-      for i in range(1, n):
-          dp[i][i - 1] = True
-
-      start, end = 0, 0
-      longest = 1
-      for length in range(1, n):        
-          for i in range(n - length):
-              j = i + length
-              dp[i][j] = s[i] == s[j] and dp[i + 1][j - 1]
-              if dp[i][j]:
-                  longest = length + 1
-                  start, end = i, j
-
-      return s[start:end + 1]
 
 
 
@@ -133,72 +35,8 @@ def LPS(s):
 
 
 
-# Minimum Window Subsequence 
-# dp - O(S*T)
-"""
-        "" X Y
-      "" 0 ∞ ∞ 
-      G  0 
-      X  0 
-      T  0 
-      X  0 
-      A  0 
-      Y  0   x = dp[i - 1][j - 1] + 1, when S[i - 1] == T[j - 1]
-      B  0   x = dp[i - 1][j] + 1,     when S[i - 1] != T[j - 1]
-
-dp[i][j] represents window length of S which contains T[0 to j - 1]
-"""
-def minWindow(S, T):
-        
-    m, n = len(S), len(T)
-    dp = [[0] * (n + 1) for _ in range (m + 1)]
-    for j in range(1, n + 1):
-        dp[0][j] = sys.maxsize 
-
-    for i in range(1, m + 1):
-        for j in range(1, n +  1):
-            if S[i - 1] == T[j - 1]:
-                dp[i][j] = dp[i - 1][j - 1] + 1
-            else:
-                dp[i][j] = dp[i - 1][j] + 1
-
-    minLen = sys.maxsize
-    for i in range(1, m + 1):
-        if dp[i][n] < minLen:
-            minLen = dp[i][n]
-            end = i - 1
-
-    if minLen == sys.maxsize:
-        return ""
-
-    return S[end - minLen + 1: end + 1]
 
 
-# two pointers - O((# of pattern found)*S*T) = O(ST)
-def minWindow(S, T):
-        
-    minLen = len(S) + 1
-    window = ""
-
-    i, j = 0, 0
-    while i < len(S):
-        if S[i] == T[j]:
-            j += 1
-        if j == len(T):
-            end = i 
-            j -= 1
-            while j >= 0:
-                if S[i] == T[j]:
-                    j -= 1
-                i -= 1
-            i += 1
-            j += 1
-            if end - i + 1< minLen:
-                minLen = end - i + 1
-                window = S[i:end + 1]
-        i += 1
-    return window
-  
 
 
 
