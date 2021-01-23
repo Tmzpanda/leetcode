@@ -1,20 +1,31 @@
-"""
-329. Longest Increasing Subarray - 2d - dp   ????????
-
-718. Longest Common - Substring - dp O(m*n)
-1143.               - Subsequence - dp O(n^2)   
-5. Longest Palindromic - Substring - 2pointers O(n^2)                  
-516.                   - Subsequence - dp O(n^2)
 
 
-121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
 
 
-"""
 
-      
-      
 
+
+
+
+
+# ************************************************* Stock ***********************************************************
+# 121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
+import sys
+def maxProfit(prices):
+    minPrice = sys.maxsize
+    maxProfit = 0
+    
+    for price in prices:
+        maxProfit = max(price - minPrice, maxProfit)
+        minPrice = min(price, minPrice)
+            
+    return maxProfit
+  
+  
+# 122. Sell Stock - Subsequence Maximum Diffs - ∞ transactions - greedy O(n) 
+# 188.                                        - at most K transactions - dp O(n*k)
+# 309.                                        - ∞ transactions with cooldown - dp O(n)
+# 714.                                        - ∞ transactions with transaction fee - dp O(n)
 
 
 
@@ -46,17 +57,7 @@
         
 
   
-# sell stock - greedy O(n)
-import sys
-def maxProfit(prices):
-    minPrice = sys.maxsize
-    maxProfit = 0
-    
-    for price in prices:
-        maxProfit = max(price - minPrice, maxProfit)
-        minPrice = min(price, minPrice)
-            
-    return maxProfit
+
 
 
 # sell stock - at most K transactions - O(n^2 * k)
