@@ -22,9 +22,15 @@
 300. Longest Increasing Subsequence - dp O(n^2)
                                     - binary search O(nlogn)  
                                     
+1216. K-Palindrome Substring - LPS - dp O(n^2)
+131. Palindrome Partioning - all solutions - backtrack
+                                           - memoization
+132. Palindrome Partioning - minimum cuts - dp O(n^2)
+
+                                    
 718. Longest Common - Substring - dp O(m*n)
 1143.               - Subsequence - dp O(n^2)   
-5. Longest Palindromic - Substring - 2pointers O(n^2)                  
+5. Longest Palindromic - Substring - 2 pointers O(n^2)                  
 516.                   - Subsequence - dp O(n^2)
 
 121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
@@ -362,7 +368,7 @@ class Solution:
         return r
 
 
-# 718. Longest Common - Substring - O(n^3)
+# 718. Longest Common - Substring - O(m * n * min(m,n)) TLE
 def longestCommonSubstring(A, B):
         
     longest = 0
