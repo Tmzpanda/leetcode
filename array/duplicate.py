@@ -1,10 +1,13 @@
 """
-# duplication - sort O(nlogn) O(1)
-              - set  O(n) O(n)
-              - value index mapping O(n) O(1)
+# 287. Duplicate Number in an Array - sort O(nlogn) O(1)
+                                    - set  O(n) O(n)
+                                    - value-index mapping O(n) O(1)
 
-# findDisappearedNumbers
+# 448. Find Disappeared Numbers in an Array
+
+
 """
+
 
 # sort 
 def findDuplicate(nums):
@@ -28,14 +31,13 @@ def deduplicate(nums):
     return nums[:index]
 
 
-# value index mapping
+# value-index mapping
 """
 1 ≤ a[i] ≤ n 
 0 ≤ index ≤ n - 1
 <value, index> exclusive mapping makes O(n) O(1) achievable
 
 """
-
 def findDuplicates(nums):
     res = []
     
@@ -49,7 +51,7 @@ def findDuplicates(nums):
 
 
 
-# findDisappearedNumbers
+# 448. Find Disappeared Numbers in an Array
 def findDisappearedNumbers(nums):
     res = []
     
