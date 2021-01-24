@@ -14,13 +14,6 @@
                                              - bfs
                                              
 
-
-
-# BST iterator
-# 230. Kth Smallest Element in a BST - iterator O(k)
-# 272. K Closest BST Values - iterator O(logn + k)
-
-
 """
 
 
