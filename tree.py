@@ -214,8 +214,7 @@ def kClosestValues(root, target, k):
 
 class Codec:
 
-    @staticmethod
-    def serialize(root):
+    def serialize(self, root):
         if root is None:
             return ""
 
@@ -234,8 +233,8 @@ class Codec:
 
         return "[%s]" % ','.join(bfs_order)  # "[8,3,10,1,6,#,14,#,#,4,7,13]"
 
-    @staticmethod
-    def deserialize(data):
+
+    def deserialize(self, data):
 
         if data == "[]":
             return None
@@ -266,32 +265,32 @@ class Codec:
 # dfs
 class Codec:
 
-    def serialize(self, root):
+    def serialize(self, root):   
         def dfs(root):
             if not root:
-                res.append("None,")
+                res.append("#")
                 return 
-            res.append(str(root.val)+",")
+            res.append(str(root.val))
             dfs(root.left)
             dfs(root.right)
             
         res = []
         dfs(root)
-        return "".join(res)
+        return ",".join(res)
 
     def deserialize(self, data):
-        def helper(q):
-            if q[0] == "None":
-                q.popleft()
+        def helper(queue):
+            if queue[0] == "#":
+                queue.popleft()
                 return
-            root = TreeNode(q.popleft())
-            l = helper(q)
-            r = helper(q)
+            root = TreeNode(queue.popleft())
+            l = helper(queue)
+            r = helper(queue)
             root.left = l
             root.right = r
             return root
         
-        lst = data.split(",")
-        q = collections.deque(lst)
-        return helper(q)
+        tree = data.split(",")
+        queue = collections.deque(tree)
+        return helper(queue)
     
