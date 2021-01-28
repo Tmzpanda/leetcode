@@ -17,6 +17,8 @@ O(n*S)
 # knapsack
 # 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
 # 518. Coin Change - number of solutions - dp O(n*S)
+# 494. Assign symbols to Target Sum - dp O(n*S)
+
 
 O(S*n) 
 # 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
