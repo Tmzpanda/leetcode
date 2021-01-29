@@ -11,7 +11,7 @@ backtrack
 # 126. Word Ladder - all possible solutions - bfs + dfs backtrack
 # 40. Combination Sum - all solutions - backtrack O(2^n)
 # 113. Binary Tree Path Sum - all solutions - traverse O(n)
-# 79. Word Search - if exists - backtrack
+# 79. Word Search - if exists - dfs O(mn * 3^length)
 
 
 
@@ -135,7 +135,7 @@ class Solution:
       
 
 # ********************************************* backtrack **********************************************************
-# 126. Word Ladder - all possible solutions - bfs + dfs
+# 126. Word Ladder - all possible solutions - bfs + dfs backtrack
 from collections import deque
 class Solution:
     
@@ -189,9 +189,8 @@ class Solution:
             self.dfs(next_word, end, word_to_distance, path, result, dictionary)
             path.pop()
 
-        
-        
-# 79. Word Search - if exists
+            
+# 79. Word Search - if exists - dfs O(mn * 3^length)
 DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 class Solution:
     def exist(self, board, word):
@@ -227,6 +226,7 @@ class Solution:
             return False
         if (i, j) in visited:
             return False
+          
         return grid[i][j] == word[index]
 
       
