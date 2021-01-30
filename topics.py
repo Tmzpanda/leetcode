@@ -17,7 +17,7 @@
                                  - bidirectional bfs
 126.             - all possible solutions - bfs + dfs
 
-79. Word Search - if exists - backtrack
+79. Word Search - if exists - dfs O(mn * 3^length)
 211.            - data structure - trie
 
 290. Word Pattern - given string is separated - O(n)
@@ -177,45 +177,98 @@ class Solution:
       
         
 
-# ********************************************** Stock *******************************************************
-# 79. Word Search - if exists - backtrack
-# 211.            - data structure - trie
-
-"""
-prefix set - trim 
-backtrack - all solutions
-
-x x x x x x 
-x     # 
-x   # o #              
-x     # 
-x 
-"""
-
+# ********************************************** Word *******************************************************
+# 79. Word Search - if exists - dfs O(mn * 3^length)
+DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
+class Solution:
+    def exist(self, board, word):
+        m, n = len(board), len(board[0])
+        for i in range(m):
+            for j in range(n):
+                if board[i][j] == word[0]:
+                    if self.dfs(board, i, j, {(i, j)}, word, 1):
+                        return True
+        return False
+    
+    
+    def dfs(self, board, x, y, visited, word, index):
+        if index == len(word):
+            return True
+        
+        for delta_x, delta_y in DIRECTIONS:
+            x_next, y_next = x + delta_x, y + delta_y
+            if not self.isValid(board, x_next, y_next, visited, word, index):
+                continue
+            
+            visited.add((x_next, y_next))
+            if self.dfs(board, x_next, y_next, visited, word, index + 1):
+                return True
+            visited.discard((x_next, y_next))
+        
+        return False
+            
+            
+    def isValid(self, grid, i, j, visited, word, index):
+        n, m = len(grid), len(grid[0])
+        if not (0 <= i < n and 0 <= j < m):
+            return False
+        if (i, j) in visited:
+            return False
+        
+        return grid[i][j] == word[index]
+      
+      
+      
+# 211. Word Search
+# trie
+class TrieNode:			
+    def __init__(self):
+        self.children = {}
+        self.is_word = False
+        self.word = None
+        
+        
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+        
+    def add(self, word):	
+        node = self.root
+        for c in word:
+            if c not in node.children:
+                node.children[c] = TrieNode()  
+            node = node.children[c]     		
+        node.is_word = True
+        node.word = word   
+        
+              
 DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 class Solution:
     def findWords(self, board, words):
         m, n = len(board), len(board[0])
-        words = set(words)
-        prefix = set()
-        for word in words:
-            for i in range(len(word)):
-                prefix.add(word[:i + 1])
-          
+        
+        # add
+        trie = Trie()
+        for word in words:		
+            trie.add(word)
+        
+        # search
         result = set()
         for i in range(m):
             for j in range(n):
-                substring = board[i][j]
-                self.search(board, i, j, substring, set([(i, j)]), words, prefix, result)
+                char = board[i][j]
+                node = trie.root.children.get(char)
+                self.dfs(board, i, j, node, set([(i, j)]), result)
         
         return list(result)
     
-    def search(self, board, x, y, substring, visited, words, prefix, result):
-        if substring not in prefix:     # trim 
-            return 
+    
+    def dfs(self, board, x, y, node, visited, result):
+        if node is None:
+            return
         
-        if substring in words:
-            result.add(substring)
+        if node.is_word: 
+            result.add(node.word) 
         
         for delta_x, delta_y in DIRECTIONS:
             x_next, y_next = x + delta_x, y + delta_y
@@ -223,7 +276,7 @@ class Solution:
                 continue
     
             visited.add((x_next, y_next))
-            self.search(board, x_next, y_next, substring + board[x_next][y_next], visited, words, prefix, result)
+            self.dfs(board, x_next, y_next, node.children.get(board[x_next][y_next]), visited, result)   # backtrack
             visited.remove((x_next, y_next))
             
             
@@ -233,7 +286,9 @@ class Solution:
             return False
         if (i, j) in visited:
             return False
+          
         return True
+
 
 
 # 290. Word Pattern - given string is separated - O(n)
