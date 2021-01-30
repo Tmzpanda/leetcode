@@ -42,19 +42,27 @@ def maxProfit(prices):
   
   
 # 122. Sell Stock - ∞ transactions - greedy O(n) 
-# 188. Sell Stock - at most K transactions - dp O(n^2 * k) -> O(n*k)
+def maxProfit(prices):
+    n = len(prices)
+    profit = 0
+    
+    for i in range(1, n):
+        if prices[i - 1] < prices[i]:
+            profit += prices[i] - prices[i - 1]
+            
+    return profit
+  
+  
+# 188. Sell Stock - at most K transactions -> O(k*n)
   
 """
 prices = [3,2,6,5,0,3] k = 2
 
-  0 1 2
-0 0 0 0
-3 0 0 0
-2 0 x = max(dp[i - 1][j],
-6 0         max(prices[i] - prices[x] + dp[x - 1][j - 1]), where 0 <= x < i
-5 0         )
-0 0
-3 0  
+  3 2 6 5 0 3
+0 0 0 0 0 0 0 
+1 0 x = max(dp[i][j - 1],
+2 0         max(prices[j] - prices[x] + dp[i - 1][x - 1]), where 0 <= x < j
+
 
 """
 def maxProfit(k, prices):
@@ -62,14 +70,14 @@ def maxProfit(k, prices):
         return 0
     
     n = len(prices)
-    dp = [[0] * (k + 1) for _ in range(n)]
+    dp = [[0] * n for _ in range(k + 1)]
     
-    for j in range(1, k + 1):
+    for i in range(1, k + 1):
         profit = -sys.maxsize
         
-        for i in range(1, n):
-            profit = max(profit, -prices[i - 1] + dp[i - 1][j - 1])
-            dp[i][j] = max(dp[i - 1][j], prices[i] + profit)
+        for j in range(1, n):
+            profit = max(profit, -prices[j - 1] + dp[i - 1][j - 1]) # greedy
+            dp[i][j] = max(dp[i][j - 1], prices[j] + profit)
 
     return dp[-1][-1]
  
@@ -113,7 +121,6 @@ def maxProfit(prices, fee):
         profit = max(profit, -prices[i - 1 - 1] - fee + dp[i - 1 - 1])
         dp[i] = max(dp[i - 1], prices[i - 1] + profit)
 
-    print(dp)
     return dp[-1]
 
 
@@ -125,17 +132,17 @@ class Solution:
     def rob(self, nums):
         if not nums:
             return 0
-        if len(nums) <= 2:
+        if len(nums) == 1 or len(nums) == 2:
             return max(nums)
 
         n = len(nums)
-        dp = [0 for _ in range(n + 1)]
-        dp[1], dp[2] = nums[0], max(nums[0], nums[1])
+        dp = [0 for _ in range(n)]
+        dp[0], dp[1] = nums[0], max(nums[0], nums[1])
 
-        for i in range(3, n + 1):
-            dp[i] = max(nums[i - 1] + dp[i - 2], dp[i - 1])
+        for i in range(2, n):
+            dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
 
-        return dp[n]
+        return dp[n - 1]
 
     
 # 213. House Robber - cycle
@@ -148,8 +155,8 @@ class Solution:
 
         n = len(nums)
         dp1, dp2 = [0 for _ in range(n)], [0 for _ in range(n)]
-        dp1[1], dp1[2] = nums[0], max(nums[0], nums[1])     # nums[0: n -2]
-        dp2[1], dp2[2] = nums[1], max(nums[1], nums[2])     # nums[1n -1]
+        dp1[1], dp1[2] = nums[0], max(nums[0], nums[1])    
+        dp2[1], dp2[2] = nums[1], max(nums[1], nums[2])     
 
         for i in range(3, n):
             dp1[i] = max(nums[i - 1] + dp1[i - 2], dp1[i - 1])
