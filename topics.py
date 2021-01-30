@@ -1,7 +1,7 @@
 """
 121. Sell Stock - Subsequence Maximum Diffs - one transaction - greedy O(n)
 122.                                        - ∞ transactions - greedy O(n) 
-188.                                        - at most K transactions - dp O(n*k)
+188.                                        - at most K transactions - dp O(k*n)
 309.                                        - ∞ transactions with cooldown - dp O(n)
 714.                                        - ∞ transactions with transaction fee - dp O(n)
 
@@ -53,7 +53,7 @@ def maxProfit(prices):
     return profit
   
   
-# 188. Sell Stock - at most K transactions -> O(k*n)
+# 188. Sell Stock - at most K transactions - dp O(k*n)
   
 """
 prices = [3,2,6,5,0,3] k = 2
