@@ -19,23 +19,22 @@ O(n*S)
 # 518. Coin Change - number of solutions - dp O(n*S)
 # 494. Assign symbols to Target Sum - dp O(n*S)
 
+O(k*n) 
+# 188. Sell Stock - at most K transactions - dp O(k*n)                         
 
 O(S*n) 
 # 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
 # 322. Coin Change - fewest coins - dp O(S*n)
 
 O(m*n)
-# 688. Knight Probability in Chessboard - O(K*n^2)
+# 688. Knight Probability in Chessboard - dp O(K*n^2)
 # 221. Maximal Square - dp O(n^2) 
 # 62. Unique Paths - dp O(m*n)
 # 1143. Longest Common Subsequence - dp O(n^2)                         
 # 516. Longest Palindromic Subsequence - dp O(n^2)
-
-O(2*n) - state transfer
-
+# 44. Wildcard Matching - dp O(m*n)
 
  
-
 
 M2 - dp
 if possible -> "or"
@@ -54,6 +53,7 @@ M3 - return
 dp[n]
 # 198. House Robber - dp O(n)
 # 322. Coin Change - fewest coins - dp O(S*n)
+# 188. Sell Stock - at most K transactions - dp O(k*n)
 
 max(dp)
 # 300. Longest Increasing Subsequence - dp O(n^2)
@@ -71,7 +71,6 @@ dp[i][j] only depends on previous row, so we can optimize the space by using 2 r
     3 0
     4 0   #         #
     5 0             x =  max(dp[i-1][w-wt[i-1]] + val[i-1], dp[i-1][w]), when wt[i-1] <= w
-    
  
 """
 
