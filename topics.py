@@ -226,8 +226,7 @@ class Solution:
       
       
       
-# 212. Word Search - several words
-# trie
+# 212. Word Search - several words - trie
 class TrieNode:			
     def __init__(self):
         self.children = {}
