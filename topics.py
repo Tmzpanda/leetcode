@@ -18,7 +18,7 @@
 126.             - all possible solutions - bfs + dfs
 
 79. Word Search - if exists - dfs O(mn * 3^length)
-212.            - data structure - trie
+212.            - several words - trie
 
 290. Word Pattern - given string is separated - O(n)
                   - given string is not separated - dfs O(len(string)^len(pattern))
@@ -226,7 +226,7 @@ class Solution:
       
       
       
-# 212. Word Search
+# 212. Word Search - several words
 # trie
 class TrieNode:			
     def __init__(self):
