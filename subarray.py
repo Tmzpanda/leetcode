@@ -29,9 +29,9 @@
 516.                   - Subsequence - dp O(n^2)
 
 1216. K-Palindrome Substring - LPS - dp O(n^2)
-131. Palindrome Partioning - all solutions - backtrack
+131. Palindrome Partitioning - all solutions - backtrack
                                            - memoization
-132. Palindrome Partioning - minimum cuts - dp O(n^2)
+132. Palindrome Partitioning - minimum cuts - dp O(n^2)
 
                                     
 
