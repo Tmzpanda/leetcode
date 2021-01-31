@@ -15,7 +15,7 @@ O(n^2)
 
 O(n*S)
 # knapsack
-# 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
+# 416. Partition Equal Subset Sum - if possible - dp O(n*S)
 # 518. Coin Change - number of solutions - dp O(n*S)
 # 494. Assign symbols to Target Sum - dp O(n*S)
 
@@ -238,7 +238,7 @@ def knapSack(wt, val, W):
   
     return dp[n][W] 
 
-# 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
+# 416. Partition Equal Subset Sum - if possible - dp O(n*S)
 def canPartition(nums):
     if not nums:
         return False
