@@ -15,13 +15,11 @@
 
 
 
-
 # Subsequence
 674. Longest Increasing Subarray - 1d - greedy O(n)
 329.                             - 2d - dfs 
 300. Longest Increasing Subsequence - dp O(n^2)
                                     - binary search O(nlogn)  
-             
              
 718. Longest Common - Substring - dp O(m*n)
 1143.               - Subsequence - dp O(n^2)   
