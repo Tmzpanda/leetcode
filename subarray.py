@@ -21,17 +21,20 @@
 329.                             - 2d - dfs 
 300. Longest Increasing Subsequence - dp O(n^2)
                                     - binary search O(nlogn)  
-                                    
+             
+             
+718. Longest Common - Substring - dp O(m*n)
+1143.               - Subsequence - dp O(n^2)   
+5. Longest Palindromic - Substring - 2 pointers O(n^2)                  
+516.                   - Subsequence - dp O(n^2)
+
 1216. K-Palindrome Substring - LPS - dp O(n^2)
 131. Palindrome Partioning - all solutions - backtrack
                                            - memoization
 132. Palindrome Partioning - minimum cuts - dp O(n^2)
 
                                     
-718. Longest Common - Substring - dp O(m*n)
-1143.               - Subsequence - dp O(n^2)   
-5. Longest Palindromic - Substring - 2 pointers O(n^2)                  
-516.                   - Subsequence - dp O(n^2)
+
 
 
 
