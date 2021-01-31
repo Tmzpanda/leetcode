@@ -183,7 +183,7 @@ def largestDivisibleSubset(nums):
     return path[::-1]
     
   
-# 132. Palindrome Partioning - minimum cut - dp O(n^2)
+# 132. Palindrome Partitioning - minimum cut - dp O(n^2)
 import sys
 class Solution:
     def minCut(self, s):
