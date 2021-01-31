@@ -11,7 +11,7 @@ O(n^2)
 # 354. Russian Doll Envelopes - dp O(n^2)
                               - binary search O(nlogn)
 # 368. Largest Divisible Subset - path - dp O(n^2)
-# 132. Palindrome Partioning - minimum cut - dp O(n^2)
+# 132. Palindrome Partitioning - minimum cut - dp O(n^2)
 
 O(n*S)
 # knapsack
