@@ -332,8 +332,8 @@ class MedianFinder:
             return
         
         if -self.maxheap[0] > self.minheap[0]:
-            heappush(self.maxheap, heappop(self.minheap))
-            heappush(self.minheap, heappop(self.maxheap))
+            heappush(self.maxheap, -heappop(self.minheap))
+            heappush(self.minheap, -heappop(self.maxheap))
    
 
     def findMedian(self):
