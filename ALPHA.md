@@ -7,11 +7,15 @@ sort
 topk - kth largest
 
 topic - sell stock - dp state transfer
-      - word search
-      - word pattern
-      - wildcard
       
       
 tree - serialize and deserialize
+    - path sum
+    
+    
+mdian of 2 sorted array
+k largetst
+median data stream
+
 
       
