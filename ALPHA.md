@@ -1,6 +1,4 @@
-data structure - Trie
-               - Heap - sift up, index/2
-               - Stream
+
                
 recursion - quick select - sort color
 sort
