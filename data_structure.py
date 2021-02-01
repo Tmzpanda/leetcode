@@ -1,86 +1,149 @@
 """
 # Trie
-# 211. Word Search Data Structure - trie
-# 212.
-
-
-
-# Heap
-
+# 211. Design Trie
+# 212. Word Search - several words - Trie
 
 
 # Stream
 # 146. LRU Cache
 # 685. First Unique Number - Data Stream 
-# 346. Moving Average 
+# 707. Design LinkedArrayList
+
+
+
+# Heap
 # 295. Find Median from Data Stream
 
 
 
-# 707. Design LinkedArrayList
-# CircularArray
+
 """
 
 
 
 # *********************************************** Trie **************************************************************
-# 79. Word Search - if exists
+# 211. Design Trie
+class TrieNode: 
+    def __init__(self,val):
+        self.children = {}             # char_to_node
+        self.end = False
+        
+
+class WordDictionary:
+    def __init__(self):
+        self.root = TrieNode(0)        
+        
+    def addWord(self, word: str) -> None:
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode(char)
+            node = node.children[char]
+        node.end = True
+            
+            
+    def search(self, word: str) -> bool:
+        def dfs(i, node):
+            # break
+            if i == len(word):
+                return node.end
+            
+            if word[i] != '.':
+                if word[i] not in node.children:
+                    return False
+                return dfs(i + 1, node.children[word[i]])
+            
+            else:
+                for node in node.children.values():
+                    if dfs(i + 1, node):
+                        return True
+                return False
+        
+        return dfs(0, self.root)
+    
+
+# 212. Word Search - several words - Trie
+class TrieNode:			
+    def __init__(self):
+        self.children = {}
+        self.is_word = False
+        self.word = None
+        
+        
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+        
+    def add(self, word):	
+        node = self.root
+        for c in word:
+            if c not in node.children:
+                node.children[c] = TrieNode()  
+            node = node.children[c]     		
+        node.is_word = True
+        node.word = word   
+        
+              
 DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 class Solution:
-    def exist(self, board, word):
+    def findWords(self, board, words):
         m, n = len(board), len(board[0])
+        
+        # add
+        trie = Trie()
+        for word in words:		
+            trie.add(word)
+        
+        # search
+        result = set()
         for i in range(m):
             for j in range(n):
-                if board[i][j] == word[0]:
-                    if self.dfs(board, i, j, {(i, j)}, word, 1):
-                        return True
-        return False
+                char = board[i][j]
+                node = trie.root.children.get(char)
+                self.dfs(board, i, j, node, set([(i, j)]), result)
+        
+        return list(result)
     
     
-    def dfs(self, board, x, y, visited, word, index):
-        if index == len(word):
-            return True
+    def dfs(self, board, x, y, node, visited, result):
+        if node is None:
+            return
+        
+        if node.is_word: 
+            result.add(node.word) 
         
         for delta_x, delta_y in DIRECTIONS:
             x_next, y_next = x + delta_x, y + delta_y
-            if not self.isValid(board, x_next, y_next, visited, word, index):
+            if not self.isValid(board, x_next, y_next, visited):
                 continue
-            
-            visited.add((x_next, y_next))        # backtrack
-            if self.dfs(board, x_next, y_next, visited, word, index + 1):
-                return True
+    
+            visited.add((x_next, y_next))
+            self.dfs(board, x_next, y_next, node.children.get(board[x_next][y_next]), visited, result)   # backtrack
             visited.remove((x_next, y_next))
-        
-        return False
             
             
-    def isValid(self, grid, i, j, visited, word, index):
+    def isValid(self, grid, i, j, visited):
         n, m = len(grid), len(grid[0])
         if not (0 <= i < n and 0 <= j < m):
             return False
         if (i, j) in visited:
             return False
-        return grid[i][j] == word[index]
+          
+        return True
     
-    
-    
-# *********************************************** Heap ************************************************************
-
-
-
-
-
 # ********************************************** Stream ************************************************************
 # 146. LRU Cache
 """
                   tail
 dummy <- 1 <- 2 <- 3
+
+
 set - if exists - pop and append
-    - if not - append, popleft
+    - if not - append, *popleft
     
 get - if exists - pop and append
     - if not - return -1
-    
+      
 """
 class Node:
     def __init__(self, key = None, value = None, next = None):
@@ -90,9 +153,9 @@ class Node:
 
 class LRUCache:
     def __init__(self, capacity):
-        self.key_to_prev = {}           # key_to_prev
         self.dummy = Node()
         self.tail = self.dummy
+        self.key_to_prev = {}           # key_to_prev 
         self.capacity = capacity
 
     def get(self, key):
@@ -102,7 +165,7 @@ class LRUCache:
         self.pop(self.key_to_prev[key].next) 
         return self.key_to_prev[key].next.value 
 
-    def set(self, key, value):
+    def put(self, key, value):
         if key in self.key_to_prev:
             self.pop(self.key_to_prev[key].next) 
             self.key_to_prev[key].next.value = value
@@ -111,7 +174,13 @@ class LRUCache:
             self.append(Node(key, value))
             if len(self.key_to_prev) > self.capacity:
                 self.popleft()
-        
+  
+
+    def append(self, node):
+        self.key_to_prev[node.key] = self.tail
+        self.tail.next = node
+        self.tail = node
+    
     def pop(self, node):
         if node == self.tail:
             return
@@ -119,21 +188,21 @@ class LRUCache:
         # prev
         prev = self.key_to_prev[node.key]
         prev.next = node.next
+        # current
+        del self.key_to_prev[node.key]  
         # next
         self.key_to_prev[node.next.key] = prev
-        # curr
+      
         self.append(node)
         
-    def append(self, node):
-        self.key_to_prev[node.key] = self.tail
-        self.tail.next = node
-        self.tail = node
-     
     def popleft(self):
-        head = self.dummy.next
-        del self.key_to_prev[head.key]
-        self.dummy.next = head.next
-        self.key_to_prev[head.next.key] = self.dummy
+        node = self.dummy.next
+        # prev
+        self.dummy.next = node.next
+        # current
+        del self.key_to_prev[node.key]
+        # next
+        self.key_to_prev[node.next.key] = self.dummy
     
     
     
@@ -168,6 +237,12 @@ class DataStream:
         if not self.dummy.next:
             return None
         return self.dummy.next.val
+    
+    def append(self, num):
+        node = ListNode(num)
+        self.num_to_prev[num] = self.tail
+        self.tail.next = node
+        self.tail = node
         
     def pop(self, num):
         # prev
@@ -181,33 +256,63 @@ class DataStream:
         else:
             self.tail = prev
             
-    def append(self, num):
-        self.tail.next = ListNode(num)
-        self.num_to_prev[num] = self.tail
-        self.tail = self.tail.next    
     
-
     
-# 346. Moving Average - Data Stream
-class MovingAverage:
+# 707. LinkedArrayList  
+"""
+ head                      tail
+ -2 <- -1 <- 0 <- 1 <- 2 <- 3
+             ^
+
+"""
+class Node: 
+    def __init__(self, idx, value):
+        self.idx = idx
+        self.val = value
+        self.next = None
+
+class LinkedArrayList:
+
+    def __init__(self):
+        self.head = self.tail = None
+        self.idx_to_prev = {}          # idx_to_prev   # search   
+        self.size = 0
+        
+    def appendleft(self, val):
+        if self.size == 0:
+            node = Node(0, val)
+            self.head = self.tail = node
+        else:
+            node = Node(self.head.idx - 1, val)
+            self.idx_to_prev[self.head.idx] = node
+            node.next = self.head
+            self.head = node
+        
+        self.size += 1
+        
+    def append(self, val):
+        if self.size == 0:
+            node = Node(0, val)
+            self.head = self.tail = node
+        else:
+            node = Node(self.tail.idx + 1, val)
+            self.idx_to_prev[node.idx] = self.tail
+            self.tail.next = node
+            self.tail = node
+            
+        self.size += 1
+            
+    def get(self, index):
+        return self.idx_to_prev[self.head.idx + index].next.val
     
-    def __init__(self, size):
-        self.sum = 0
-        self.max_size = size
-        self.queue = collections.deque()
+    def put(self, index, value):
+        self.idx_to_prev[self.head.idx + index].next.val = value
 
 
-    def next(self, val):
-        self.sum = self.sum + val
-        self.queue.append(val)
-        
-        if len(self.queue) > self.max_size:
-            self.sum = self.sum - self.queue.popleft()
-        
-        return self.sum / len(self.queue)
-        
 
-        
+
+
+# ********************************************** LinkedList ************************************************************
 # 295. Find Median from Data Stream
 """
 m               n
@@ -230,16 +335,16 @@ class MedianFinder:
     def addNum(self, num: int) -> None:
         m, n = len(self.maxheap), len(self.minheap)
         if m == n:
-            heapq.heappush(self.maxheap, -num)
+            heappush(self.maxheap, -num)
         if m > n:
-            heapq.heappush(self.minheap, num)
+            heappush(self.minheap, num)
         
         if len(self.minheap) == 0:
             return
         
         if -self.maxheap[0] > self.minheap[0]:
-            heapq.heappush(self.maxheap, -heapq.heappop(self.minheap))
-            heapq.heappush(self.minheap, -heapq.heappop(self.maxheap))
+            heappush(self.maxheap, heappop(self.minheap))
+            heappush(self.minheap, heappop(self.maxheap))
    
 
     def findMedian(self):
@@ -249,154 +354,5 @@ class MedianFinder:
         else:
             return (-self.maxheap[0] + self.minheap[0]) / 2
 
-
-
-
-# ********************************************** LinkedList ************************************************************
-# LinkedArrayList
-class Node:  # DoubleLinkedList 
-    def __init__(self, idx, val):
-        self.idx = index
-        self.val = value
-        self.prev = None  
-        self.next = None
-        
-
-class LinkedArrayList:
-    def __init__(self):
-        self.size = 0
-        self.index_to_node = {}    # O(1) search
-        self.head = self.tail = None 
-        
-        
-    def appendFirst(self, val):
-        if self.size == 0:
-            head = tail = Node(0, val)
-            self.index_to_node[0] = head 
-        else
-            head.prev = Node(head.idx - 1, val)
-            head.prev.next = head
-            head = head.prev
-            self.index_to_node[head.idx] = head
-        
-        self.size += 1    
-        
-    def appendLast(self, val):
-        if self.size == 0:
-            head = tail = Node(0, val)
-            self.index_to_node[0] = head 
-        else:
-            tail.next = Node(tail.idx + 1, val)
-            tail.next.prev = tail
-            tail = tail.next
-            self.index_to_node[tail.idx] = tail
-            
-        self.size += 1 
-        
-    def removeFirst():
-        del self.index_to_node[head.idx]
-        res = head.val
-        head = head.next
-        size -= 1
-        return res
-    
-    def removeLast():
-        del self.index_to_node[tail.idx]
-        res = tail.val;
-        tail = tail.prev;
-        size -= 1
-        return res
-    
-    def get(index):
-        return self.index_to_node[head.idx + index].val
-    
-    def set(index,value):
-        self.index_to_node[head.idx + index].val = value
-
-
-
-# CircularArray
-# public class CircularArray {
-#     private int[] A;
-#     private int size, head, tail;
-    
-#     public CircularArray() {
-#         A = new int[10];
-#     }
-    
-#     public void appendFirst(int val) {
-#         if (size == 0) {
-#             A[head] = val;
-#             size = 1;
-#             return;
-#         }
-        
-#         if (size == A.length) {
-#             extend();
-#         }
-        
-#         head = getIndexInArray(head - 1);
-#         A[head] = val;
-#         size++;
-#     }
-    
-#     public void appendLast(int val) {
-#         if (size == 0) {
-#             A[head] = val;
-#             size = 1;
-#             return;
-#         }
-        
-#         if (size == A.length) {
-#             extend();
-#         }
-        
-#         tail = getIndexInArray(tail + 1);
-#         A[tail] = val;
-#         size++;
-#     }
-    
-#     public int removeFirst() {
-#         int res = A[head];
-#         if (size != 1) {
-#             head = getIndexInArray(head + 1);
-#         }
-        
-#         size--;
-#         return res;
-#     }
-    
-#     public int removeLast() {
-#         int res = A[tail];
-#         if (size != 1) {
-#             tail = getIndexInArray(tail - 1);
-#         }
-        
-#         size--;
-#         return res;
-#     }
-    
-#     public int get(int index) {
-#         return A[getIndexInArray(head + index)];
-#     }
-    
-#     public void set(int index, int value) {
-#         A[getIndexInArray(head + index)] = value;
-#     }
-    
-#     private int getIndexInArray(int idx) {
-#         return (idx + A.length) % A.length;
-#     }
-    
-#     private void extend() {
-#         int[] B = new int[A.length * 2];
-#         for (int i = 0; i < size; i++) {
-#             B[i] = A[(head + i) % A.length];
-#         }
-        
-#         A = B;
-#         head = 0;
-#         tail = size - 1;
-#     }
-# }      
+ 
         
