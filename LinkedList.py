@@ -8,8 +8,6 @@ pointers
 # 876. LinkedList Middle
 # 19. Remove Nth Node from the end - one pass
 # 206. Reverse LinkedList
-          
-
 
 """
 
