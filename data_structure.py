@@ -10,17 +10,10 @@
 # 707. Design LinkedArrayList
 
 
-
 # Heap
 # 295. Find Median from Data Stream
 
-
-
-
 """
-
-
-
 # *********************************************** Trie **************************************************************
 # 211. Design Trie
 class TrieNode: 
@@ -257,7 +250,6 @@ class DataStream:
             self.tail = prev
             
     
-    
 # 707. LinkedArrayList  
 """
  head                      tail
@@ -308,10 +300,7 @@ class LinkedArrayList:
     def put(self, index, value):
         self.idx_to_prev[self.head.idx + index].next.val = value
 
-
-
-
-
+        
 # ********************************************** LinkedList ************************************************************
 # 295. Find Median from Data Stream
 """
