@@ -4,14 +4,15 @@
 # 212. Word Search - several words - Trie
 
 
-# Stream
+# LinkedList
 # 146. LRU Cache
 # 685. First Unique Number - Data Stream 
 # 707. Design LinkedArrayList
 
 
-# Heap
-# 295. Find Median from Data Stream
+# ##
+# 295. Find Median from Data Stream - heap
+# 380. Insert Delete GetRandom O(1) 
 
 """
 # *********************************************** Trie **************************************************************
@@ -124,7 +125,7 @@ class Solution:
           
         return True
     
-# ********************************************** Stream ************************************************************
+# ********************************************** LinkedList ************************************************************
 # 146. LRU Cache
 """
                   tail
@@ -301,19 +302,18 @@ class LinkedArrayList:
         self.idx_to_prev[self.head.idx + index].next.val = value
 
         
-# ********************************************** LinkedList ************************************************************
+# ********************************************** ## ************************************************************
 # 295. Find Median from Data Stream
 """
-m               n
-maxheap        minheap     num                   
-                              1 
-1                             0  
-0               1             2      add to maxheap and minheap in turn
-0 1             2             3      if -self.maxheap[0] > self.minheap[0]: switch
-0 1             2 3           4      
-0 1 2           3 4           2
-0 1 2           2 3 4
-        
+num             maxheap      minheap
+1                -1
+0                               0
+2               -2, -1          0
+                -1, 0           2
+  
+maxheap keeps track of LOWER bound of median
+minheap .............. HIGHER bound ........
+
 """
 class MedianFinder:
 
@@ -328,10 +328,7 @@ class MedianFinder:
         if m > n:
             heappush(self.minheap, num)
         
-        if len(self.minheap) == 0:
-            return
-        
-        if -self.maxheap[0] > self.minheap[0]:
+        if self.minheap and -self.maxheap[0] > self.minheap[0]:
             heappush(self.maxheap, -heappop(self.minheap))
             heappush(self.minheap, -heappop(self.maxheap))
    
@@ -343,5 +340,34 @@ class MedianFinder:
         else:
             return (-self.maxheap[0] + self.minheap[0]) / 2
 
- 
         
+# 380. Insert Delete GetRandom O(1) 
+class RandomizedSet:
+    def __init__(self):
+        self.nums = []
+        self.val_to_index = {}
+
+    def insert(self, val: int) -> bool:
+        if val in self.val_to_index:
+            return False
+        
+        self.nums.append(val)
+        self.val_to_index[val] = len(self.nums) - 1
+        return True 
+
+    def remove(self, val: int) -> bool:         # O(1) remove in an array
+        if val not in self.val_to_index:
+            return False
+        
+        index = self.val_to_index[val]
+        last_value = self.nums[-1]
+        
+        self.nums[index] = last_value
+        self.val_to_index[last_value] = index
+        self.nums.pop()
+        del self.val_to_index[val]
+        
+        return True
+        
+    def getRandom(self) -> int:
+        return self.nums[random.randint(0, len(self.nums) - 1)]        
