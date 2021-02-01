@@ -105,11 +105,11 @@ prev cur next
 def reverse(head):
     prev = None
     while head:
-        nxt = head.next
+        next = head.next
 
         head.next = prev
         prev = head
-        head = nxt
+        head = next
 
     return prev
 
