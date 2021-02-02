@@ -1,19 +1,35 @@
 
                
-recursion - quick select - sort color
-sort
-topk - kth largest
+
+kth largest
+topK frequent
+
+mdian of 2 sorted array
+log(m+n)
+
 
 topic - sell stock - dp state transfer
-      
-      
+paint house
+dp滚动数组
+
+         
 tree - serialize and deserialize
-    - path sum
+     - path sum
+     
+BST - tree操作 
+九章课件
+
+
+
+sort.py
+BST.py
+
+
+     
+
     
     
-mdian of 2 sorted array
-k largetst
-median data stream
+
 
 
       
