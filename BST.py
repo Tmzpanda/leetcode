@@ -6,8 +6,8 @@ Iterator
 # 272. K Closest BST Values - recursion O(n)
                             - binary search + iterator O(logn + k)
                             
-# Intersection of two BST - m ≈ n - recursion traversal then merge O(m + n)   
-                                  - iteration meanwhile merge O(m + n)    
+# Intersection of two BST - m ≈ n - recursion merge O(m + n)   
+                                  - iteration merge O(m + n)    
                           - m ≫ n - binary search O(n.logm)
                           
 """
