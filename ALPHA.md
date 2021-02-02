@@ -4,7 +4,7 @@
 kth largest
 topK frequent
 
-mdian of 2 sorted array
+mdian of 2 sorted array 
 log(m+n)
 
 
@@ -21,8 +21,7 @@ BST - tree操作
 
 
 
-sort.py
-BST.py
+
 
 
      
