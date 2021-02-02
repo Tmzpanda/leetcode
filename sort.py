@@ -2,20 +2,31 @@
 # partition
 # 905. Sort Array By Parity - partition O(n)
 # 75. Sort Colors - partition O(n)
-# 215. Kth Largest Element in an Array - quick select O(n)
-# 347. Top K Frequent Elements - quick select O(n)
+# 215. Kth Largest Element in an Array - quick select O(n)    X
+# 347. Top K Frequent Elements - sort O(nlogn)
+#                              - heap O(nlogk)
+#                              - quick select O(n)           X  
+# 973. K Closest Points to Origin - heap O(nlogk)      
 # 912. Quick Sort O(nlogn)
 
 
 
 # merge
-# 658. K Closest Elements in a Sorted Array - binary search merge O(logn + k)    
+# 658. K Closest Elements in a Sorted Array - binary search merge O(logn + k) 
+# 272. K Closest BST Values - recursion O(n)
+                            - binary search + iterator O(logn + k)
 # 349. Intersection of Two Arrays - two pointers O(m + n)
                                   - binary search O(m * logn)
 # 912. Merge Sort O(nlogn)
 # 23. Merge k Sorted Lists - O(Nlogn), where n is # of LinkedLists, N is # of nodes
 
 
+
+# Duplicate
+# 287. Duplicate Number in an Array - sort O(nlogn) O(1)
+                                    - set  O(n) O(n)
+                                    - value-index mapping O(n) O(1)
+# 448. Find Disappeared Numbers in an Array - value-index mapping O(n) O(1)
 
 """
 
@@ -79,7 +90,7 @@ def sortColors(nums):
         else:
             i += 1
 
-
+            
 # 215. Kth Largest Element in an Array
 class Solution:
     def findKthLargest(self, nums: List[int], k: int):      # k -> n-k+1 -> n-k
@@ -109,6 +120,76 @@ class Solution:
 
         return nums[k]
 
+
+
+# 347. Top K Frequent Elements   
+# sort O(nlogn)
+def topKFrequent(nums, k):
+  
+    freq_dict = {}
+    for num in nums:
+        freq_dict[num] = freq_dict.get(num, 0) + 1
+    freq_dict_sorted = sorted(freq_dict.items(), key=lambda x: -x[1])
+    
+    res = []
+    for i in range(k):
+        res.append(freq_dict_sorted[i][0])
+        
+    return res
+  
+  
+# heap O(nlogn)
+from heapq import heappush, heappop
+def topKFrequent(nums, k):
+        
+    freq_dict = {}
+    for num in nums:
+        freq_dict[num] = freq_dict.get(num, 0) + 1
+
+    heap = []
+    for item in freq_dict.items():
+        heappush(heap, (item[1], item[0]))
+        if len(heap) > k:
+            heappop(heap)
+            
+    res = []
+    while len(heap) > 0:
+        freq, num = heappop(heap)
+        res.append(num)
+        
+    res.reverse()
+    return res
+
+# quick select O(n)
+
+
+  
+  
+# 973. K Closest Points to Origin - heap O(nlogk) 
+ class Solution:
+    def kClosest(self, points: List[List[int]], K: int) -> List[List[int]]:
+        origin = [0, 0]
+        
+        heap = []
+        for point in points:
+            distance = self.getDistance(point, origin)
+            heapq.heappush(heap, (-distance, point[0], point[1]))   # function as max heap 
+
+            if len(heap) > K:
+                heapq.heappop(heap)
+
+        output = []
+        while len(heap) > 0:
+            _, x, y = heapq.heappop(heap)
+            output.append([x, y])
+
+        output.reverse()
+        return output
+    
+    
+    def getDistance(self, a, b):
+        return (a[0] - b[0]) ** 2 + (a[1] - b[1]) ** 2 
+      
       
 # 912. Quick Sort O(nlogn)
 def quickSort(nums, start, end):
@@ -134,6 +215,96 @@ def quickSort(nums, start, end):
     quickSort(nums, l, end)
     
 #******************************************** merge *********************************************************
+# 658. K Closest Elements in a Sorted Array - binary search merge O(logn + k)    
+class Solution:
+    def kClosestNumbers(self, A, target, k):
+        r = self.findUpperClosest(A, target)
+        l = r - 1
+    
+        res = []
+        for _ in range(k):
+            if self.isLeftCloser(A, target, l, r):
+                res.append(A[l])
+                l -= 1
+            else:
+                res.append(A[r])
+                r += 1
+                
+        return res
+    
+    def findUpperClosest(self, A, target):
+        l, r = 0, len(A) - 1
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if target == A[mid]:
+                return mid
+            elif target < A[mid]:
+                r = mid
+            else:
+                l = mid
+                
+        return r
+        
+    def isLeftCloser(self, A, target, l, r):
+        if l < 0:
+            return False
+        if r >= len(A):
+            return True
+          
+        return target - A[l] <= A[r] - target
+
+
+
+
+# 349. Intersection of Two Arrays - two pointers O(m + n)
+#                                 - binary search O(m * logn)
+def intersection(nums1, nums2):
+    nums1.sort()
+    nums2.sort()
+    res = []
+
+    i, j = 0, 0
+    while i < len(nums1) and j < len(nums2):
+        if nums1[i] < nums2[j]:
+            i += 1
+        elif nums1[i] > nums2[j]:
+            j += 1
+        else:
+            res.append(nums1[i])
+            i += 1
+            j += 1
+
+    return res
+    
+    
+# binary search O(n.logm)  
+def intersection(arr1, arr2):
+    result = []
+    
+    for num in arr1:
+        if binarySearchFound(arr2, num):
+            result.append(num)
+    return result
+
+def binarySearchFound(nums, target):
+    l, r = 0, len(nums) - 1
+    while l + 1 < r:
+        mid = (l + r) // 2
+        if nums[mid] == target:
+            return True
+        elif target < nums[mid]:
+            r = mid
+        else:
+            l = mid
+
+    if nums[l] == target:
+        return True
+    if nums[r] == target:
+        return True
+    return False
+  
+  
+  
 # 912. Merge Sort O(nlogn)
 def mergeSort(nums):
     if len(nums) == 1:
@@ -201,7 +372,55 @@ def merge(l1, l2):
 
 
 
+#******************************************** Duplicate *********************************************************
+# 287. Duplicate Number in an Array 
+# sort 
+def findDuplicate(nums):
+    nums.sort()
+    for i in range(len(nums)):
+        if i > 0 and nums[i] == nums[i-1]:
+            return nums[i]
+
+# set 
+def deduplicate(nums):
+    index = 1
+    traversed = set()
+    for i in range(len(nums)):
+        if i > 0 and nums[i] not in traversed:
+            nums[index] = nums[i]
+            index += 1
+        traversed.add(nums[i])
+
+    return nums[:index]
+
+# value-index mapping
+"""
+1 ≤ a[i] ≤ n 
+0 ≤ index ≤ n - 1
+<value, index> exclusive mapping makes O(n) O(1) achievable
+
+"""
+def findDuplicates(nums):
+    res = []
+    
+    for i in range(len(nums)):
+        index = abs(nums[i]) - 1
+        if nums[index] < 0:
+            res.append(abs(nums[i]))
+        nums[index] = - nums[index]
+        
+    return res
 
 
+# 448. Find Disappeared Numbers in an Array - O(n) O(1)
+def findDisappearedNumbers(nums):
+    res = []
+    
+    for i in range(len(nums)):
+        index = abs(nums[i]) - 1
+        if nums[index] > 0:
+            nums[index] = - nums[index]
+
+    return [index + 1 for index in range(len(nums)) if nums[index] > 0]
 
     
