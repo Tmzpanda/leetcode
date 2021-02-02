@@ -1,27 +1,27 @@
 """
 # partition
-# sort by parity - partition O(n)
-# sort colors - partition O(n)
-# kth smallest/largest - quick select - partition O(n)
-# quick sort - O(nlogn)
-
+# 905. Sort Array By Parity - partition O(n)
+# 75. Sort Colors - partition O(n)
+# 215. Kth Largest Element in an Array - quick select O(n)
+# 347. Top K Frequent Elements - quick select O(n)
+# 912. Quick Sort O(nlogn)
 
 
 
 # merge
-# kClosest O(logn + k)
-# intersection - O(m + n)
-               - O(m*logn)
-# merge sort - O(nlogn)
-# merge range - O(Nlogn), where n is # of linked lists, N is # of nodes
+# 658. K Closest Elements in a Sorted Array - binary search merge O(logn + k)    
+# 349. Intersection of Two Arrays - two pointers O(m + n)
+                                  - binary search O(m * logn)
+# 912. Merge Sort O(nlogn)
+# 23. Merge k Sorted Lists - O(Nlogn), where n is # of LinkedLists, N is # of nodes
 
 
 
 """
 
 #******************************************** partition *********************************************************
-# sort by parity
-def sortArrayByParity(self, nums):
+# 905. Sort Array By Parity - partition O(n)
+def sortArrayByParity(nums):
     l, r = 0, len(nums) - 1
 
     while l < r:
@@ -33,17 +33,17 @@ def sortArrayByParity(self, nums):
             nums[l], nums[r] = nums[r], nums[l]
             l += 1
             r -= 1
-            
+
     return nums
     
 
-# sort color 
+# 75. Sort Colors - partition O(n)
 """
-2 0 2 0 1 0     nums[index] == 2: switch(nums[index], nums[r]), r--
+2 0 2 0 1 0   
 l         r
 ^
 
-0 0 2 0 1 2     nums[index] == 0: switch(nums[index], nums[l]), l++ index++
+0 0 2 0 1 2    
 l       r
 ^
 
@@ -51,7 +51,7 @@ l       r
     l   r
     ^  
     
-0 0 1 0 2 2     nums[index] == 1: index++
+0 0 1 0 2 2    
     l r
     ^
   
@@ -66,95 +66,64 @@ l       r
 def sortColors(nums):
         
     l, r = 0, len(nums) - 1
-    index = 0
+    i = 0
 
-    while index <= r:
-        if nums[index] == 0:
-            nums[index], nums[l] = nums[l], nums[index]
+    while i <= r:
+        if nums[i] == 0:
+            nums[i], nums[l] = nums[l], nums[i]
             l += 1
-            index += 1
-        elif nums[index] == 2:
-            nums[index], nums[r] = nums[r], nums[index]
+            i += 1
+        elif nums[i] == 2:
+            nums[i], nums[r] = nums[r], nums[i]
             r -= 1
         else:
-            index += 1
+            i += 1
 
 
-# Kth smallest
-# sort O(nlong)
-# heap O(nlogk)
-# quick select - partition O(n)
-"""
-          1 3 2 5 7  pivot = 5, k = 2
-                lr
-                
-          1 3 2      pivot = 2
-            l r 
-          1 2 3  
-            r l
-            
-              3      pivot = 3
-             r l     return 
-
-"""
-def partition(nums, start, end, k):
-
-    l, r = start, end
-    pivot = nums[(start + end) // 2]
-
-    while l <= r:
-        while l <= r and nums[l] < pivot:
-            l += 1
-        while l <= r and nums[r] > pivot:
-            r -= 1
-        if l <= r:
-            nums[l], nums[r] = nums[r], nums[l]
-            l += 1
-            r -= 1
-
-    if k <= r:
-        return partition(nums, start, r, k)
-    if k >= l:
-        return partition(nums, l, end, k)
+# 215. Kth Largest Element in an Array
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int):      # k -> n-k+1 -> n-k
+        n = len(nums)
+        return self.quickSelect(nums, 0, n - 1, n - k)
         
-    return nums[k]
+    
+    def quickSelect(self, nums, start, end, k):     # wrong
+        l, r = start, end
+        pivot = (l + r) // 2
 
+        # partition
+        while l <= r:
+            while l <= r and nums[l] < nums[pivot]:
+                l += 1
+            while l <= r and nums[r] > nums[pivot]:
+                r -= 1
+            if l <= r:
+                nums[l], nums[r] = nums[r], nums[l]
+                l += 1
+                r -= 1
 
-# quick sort O(nlogn)
-"""
-1 4 3     >3                  1 4 3     >=3    
-  l r                         r l
+        if k <= r:
+            return self.quickSelect(nums, start, r, k)
+        if k >= l:
+            return self.quickSelect(nums, l, end, k)
 
-1 3 4
-  r l
-  
-  
-  
-3 4 3     >3
-l   r
+        return nums[k]
 
-3 4 3
-r l
-  
-  4 3 
-  l r
-  
-  3 4
-  r l
-  
-"""
+      
+# 912. Quick Sort O(nlogn)
 def quickSort(nums, start, end):
     
     if start >= end:
         return
 
     l, r = start, end
-    pivot = nums[random.randint(l, r)]
+    pivot = random.randint(l, r)
 
+    # partition
     while l <= r:
-        while l <= r and nums[l] < pivot:
+        while l <= r and nums[l] < nums[pivot]:
             l += 1
-        while l <= r and nums[r] > pivot:
+        while l <= r and nums[r] > nums[pivot]:
             r -= 1
         if l <= r:
             nums[l], nums[r] = nums[r], nums[l]
@@ -165,25 +134,19 @@ def quickSort(nums, start, end):
     quickSort(nums, l, end)
     
 #******************************************** merge *********************************************************
-# merge sort
-"""
-            [1, 4, 3, 5, 7]
-    [1, 4, 3]             [5, 7]
- [1, 4]    [3]           [5]  [7]
-[1]  [4]     
-
-
-"""
- def mergeSort(nums):
+# 912. Merge Sort O(nlogn)
+def mergeSort(nums):
     if len(nums) == 1:
         return 
 
     mid = (len(nums) - 1) // 2
     left = nums[:mid + 1]
     right = nums[mid + 1:]
+    
     mergeSort(left)
     mergeSort(right)
 
+    # merge
     l, r = 0, 0
     index = 0   
     while l < len(left) and r < len(right):
@@ -206,19 +169,7 @@ def quickSort(nums, start, end):
         index += 1
 
 
-# merge range - O(Nlogn), where n is # of linked lists, N is # of nodes
-"""
-   o -> o -> ... -> o      vs     1
-   o -> o -> ... -> o             4
-   .                              3
-   .                              5
-   o -> o -> ... -> o             7
-
-no extra space                   extra space
-return                           no return
-
-"""
-
+# 23. Merge k Sorted Lists - O(Nlogn), where n is # of LinkedLists, N is # of nodes
 def mergeNLists(lists):
     return mergeRange(lists, 0, len(lists) - 1)
 
@@ -230,27 +181,22 @@ def mergeRange(lists, start, end):
     left = mergeRange(lists, start, mid)
     right = mergeRange(lists, mid + 1, end)
     return merge(left, right)
-  
-def merge(l1, l2): 
+    
+def merge(l1, l2):
     temp = dummy = ListNode(0)
     p1, p2 = l1, l2
-    while p1 or p2:
-        if isFirstPointerSmaller(p1, p2):
+    while p1 and p2:
+        if p1.val <= p2.val:
             temp.next = p1
             p1 = p1.next
         else:
             temp.next = p2
             p2 = p2.next
         temp = temp.next
-
-    return dummy.next
-
-def isFirstSmaller(p1, p2):
-    if p1 is None:
-        return False
-    if p2 is None:
-        return True
-    return p1.val <= p2.val
+        
+    temp.next = p1 or p2
+    
+    return dummy.next 
 
 
 
