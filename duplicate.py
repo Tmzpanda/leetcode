@@ -8,6 +8,7 @@
 
 """
 
+# 287. Duplicate Number in an Array 
 
 # sort 
 def findDuplicate(nums):
@@ -18,7 +19,6 @@ def findDuplicate(nums):
 
 
 # set 
-# deduplicate
 def deduplicate(nums):
     index = 1
     traversed = set()
