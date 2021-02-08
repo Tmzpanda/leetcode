@@ -12,7 +12,9 @@
 # 257. Binary Tree Paths - all solutions  
 # 113. Binary Tree Path Sum - all solutions
 # 272. K Closest BST Values - inorder traverse O(n)
-                            - iterator O(logn + k)              
+                            - iterator O(logn + k)
+                            
+# 102. Binary Tree Level Order Traversal - bfs
 # 297. Serialize and Deserialize Binary Tree - dfs
                                              - bfs
                                              
@@ -208,12 +210,33 @@ def kClosestValues(root, target, k):
 
     rec(root)
     return list(res)
-  
+
+
+# 102. Binary Tree Level Order Traversal - bfs
+def levelOrder(root):
+    if root is None:
+        return []
+        
+    queue = deque([root])
+    res = []
+    while queue:
+        level = []
+        for _ in range(len(queue)):
+            node = queue.popleft()
+            level.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        res.append(level)
+        
+    return res
+
+
 # 297. Serialize and Deserialize Binary Tree - bfs
 #                                            - dfs
 
 class Codec:
-
     def serialize(self, root):
         if root is None:
             return ""
