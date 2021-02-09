@@ -7,9 +7,13 @@
 # 322. Coin Change - fewest coins - dp O(S*n)
 # 47. Permutation - O(n!)
 
-
 # 216. K Sum - all positive - all solutions - backtrack O(2^n)
 # 18. K Sum - negative exists - all solutions - two pointers O(n^(k-1))
+
+
+# 112. Binary Tree Path Sum - if exists - dfs top-down
+# 113. Binary Tree Path Sum - all solutions - dfs backtrack
+# 437.          Subpath Sum - number of solutions - psum
 
 
 """
