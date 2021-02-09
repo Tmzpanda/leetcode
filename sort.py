@@ -2,10 +2,9 @@
 # partition
 # 905. Sort Array By Parity - partition O(n)
 # 75. Sort Colors - partition O(n)
-# 215. Kth Largest Element in an Array - quick select O(n)    X
+# 215. Kth Largest Element in an Array - quick select O(n)    
 # 347. Top K Frequent Elements - sort O(nlogn)
 #                              - heap O(nlogk)
-#                              - quick select O(n)           X  
 # 973. K Closest Points to Origin - heap O(nlogk)      
 # 912. Quick Sort O(nlogn)
 
@@ -103,7 +102,7 @@ class Solution:
         
     
     def quickSelect(self, nums, start, end, k):
-        if start == end:            # break condition
+        if start == end:            
             return nums[k]
         
         l, r = start, end
@@ -166,7 +165,6 @@ def topKFrequent(nums, k):
     res.reverse()
     return res
 
-# quick select O(n)
 
 
   
