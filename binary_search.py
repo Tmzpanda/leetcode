@@ -3,17 +3,19 @@ sorted
 # 704. Target
 # 34. Last Position of Target
 # 702. Search in a Big Sorted Array - first position
-# 278. First Bad Version - criteria
 # 35. Search Insert Position
 # 354. Russian Doll Envelopes - dp O(n^2)
                               - binary search O(nlogn)
 
 
 
-unsorted 
-# 153. Find Minimum in Rotated Sorted Array
-# 33. Search in Rotated Sorted Array
-# 852. Peak Index in a Mountain Array
+condition of pointer moving
+# 278. First Bad Version - isBadVersion
+# 153. Find Minimum in Rotated Sorted Array - nums[mid]?nums[-1]
+# 33. Search in Rotated Sorted Array 
+# 852. Peak Index in a Mountain Array - nums[mid]?nums[mid+1]
+# 875. Minimum Speed to Finish Eating Bananas within H Hours - timeToFinish?H
+
 
 
 
@@ -79,21 +81,6 @@ def searchBigSortedArray(reader, target):
         return r
     else:
          return -1
- 
-      
-# 278. First Bad Version
-def findFirstBadVersion(n):
-    l, r = 1, n
-    while l + 1 < r:
-        mid = (l + r) // 2
-        if SVNRepo.isBadVersion(mid):     # based on bad_version_or_not
-            r = mid
-        else:
-            l = mid
-    
-    if SVNRepo.isBadVersion(l): 
-        return l
-    return r
       
       
 # 35. Search Insert Position - K Closest
@@ -176,9 +163,23 @@ class Solution:
         
         return max(dp)
 
+      
+# ******************************************* condition of pointer moving **********************************************************
+# 278. First Bad Version
+def findFirstBadVersion(n):
+    l, r = 1, n
+    while l + 1 < r:
+        mid = (l + r) // 2
+        if SVNRepo.isBadVersion(mid):     # based on bad_version_or_not
+            r = mid
+        else:
+            l = mid
+    
+    if SVNRepo.isBadVersion(l): 
+        return l
+    return r
 
-
-# ******************************************* unsorted array **********************************************************
+  
 # 153. Find Minimum in Rotated Sorted Array
 """
                    o 6
@@ -261,4 +262,30 @@ def findPeak(self, nums):
     return nums[r]
 
 
+# 875. Minimum Speed to Finish Eating Bananas within H Hours - timeToFinish?H
+import math
+class Solution:
+    def minEatingSpeed(self, piles: List[int], H: int) -> int:
+        
+        l = 1
+        r = max(piles)
+        while l + 1 < r:
+            mid = (l + r) // 2
+            if self.timeToFinish(piles, mid) > H:
+                l = mid
+            else:
+                r = mid
+        
+        if self.timeToFinish(piles, l) <= H:  # corner case
+            return l
+        
+        return r
+    
+    
+    def timeToFinish(self, piles, speed):
+        time = 0
+        for p in piles:
+            time += math.ceil(p/speed)
+            
+        return time
 
