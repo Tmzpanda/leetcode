@@ -11,8 +11,13 @@
 
 
 # ##
+# 380. Hashset Insert Delete GetRandom O(1) 
 # 295. Find Median from Data Stream - heap
-# 380. Insert Delete GetRandom O(1) 
+
+# design hashmap
+# implement stack using queue
+# heapify
+
 
 """
 # *********************************************** Trie **************************************************************
@@ -303,6 +308,39 @@ class LinkedArrayList:
 
         
 # ********************************************** ## ************************************************************
+# 380. Insert Delete GetRandom O(1) 
+class RandomizedSet:
+    def __init__(self):
+        self.nums = []
+        self.val_to_index = {}
+
+    def insert(self, val: int) -> bool:
+        if val in self.val_to_index:
+            return False
+        
+        self.nums.append(val)
+        self.val_to_index[val] = len(self.nums) - 1
+        return True 
+
+    def remove(self, val: int) -> bool:         # O(1) remove in an array
+        if val not in self.val_to_index:
+            return False
+        
+        index = self.val_to_index[val]
+        last_value = self.nums[-1]
+        
+        self.nums[index] = last_value
+        self.val_to_index[last_value] = index
+        self.nums.pop()
+        del self.val_to_index[val]
+        
+        return True
+        
+    def getRandom(self) -> int:
+        return self.nums[random.randint(0, len(self.nums) - 1)]    
+    
+    
+    
 # 295. Find Median from Data Stream
 """
 num             maxheap      minheap
@@ -340,34 +378,3 @@ class MedianFinder:
         else:
             return (-self.maxheap[0] + self.minheap[0]) / 2
 
-        
-# 380. Insert Delete GetRandom O(1) 
-class RandomizedSet:
-    def __init__(self):
-        self.nums = []
-        self.val_to_index = {}
-
-    def insert(self, val: int) -> bool:
-        if val in self.val_to_index:
-            return False
-        
-        self.nums.append(val)
-        self.val_to_index[val] = len(self.nums) - 1
-        return True 
-
-    def remove(self, val: int) -> bool:         # O(1) remove in an array
-        if val not in self.val_to_index:
-            return False
-        
-        index = self.val_to_index[val]
-        last_value = self.nums[-1]
-        
-        self.nums[index] = last_value
-        self.val_to_index[last_value] = index
-        self.nums.pop()
-        del self.val_to_index[val]
-        
-        return True
-        
-    def getRandom(self) -> int:
-        return self.nums[random.randint(0, len(self.nums) - 1)]        
