@@ -1,16 +1,19 @@
 
 """
+Iterator
 # 230. Kth Smallest Element in a BST - iterator O(k)
 # Intersection of two BST - m ≈ n - recursion merge O(m + n)   
                                   - iteration merge O(m + n)    
                           - m ≫ n - binary search O(n.logm)
                           
-
-
 # 270. Closest BST Value - binary search O(logn)
 # 272. K Closest BST Values - recursion O(n)
                             - binary search + iterator O(logn + k)
                             
+
+
+Operation
+# 450. Delete Node in a BST
 
 """
 # ******************************************* SMALLEST ********************************************************* 
@@ -238,4 +241,36 @@ class Solution:
         
         
 
+# ******************************************* Operation *********************************************************      
+# 450. Delete Node in a BST
+def delete_node(root, val):
+    if not root:
+        return
 
+    if root.val > val:
+        root.left = delete_node(root.left, val)
+    elif root.val < val:
+        root.right = delete_node(root.right, val)
+
+    else:
+        #  No Child or One Child
+        if not root.left:
+            return root.right
+
+        if not root.right:
+            return root.left
+
+        # Two children -> Find min node in right-subtree, copy the value, delete min node from right-subtree
+        else:
+            temp = find_smallest(root.right)
+            root.val = temp.val
+            root.right = delete_node(root.right, temp.val)
+            
+    return root
+
+  
+def find_smallest(root):
+    while root.left:
+        root = root.left
+        
+    return root
