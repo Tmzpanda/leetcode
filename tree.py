@@ -147,12 +147,10 @@ class Solution:
 # bottom-up
 class Solution:
     def pathSum(self, root, target):
-
         self.count = 0      
         self.dfs(root, 0, {0: 1}, target)
         
         return self.count
-
 
     def dfs(self, root, psum, psum_to_freq, target):
         if not root:
@@ -162,21 +160,19 @@ class Solution:
         if psum - target in psum_to_freq:
             self.count += psum_to_freq[psum - target]
     
-    
         psum_to_freq[psum] = psum_to_freq.get(psum, 0) + 1
 
-       	self.dfs(root.left, psum, psum_to_freq, target)
-       	self.dfs(root.right, psum, psum_to_freq, target)
+        self.dfs(root.left, psum, psum_to_freq, target)
+        self.dfs(root.right, psum, psum_to_freq, target)
 
-       	psum_to_freq[psum] -= 1 
+        psum_to_freq[psum] -= 1 
+
 
 # top-down
 class Solution(object):
     def pathSum(self, root, target):
-
         psum_to_freq = {0:1}
         return self.dfs(root, 0, target, psum_to_freq)
-
 
     def dfs(self, root, psum, target, psum_to_freq):
         if not root:
