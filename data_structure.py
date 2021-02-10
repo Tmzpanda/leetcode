@@ -14,11 +14,6 @@
 # 380. Hashset Insert Delete GetRandom O(1) 
 # 295. Find Median from Data Stream - heap
 
-# design hashmap
-# implement stack using queue
-# heapify
-
-
 """
 # *********************************************** Trie **************************************************************
 # 211. Design Trie
