@@ -8,10 +8,12 @@
 # 146. LRU Cache
 # 685. First Unique Number - Data Stream 
 # 707. Design LinkedArrayList
+# 622. Design CircularArray
+
 
 
 # ##
-# 380. Hashset Insert Delete GetRandom O(1) 
+# 380. RandomizedSet Insert Delete GetRandom O(1) 
 # 295. Find Median from Data Stream - heap
 
 """
@@ -251,7 +253,7 @@ class DataStream:
             self.tail = prev
             
     
-# 707. LinkedArrayList  
+# 707. LinkedArrayList 
 """
  head                      tail
  -2 <- -1 <- 0 <- 1 <- 2 <- 3
@@ -263,14 +265,26 @@ class Node:
         self.idx = idx
         self.val = value
         self.next = None
-
+        
+        
 class LinkedArrayList:
-
     def __init__(self):
         self.head = self.tail = None
         self.idx_to_prev = {}          # idx_to_prev   # search   
         self.size = 0
-        
+    
+    def append(self, val):
+        if self.size == 0:
+            node = Node(0, val)
+            self.head = self.tail = node
+        else:
+            node = Node(self.tail.idx + 1, val)
+            self.idx_to_prev[node.idx] = self.tail
+            self.tail.next = node
+            self.tail = node
+            
+        self.size += 1
+
     def appendleft(self, val):
         if self.size == 0:
             node = Node(0, val)
@@ -283,27 +297,148 @@ class LinkedArrayList:
         
         self.size += 1
         
-    def append(self, val):
-        if self.size == 0:
-            node = Node(0, val)
-            self.head = self.tail = node
-        else:
-            node = Node(self.tail.idx + 1, val)
-            self.idx_to_prev[node.idx] = self.tail
-            self.tail.next = node
-            self.tail = node
-            
-        self.size += 1
-            
-    def get(self, index):
+    def pop(self):                         
+        # prev
+        prev = self.idx_to_prev[self.tail.idx]
+        prev.next = None
+        # curr
+        res = self.tail.val
+        del self.idx_to_prev[self.tail.idx]
+        # next
+        self.tail = prev
+        
+        self.size -= 1
+        return res
+        
+    def popleft(self):      # O(1)
+        # curr
+        res = self.head.val
+        # next
+        del self.idx_to_prev[self.head.next.idx]
+        self.head = self.head.next
+        
+        self.size -= 1
+        return res
+    
+    def get(self, index):   # O(1)
+        if index == 0:
+            return self.head.value       
         return self.idx_to_prev[self.head.idx + index].next.val
     
-    def put(self, index, value):
-        self.idx_to_prev[self.head.idx + index].next.val = value
+    def put(self, index, value):    
+        if index == 0:
+            self.head.val = value
+        else:
+            self.idx_to_prev[self.head.idx + index].next.val = value
+        
+        
+# test case
+def print_list(node):
+    result = []
+    while node:
+        result.append(str(node.val))
+        node = node.next
+    print('->'.join(result))
+    
+ll = LinkedArrayList()
+ll.append(2)
+ll.append(3)
+ll.append(4)
+ll.appendleft(1)
+print_list(ll.head)
+print(ll.pop())
+print(ll.popleft())
+ll.put(1, 30)
+print(ll.get(0))
+print(ll.get(1))
+print_list(ll.head)
 
+
+# 622. Design CircularArray
+class CircularArray:
+    def __init__(self):
+        self.array = [0] * 10
+        self.start = self.end = 0
+        self.size = 0
+        
+    def append(self, val):
+        if self.size == 0:
+            self.array[self.start] = val
+            self.size = 1
+            return 
+        
+        if self.size == len(self.array):
+            self.extend()
+        
+        self.end = self.get_index(self.end + 1)
+        self.array[self.end] = val
+        self.size += 1
+        
+    def appendleft(self, val):
+        if self.size == 0:
+            self.array[self.start] = val
+            self.size = 1
+            return 
+        
+        if self.size == len(self.array):
+            self.extend()
+            
+        self.start = self.get_index(self.start - 1)
+        self.array[self.start] = val
+        self.size += 1
+        
+    def pop(self):                              
+        res = self.array[self.end]
+        if self.size != 1:
+            self.end = self.get_index(self.end - 1)
+        
+        self.size -= 1
+        return res
+    
+    def popleft(self):                             # O(1)
+        res = self.array[self.start]
+        if self.size != 1:
+            self.start = self.get_index(self.start + 1)
+        
+        self.size -= 1
+        return res 
+    
+    def get(self, index):                          # O(1)
+        return self.array[self.get_index(self.start + index)]
+    
+    def put(self, index, value):
+        self.array[self.get_index(self.start + index)] = value
+       
+    def get_index(self, index):
+        return (index + len(self.array)) % len(self.array)
+    
+    def extend(self):
+        self.array2 = [0] * len(self.array) * 2
+        for i in range(len(self.array)):
+            self.array2[i] = self.array[get_index(self.start + i)]
+        
+        self.start, self.end = 0, len(self.array) - 1
+        self.array = self.array2 
+
+
+# test
+ca = CircularArray()
+ca.append(2)
+ca.append(3)
+ca.append(4)
+ca.appendleft(1)
+print(ca.get(1))
+print(ca.array, ca.start, ca.end)
+ca.pop()
+print(ca.array, ca.start, ca.end)
+ca.popleft()
+print(ca.array, ca.start, ca.end)
+print(ca.get(1))
+ca.put(1, 30)
+ca.get(1)
         
 # ********************************************** ## ************************************************************
-# 380. Insert Delete GetRandom O(1) 
+# 380. RandomizedSet Insert Delete GetRandom O(1) 
 class RandomizedSet:
     def __init__(self):
         self.nums = []
