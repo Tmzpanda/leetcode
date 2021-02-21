@@ -19,8 +19,10 @@
      - Trie: 前缀匹配
 
 4. Queue
-     - [CircularArray
-     - LinkedArrayList]((https://github.com/Tmzpanda/leetcode/blob/main/data_structure.py)): append(val), appendleft(val), pop(), popleft(), get(idx), put(idx, val) -> O(1)
+     - [CircularArray](https://github.com/Tmzpanda/leetcode/blob/main/data_structure.py)
+     - LinkedArrayList: append(val), appendleft(val), pop(), popleft(), get(idx), put(idx, val) -> O(1)
+
+
 
 
 
