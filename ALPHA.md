@@ -12,7 +12,7 @@ dp滚动数组
 
      
 # Theory
-1. hashmap
+1. [hashmap](https://zhuanlan.zhihu.com/p/127147909)
      - hash function: [MD5](https://en.wikipedia.org/wiki/MD5) or [SHA256](https://en.wikipedia.org/wiki/SHA-2),
      - [hash collision](https://www.jianshu.com/p/aa457757cc13): 
               - open hash：有collision就存个linked list
@@ -25,15 +25,15 @@ dp滚动数组
      - 实现：arrary
 
 
-3. Tree
-     - b树，b+树：多路平衡搜索树
+3. [Tree](https://www.zhihu.com/question/30527705)
      - rbtree: 平衡二叉搜索树，插入删除效率高，应用于TreeMap, open hash
      - AVL: 更为平衡，查询效率高
-     - Trie
+     - b树，b+树：多路平衡搜索树（大量减少重新平衡和数据迁移的次数），数据库索引（需要持久化在磁盘，同时需要大量查询和插入操作）
+     - Trie: 前缀匹配
 
-4. Array
-     - CircularArray
-     - LinkedArrayList
+4. Queue
+     - [CircularArray](https://github.com/Tmzpanda/leetcode/blob/main/data_structure.py)
+     - LinkedArrayList: append(val), appendleft(val), pop(), popleft(), get(idx), put(idx, val) -> O(1)
 
 
 
