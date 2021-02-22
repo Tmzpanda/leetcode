@@ -135,6 +135,7 @@ def topKFrequent(nums, k):
     for num in nums:
         freq_dict[num] = freq_dict.get(num, 0) + 1
     freq_dict_sorted = sorted(freq_dict.items(), key=lambda x: -x[1])
+    # most_freq_element = max(freq_dict.keys(), key=lambda x: freq_dict[x])
     
     res = []
     for i in range(k):
