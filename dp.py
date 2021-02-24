@@ -347,7 +347,7 @@ def coinChange(coins, amount):
     for s in range(1, amount + 1):
         for coin in coins:
             if coin <= s:
-                dp[s] = min(dp[s], dp[s - coin] + 1)        # dp[i][s] = min(dp[i][s - coins[i -1]] + 1, dp[i - 1][s])
+                dp[s] = min(dp[s], dp[s - coin] + 1)       
     
     return dp[amount] if dp[amount] != sys.maxsize else -1
 
