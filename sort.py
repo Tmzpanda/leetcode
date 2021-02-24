@@ -386,18 +386,6 @@ def findDuplicate(nums):
         if i > 0 and nums[i] == nums[i-1]:
             return nums[i]
 
-# set 
-def deduplicate(nums):
-    index = 1
-    traversed = set()
-    for i in range(len(nums)):
-        if i > 0 and nums[i] not in traversed:
-            nums[index] = nums[i]
-            index += 1
-        traversed.add(nums[i])
-
-    return nums[:index]
-
 # value-index mapping
 """
 1 ≤ a[i] ≤ n 
