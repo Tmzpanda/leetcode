@@ -6,9 +6,11 @@
 714.                                        - ∞ transactions with transaction fee - dp O(n)
 
 
+
 198. Rob House - Non-adjacent Elements Sum - array - dp O(n)
 213.                                       - cycle - dp O(n)
 337.                                       - tree - d&q O(n)
+
 
 
 139. Word Break - if possible - dp O(n^2)
@@ -23,7 +25,6 @@
 290. Word Pattern - given string is separated - O(n)
                   - given string is not separated - dfs O(len(string)^len(pattern))
 44. Wildcard Matching - dp O(m*n)
-
 
 
 """
