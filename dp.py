@@ -10,7 +10,7 @@ O(n^2)
 # 300. Longest Increasing Subsequence - O(n^2)
 # 354. Russian Doll Envelopes - dp O(n^2)
                               - binary search O(nlogn)
-# 368. Largest Divisible Subset - path - dp O(n^2)
+# 368. Largest Divisible Subset - one possible solution - dp O(n^2)
 # 132. Palindrome Partitioning - minimum cut - dp O(n^2)
 
 O(n*S)
@@ -157,7 +157,7 @@ def LIS(nums):
     return max(dp)    
   
   
-# 368. Largest Divisible Subset - path - dp O(n^2)
+# 368. Largest Divisible Subset - one possible solution - dp O(n^2)
 def largestDivisibleSubset(nums):
     if not nums:
         return []
