@@ -126,8 +126,6 @@ class Solution:
         return a, b, None 
 
 
-    
-            
             
 # 112. Binary Tree Path Sum - if exists
 class Solution:
@@ -197,7 +195,7 @@ class Solution:
             self.dfs(node.right, target - node.right.val, path, res)
             path.pop()  
 
-            
+          
 # a second solution 
 class Solution:
     def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
@@ -210,17 +208,18 @@ class Solution:
         if not node:
             return 
             
-        
         if target == node.val and node.left is None and node.right is None:
             res.append(list(path + [node.val]))
             return
-            
+        
+        # dfs  
         path.append(node.val)
         self.dfs(node.left, target - node.val, path, res)
         self.dfs(node.right, target - node.val, path, res)
         path.pop()       
 
-            
+     
+                           
 # 437. Binary Tree Subpath Sum - number of solutions - psum
 # bottom-up
 class Solution:
@@ -267,10 +266,7 @@ class Solution(object):
         return res
 
 
-#****************************************** traverse ***************************************************    
-
-            
-            
+#****************************************** traverse ***************************************************               
 # 272. K Closest BST Values 
 # recursion O(n)
 def kClosestValues(root, target, k):
@@ -314,7 +310,6 @@ def levelOrder(root):
 
 # 297. Serialize and Deserialize Binary Tree - bfs
 #                                            - dfs
-
 class Codec:
     def serialize(self, root):
         if root is None:
