@@ -8,12 +8,16 @@
 # 146. LRU Cache
 # 685. First Unique Number - Data Stream 
 # 707. Design LinkedArrayList
+
+
+# Array
 # 622. Design CircularArray
-
-
-
-# ##
 # 380. RandomizedSet Insert Delete GetRandom O(1) 
+
+
+# Stack - Queue - Heap
+# 402. Remove K Digits Smallest Possible - mono-stack O(n)
+# 862. Shortest Subarray with Sum at Least K - negative exists - mono-queue O(n)
 # 295. Find Median from Data Stream - heap
 
 """
@@ -354,6 +358,8 @@ print(ll.get(1))
 print_list(ll.head)
 
 
+        
+# ********************************************** Array ************************************************************
 # 622. Design CircularArray
 class CircularArray:
     def __init__(self):
@@ -420,7 +426,6 @@ class CircularArray:
         self.start, self.end = 0, len(self.array) - 1
         self.array = self.array2 
 
-
 # test
 ca = CircularArray()
 ca.append(2)
@@ -436,8 +441,9 @@ print(ca.array, ca.start, ca.end)
 print(ca.get(1))
 ca.put(1, 30)
 ca.get(1)
-        
-# ********************************************** ## ************************************************************
+
+
+
 # 380. RandomizedSet Insert Delete GetRandom O(1) 
 class RandomizedSet:
     def __init__(self):
@@ -470,7 +476,50 @@ class RandomizedSet:
         return self.nums[random.randint(0, len(self.nums) - 1)]    
     
     
+
+# *********************************************** Stack - Queue - Heap **************************************************************
+# 402. Remove K Digits Smallest Possible - mono-stack O(n)
+def removeKdigits(num, k):
+    stack = []
+    for char in num:
+        while stack and k and int(stack[-1]) > int(char):       # increasing
+            stack.pop()
+            k -= 1
+        stack.append(char)
+
+    while k:          
+        stack.pop()
+        k -= 1
+    if not stack:
+        return '0'
+
+    return str(int("".join(stack)))
+
     
+    
+# 862. Shortest Subarray with Sum at Least K - negative exists - mono-queue O(n)
+import sys
+from collections import deque
+def shortestSubarray(A, K):
+    shortest = sys.maxsize
+    psum = 0
+    queue = deque([(-1, 0)])        # (end, psum)
+
+    for end in range(len(A)):
+        psum += A[end]
+
+        while queue and psum - queue[0][1] >= K:
+            shortest = min(shortest, end - queue.popleft()[0])
+        
+        while queue and queue[-1][1] >= psum:     # increasing
+            queue.pop()
+            
+        queue.append((end, psum))
+
+    return shortest if shortest != sys.maxsize else -1
+
+
+
 # 295. Find Median from Data Stream
 """
 num             maxheap      minheap
