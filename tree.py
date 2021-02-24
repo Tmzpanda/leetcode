@@ -196,7 +196,7 @@ class Solution:
             path.pop()  
 
           
-# a second solution 
+# a second bottom-up
 class Solution:
     def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
         res = []
