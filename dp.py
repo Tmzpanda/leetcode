@@ -20,7 +20,8 @@ O(n*S)
 # 494. Assign symbols to Target Sum - dp O(n*S)
 
 O(k*n) 
-# 188. Sell Stock - at most K transactions - dp O(k*n)                         
+# 188. Sell Stock - at most K transactions - dp O(k*n) 
+# 999. Pass the Flower - dp O(m*n) 
 
 O(S*n) 
 # 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
@@ -287,7 +288,38 @@ class Solution:
                     
         return dp[-1][-1]
 
+# ************************************** O(k*n) ***************************************************
+# 999. Pass the Flower - number of paths - dp O(m*n) 
+def find_paths(n, m): 
+    dp = [[0] * n for i in range(m + 1)] 
+    dp[0][0] = 1 
 
+    for i in range(1,m + 1):
+        for j in range(n):
+            dp[i][j] = dp[i-1][(j-1+n)%n] + dp[i-1][(j+1+n)%n]
+
+    return dp[m][0]
+    
+
+# paths
+def find_paths(n, m): 
+    def dfs(i, n, m, path, res):
+        if m < 0:
+            return 
+        
+        if m == 0 and i == 0:
+            res.append('->'.join(list(path)))
+            return 
+        
+        for j in ((i-1+n)%n, (i+1+n)%n):
+            path.append(str(j))
+            dfs(j, n, m - 1, path, res)
+            path.pop()
+            
+    res = []
+    dfs(0, n, m, [], res)
+    return res
+           
 # ************************************** O(S*n) ***************************************************
 # 377. Combination Sum - number of solutions - dp O(S*n)
 def combinationSum(self, nums, target):
