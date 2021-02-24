@@ -4,16 +4,17 @@
 # 235. LCA in BST - iteration O(logn)
 # 236. LCA in Binary Tree - d&q O(n) O(n)(recursion stack)
 # 578. LCA in Binary Tree - may not exist - d&q O(n) O(n)
-# 112. Binary Tree Path Sum - if exists
+# 112. Binary Tree Path Sum - if exists - d&q
+
+# 257. Binary Tree Paths - all solutions - backtrack
+# 113. Binary Tree Path Sum - all solutions - backtrack
 # 437. Binary Tree Subpath Sum - number of solutions - psum
-            
+     
+     
 
 # traverse 
-# 257. Binary Tree Paths - all solutions  
-# 113. Binary Tree Path Sum - all solutions
 # 272. K Closest BST Values - inorder traverse O(n)
-                            - iterator O(logn + k)
-                            
+                            - iterator O(logn + k)                           
 # 102. Binary Tree Level Order Traversal - bfs
 # 297. Serialize and Deserialize Binary Tree - dfs
                                              - bfs
@@ -125,6 +126,9 @@ class Solution:
         return a, b, None 
 
 
+    
+            
+            
 # 112. Binary Tree Path Sum - if exists
 class Solution:
     def hasPathSum(self, root: TreeNode, target: int) -> bool:
@@ -141,59 +145,8 @@ class Solution:
             return False
             
         return self.dfs(node.left, target - node.val) or self.dfs(node.right, target - node.val)
-      
-
-# 437. Binary Tree Subpath Sum - number of solutions - psum
-# bottom-up
-class Solution:
-    def pathSum(self, root, target):
-        self.count = 0      
-        self.dfs(root, 0, {0: 1}, target)
-        
-        return self.count
-
-    def dfs(self, root, psum, psum_to_freq, target):
-        if not root:
-            return 
-        
-        psum += root.val
-        if psum - target in psum_to_freq:
-            self.count += psum_to_freq[psum - target]
-    
-        psum_to_freq[psum] = psum_to_freq.get(psum, 0) + 1
-
-        self.dfs(root.left, psum, psum_to_freq, target)
-        self.dfs(root.right, psum, psum_to_freq, target)
-
-        psum_to_freq[psum] -= 1 
 
 
-# top-down
-class Solution(object):
-    def pathSum(self, root, target):
-        psum_to_freq = {0:1}
-        return self.dfs(root, 0, target, psum_to_freq)
-
-    def dfs(self, root, psum, target, psum_to_freq):
-        if not root:
-            return 0
-
-        res = 0
-        psum += root.val
-        if psum - target in psum_to_freq:
-            res += psum_to_freq[psum - target]
-        
-        psum_to_freq[psum] = psum_to_freq.get(psum, 0) + 1
-
-        res += self.dfs(root.left, psum, target, psum_to_freq)
-        res += self.dfs(root.right, psum, target, psum_to_freq)
-
-        psum_to_freq[psum] -= 1
-
-        return res
-
-
-#****************************************** traverse ***************************************************    
 # 257. Binary Tree Paths - all solutions
 class Solution:
     def binaryTreePaths(root):
@@ -219,8 +172,33 @@ class Solution:
             self.dfs(node.right, path, res)
             path.pop()   
             
- 
+            
 # 113. Binary Tree Path Sum - all solutions
+class Solution:
+    def pathSum(self, root, target):
+        res = []
+        self.dfs(root, target - root.val, [root.val], res)
+        
+        return res
+    
+    def dfs(self, node, target, path, res):
+        if target == 0 and not node.left and not node.right:
+            res.append(list(path))
+            return
+        
+        # dfs
+        if node.left:
+            path.append(node.left.val)
+            self.dfs(node.left, target - node.left.val, path, res)      
+            path.pop() 
+        
+        if node.right:
+            path.append(node.right.val)
+            self.dfs(node.right, target - node.right.val, path, res)
+            path.pop()  
+
+            
+# a second solution 
 class Solution:
     def pathSum(self, root: TreeNode, target: int) -> List[List[int]]:
         res = []
@@ -232,16 +210,67 @@ class Solution:
         if not node:
             return 
             
+        
         if target == node.val and node.left is None and node.right is None:
             res.append(list(path + [node.val]))
             return
             
         path.append(node.val)
         self.dfs(node.left, target - node.val, path, res)
-        self.dfs(node.right, target - node.val, path, res)    # backtrack
-        path.pop()
-        
+        self.dfs(node.right, target - node.val, path, res)
+        path.pop()       
 
+            
+# 437. Binary Tree Subpath Sum - number of solutions - psum
+# bottom-up
+class Solution:
+    def pathSum(self, root, target):
+        self.count = 0      
+        self.dfs(root, 0, {0: 1}, target)
+        
+        return self.count
+
+    def dfs(self, root, psum, psum_to_freq, target):
+        if not root:
+            return 
+        
+        psum += root.val
+        if psum - target in psum_to_freq:
+            self.count += psum_to_freq[psum - target]
+    
+        psum_to_freq[psum] = psum_to_freq.get(psum, 0) + 1
+        self.dfs(root.left, psum, psum_to_freq, target)
+        self.dfs(root.right, psum, psum_to_freq, target)
+        psum_to_freq[psum] -= 1 
+
+
+# top-down
+class Solution(object):
+    def pathSum(self, root, target):
+        psum_to_freq = {0:1}
+        return self.dfs(root, 0, target, psum_to_freq)
+
+    def dfs(self, root, psum, target, psum_to_freq):
+        if not root:
+            return 0
+
+        res = 0
+        psum += root.val
+        if psum - target in psum_to_freq:
+            res += psum_to_freq[psum - target]
+        
+        psum_to_freq[psum] = psum_to_freq.get(psum, 0) + 1
+        res += self.dfs(root.left, psum, target, psum_to_freq)
+        res += self.dfs(root.right, psum, target, psum_to_freq)
+        psum_to_freq[psum] -= 1
+
+        return res
+
+
+#****************************************** traverse ***************************************************    
+
+            
+            
 # 272. K Closest BST Values 
 # recursion O(n)
 def kClosestValues(root, target, k):
