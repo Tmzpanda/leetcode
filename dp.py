@@ -21,7 +21,8 @@ O(n*S)
 
 O(k*n) 
 # 188. Sell Stock - at most K transactions - dp O(k*n) 
-# 999. Pass the Flower - dp O(m*n) 
+# 999. Pass the Flower - num of paths - dp O(m*n) 
+                       - paths - backtrack O(2^m)
 
 O(S*n) 
 # 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
