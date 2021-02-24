@@ -1,5 +1,4 @@
 """
-M1 - time complexity
 O(n)
 # 198. House Robber - dp O(n)
 # 91. Decode Ways - dp O(n)
@@ -36,33 +35,7 @@ O(m*n)
 # 516. Longest Palindromic Subsequence - dp O(n^2)
 # 44. Wildcard Matching - dp O(m*n)
 
- 
-
-M2 - dp
-if possible -> "or"
-# 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
-
-number of solutions -> "+"
-# 518. Coin Change - number of solutions - dp O(n*S)
-
-fewest -> "min()"
-# 300. Longest Increasing Subsequence - dp O(n^2)
-# 322. Coin Change - fewest coins - dp O(S*n)
-
-
-
-M3 - return
-dp[n]
-# 198. House Robber - dp O(n)
-# 322. Coin Change - fewest coins - dp O(S*n)
-# 188. Sell Stock - at most K transactions - dp O(k*n)
-
-max(dp)
-# 300. Longest Increasing Subsequence - dp O(n^2)
-# 221. Maximal Square - dp O(n^2)
-
-
-                      
+                
 space optimization:
 dp[i][j] only depends on previous row, so we can optimize the space by using 2 rows instead of the matrix
 
