@@ -1,0 +1,22 @@
+
+
+# array
+return max(map(max, dp))
+envelopes.sort(key=lambda x: (x[0], -x[1]))
+
+
+
+# set
+nodes = reduce(set.union, seqs, set())   # set.union(set([1, 2]), set([2, 3]))
+
+
+  
+    
+# map    
+for num in nums:
+        freq_dict[num] = freq_dict.get(num, 0) + 1
+    freq_dict_sorted = sorted(freq_dict.items(), key=lambda x: -x[1])
+    # most_freq_element = max(freq_dict.keys(), key=lambda x: freq_dict[x])
+    
+    
+envelopes.sort(key=lambda x: (x[0], -x[1]))
