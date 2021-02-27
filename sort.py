@@ -17,7 +17,7 @@
 # 349. Intersection of Two Arrays - two pointers O(m + n)
                                   - binary search O(m * logn)
 # 4. Median (Kth) of Two Sorted Arrays - merge O(m + n)
-                                       - binary search O(m + n)         
+                                       - binary search O(log(m+n))         
 # 912. Merge Sort O(nlogn)
 # 23. Merge k Sorted Lists - O(Nlogn), where n is # of LinkedLists, N is # of nodes
 
