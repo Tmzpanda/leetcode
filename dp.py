@@ -1,14 +1,19 @@
 """
 O(n)
-# 198. House Robber - dp O(n)
-# 91. Decode Ways - dp O(n)
+# 198. Rob House - maximum profit = dp O(n)
+# 91. Decode Ways - number of solutions - dp O(n)
+# 309. Sell Stocck - max profit - ∞ transactions with cooldown - dp O(n)
+# 276. Paint Fence - number of solutions - dp O(n)
+
+O(n*k)
+# 256. Paint House - minimum cost - dp O(n*k)
 
 O(n^2) 
 # 139. Word Break - if possible - dp O(n^2)
                   - number of solutions - dp O(n^2)
 # 300. Longest Increasing Subsequence - O(n^2)
-# 354. Russian Doll Envelopes - dp O(n^2)
-                              - binary search O(nlogn)
+# 354. Russian Doll Envelopes - maximum number - dp O(n^2)
+                                               - binary search O(nlogn)
 # 368. Largest Divisible Subset - one possible solution - dp O(n^2)
 # 132. Palindrome Partitioning - minimum cut - dp O(n^2)
 
@@ -16,13 +21,13 @@ O(n*S)
 # knapsack
 # 416. Partition Equal Subset Sum - if possible - dp O(n*S)
 # 518. Coin Change - number of solutions - dp O(n*S)
-# 494. Assign symbols to Target Sum - dp O(n*S)
+# 494. Assign symbols to Target Sum - number of solutions - dp O(n*S)
 
 O(k*n) 
-# 188. Sell Stock - at most K transactions - dp O(k*n) 
-# 999. Pass the Flower - num of paths - dp O(m*n) 
-                       - paths - backtrack O(2^m)
-
+# 188. Sell Stock - maximum profit - at most K transactions - dp O(k*n) 
+# 999. Pass the Flower - number of paths - dp O(m*n) 
+                       - all possible paths - backtrack O(2^m)
+                       
 O(S*n) 
 # 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
 # 322. Coin Change - fewest coins - dp O(S*n)
@@ -30,10 +35,10 @@ O(S*n)
 O(m*n)
 # 688. Knight Probability in Chessboard - dp O(K*n^2)
 # 221. Maximal Square - dp O(n^2) 
-# 62. Unique Paths - dp O(m*n)
+# 62. Unique Paths - number of solutions - dp O(m*n)
 # 1143. Longest Common Subsequence - dp O(n^2)                         
 # 516. Longest Palindromic Subsequence - dp O(n^2)
-# 44. Wildcard Matching - dp O(m*n)
+# 44. Wildcard Matching - if match - dp O(m*n)
 
                 
 space optimization:
@@ -50,7 +55,7 @@ dp[i][j] only depends on previous row, so we can optimize the space by using 2 r
 """
 
 # ****************************************** O(n) ********************************************** 
-# 198. House Robber - dp O(n)
+# 198. Rob House - dp O(n)
 def rob(nums):
     if not nums:
         return 0
@@ -93,7 +98,31 @@ class Solution:
             return 1
         return 0   
     
-    
+
+# 276. Paint Fence - number of solutions - dp O(n)
+def numWays(n, k):
+    dp = [0] * n
+    dp[0], dp[1] = k, k*k
+
+    for i in range(2, n):
+        dp[i] = (k - 1) * (dp[i - 1] + dp[i - 2])
+
+    return dp[n - 1]
+       
+# ****************************************** O(n*k) **********************************************     
+# 256. Paint House - minimum cost - dp O(n*k)
+def minCost(costs):
+        
+    n, k = len(costs), len(costs[0])
+    dp = [[0] * k for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        for j in range(k):
+            dp[i][j] = costs[i - 1][j] + min(dp[i-1][(j-1 + 3)%3], dp[i-1][(j+1 + 3)%3])
+
+    return min(dp[-1])
+      
+      
 # ****************************************** O(n^2) **********************************************     
 # 139. Word Break - if possible - dp O(n^2)
 #                 - number of solutions - dp O(n^2)
