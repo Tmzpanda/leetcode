@@ -1,4 +1,7 @@
 """
+
+top-down(d&q) VS bottom-up(traverse, backtrack)
+
 # d&q
 # 226. Invert Binary Tree - O(n)
 # 235. LCA in BST - iteration O(logn)
