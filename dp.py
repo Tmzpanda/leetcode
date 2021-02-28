@@ -29,7 +29,7 @@ O(k*n)
                        - all possible paths - backtrack O(2^m)
                        
 O(S*n) 
-# 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
+# 377. Combination Sum - number of solutions - different sequences are counted as different combinations - dp O(S*n)
 # 322. Coin Change - fewest coins - dp O(S*n)
 
 O(m*n)
