@@ -212,6 +212,25 @@ class Solution:
       
         
 # ************************************************* Word **********************************************************
+# 139. Word Break - if possible - dp O(n^2)
+#                 - number of solutions - dp O(n^2)
+def wordBreak(s, wordSet):
+       
+    n = len(s)
+    dp = [False for _ in range(n + 1)] 
+    dp[0] = True
+   
+    for i in range(n + 1):
+       for j in range(i + 1, n + 1):
+           if dp[i] and s[i: j] in wordDict:
+               dp[j] = True
+                
+#            if s[i: j] in wordSet:         # number of solutions
+#                 dp[j] += dp[i] 
+                    
+    return dp[n]
+  
+  
 # 140. Word Break - all solutions - dfs memoization O(n^2)
 #                                 - backtrack O(2^n) TLE
 class Solution:
