@@ -15,8 +15,9 @@
 337.                                                        - tree - d&q O(n)
 
 
-140. Word Break - if possible - dp O(n^2)
-                - all solutions - dfs memoization 
+139. Word Break - if possible - dp O(n^2)
+                - number of solutions - dp O(n^2)
+140.            - all solutions - dfs memoization 
                 
 127. Word Ladder - shortest path - bfs O(n * m^2)
                                  - bidirectional bfs
