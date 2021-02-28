@@ -11,7 +11,7 @@
 
 
 # merge
-# 658. K Closest Elements in a Sorted Array - binary search merge O(logn + k) 
+# 658. K Closest Elements in a Sorted Array - binary search + merge O(logn + k) 
 # 272. K Closest BST Values - recursion O(n)
                             - binary search + iterator O(logn + k)
 # 349. Intersection of Two Arrays - two pointers O(m + n)
