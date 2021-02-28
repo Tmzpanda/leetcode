@@ -17,8 +17,6 @@ condition of pointer moving
 # 875. Minimum Speed to Finish Eating Bananas within H Hours - timeToFinish?H
 
 
-
-
 """
 # ********************************************* sorted array ****************************************************
 # Target
