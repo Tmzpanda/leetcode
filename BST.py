@@ -2,9 +2,9 @@
 """
 Iterator
 # 230. Kth Smallest Element in a BST - iterator O(k)
-# Intersection of two BST - m ≈ n - recursion merge O(m + n)   
-                                  - iteration merge O(m + n)    
-                          - m ≫ n - binary search O(n.logm)
+# 999. Intersection of two BST - m ≈ n - recursion merge O(m + n)   
+                                       - iteration merge O(m + n)    
+                               - m ≫ n - binary search O(n.logm)
                           
 # 270. Closest BST Value - binary search O(logn)
 # 272. K Closest BST Values - recursion O(n)
