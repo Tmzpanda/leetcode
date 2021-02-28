@@ -17,17 +17,16 @@ O(n^2)
 # 368. Largest Divisible Subset - one possible solution - dp O(n^2)
 # 132. Palindrome Partitioning - minimum cut - dp O(n^2)
 
+O(k*n) 
+# 188. Sell Stock - maximum profit - at most K transactions - dp O(k*n) 
+# 999. Pass the Flower - number of paths - dp O(k*n) 
+                                            
 O(n*S)
 # knapsack
 # 416. Partition Equal Subset Sum - if possible - dp O(n*S)
 # 518. Coin Change - number of solutions - dp O(n*S)
 # 494. Assign symbols to Target Sum - number of solutions - dp O(n*S)
-
-O(k*n) 
-# 188. Sell Stock - maximum profit - at most K transactions - dp O(k*n) 
-# 999. Pass the Flower - number of paths - dp O(m*n) 
-                       - all possible paths - backtrack O(2^m)
-                       
+                     
 O(S*n) 
 # 377. Combination Sum - number of solutions - different sequences are counted as different combinations - dp O(S*n)
 # 322. Coin Change - fewest coins - dp O(S*n)
@@ -122,7 +121,8 @@ def minCost(costs):
 
     return min(dp[-1])
       
-      
+ 
+
 # ****************************************** O(n^2) **********************************************     
 # 139. Word Break - if possible - dp O(n^2)
 #                 - number of solutions - dp O(n^2)
@@ -240,6 +240,47 @@ class Solution:
     
     def isPalindrome(self, s):
         return s == s[::-1]
+
+# ************************************** O(k*n) ***************************************************
+# 188. Sell Stock - at most K transactions - dp O(k*n)
+  
+"""
+prices = [3,2,6,5,0,3] k = 2
+  3 2 6 5 0 3
+0 0 0 0 0 0 0 
+1 0 x = max(dp[i][j - 1],
+2 0         max(prices[j] - prices[x] + dp[i - 1][x - 1]), where 0 <= x < j
+"""
+def maxProfit(k, prices):
+    if len(prices) <= 1:
+        return 0
+    
+    n = len(prices)
+    dp = [[0] * n for _ in range(k + 1)]
+    
+    for i in range(1, k + 1):
+        profit = -sys.maxsize
+        
+        for j in range(1, n):
+            profit = max(profit, -prices[j - 1] + dp[i - 1][j - 1]) # greedy
+            dp[i][j] = max(dp[i][j - 1], prices[j] + profit)
+
+    return dp[-1][-1]
+  
+  
+# 999. Pass the Flower - number of paths - dp O(k*n) 
+def find_paths(n, k): 
+    dp = [[0] * n for i in range(k + 1)] 
+    dp[0][0] = 1 
+
+    for i in range(1,k + 1):
+        for j in range(n):
+            dp[i][j] = dp[i-1][(j-1+n)%n] + dp[i-1][(j+1+n)%n]
+
+    return dp[k][0]
+    
+           
+    
 # ****************************************** O(n*S) **********************************************  
 # knapsack  O(n*S)
 """
@@ -322,38 +363,16 @@ class Solution:
                     
         return dp[-1][-1]
 
-# ************************************** O(k*n) ***************************************************
-# 999. Pass the Flower - number of paths - dp O(m*n) 
-def find_paths(n, m): 
-    dp = [[0] * n for i in range(m + 1)] 
-    dp[0][0] = 1 
+      
+# 494. Assign symbols to Target Sum - number of solutions - dp O(n*S)
 
-    for i in range(1,m + 1):
-        for j in range(n):
-            dp[i][j] = dp[i-1][(j-1+n)%n] + dp[i-1][(j+1+n)%n]
 
-    return dp[m][0]
-    
 
-# paths
-def find_paths(n, m): 
-    def dfs(i, n, m, path, res):
-        if m < 0:
-            return 
-        
-        if m == 0 and i == 0:
-            res.append('->'.join(list(path)))
-            return 
-        
-        for j in ((i-1+n)%n, (i+1+n)%n):
-            path.append(str(j))
-            dfs(j, n, m - 1, path, res)
-            path.pop()
-            
-    res = []
-    dfs(0, n, m, [], res)
-    return res
-           
+
+
+
+      
+
 # ************************************** O(S*n) ***************************************************
 # 377. Combination Sum - number of solutions - dp O(S*n)
 def combinationSum(self, nums, target):
@@ -433,7 +452,7 @@ def maximalSquare(matrix):
     return res ** 2 
   
   
-# 62. Unique Paths - dp O(m*n)
+# 62. Unique Paths - number of solutions - dp O(m*n)
 def uniquePaths(m, n):
     dp = [[0] * (n + 1) for _ in range(m + 1)]
     dp[0][1] = 1
