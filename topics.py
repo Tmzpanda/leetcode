@@ -15,8 +15,9 @@
 337.                                                        - tree - d&q O(n)
 
 
-139. Word Break - if possible - dp O(n^2)
-                - all solutions - dfs memoization                
+140. Word Break - if possible - dp O(n^2)
+                - all solutions - dfs memoization 
+                
 127. Word Ladder - shortest path - bfs O(n * m^2)
                                  - bidirectional bfs
 126.             - all possible solutions - bfs + dfs
@@ -27,7 +28,6 @@
 290. Word Pattern - given string is separated - O(n)
                   - given string is not separated - dfs O(len(string)^len(pattern))
 44. Wildcard Matching - dp O(m*n)
-
 
 """
 # ********************************************** Stock *******************************************************
@@ -128,7 +128,7 @@ def maxProfit(prices, fee):
 
 
   
-# ******************************************** Paint ***********************************************************
+# ********************************************** Paint *******************************************************
 # 256. Paint House - minimum cost - dp O(n*k)
 def minCost(costs):
         
@@ -210,8 +210,8 @@ class Solution:
         return rob, not_rob
       
         
-# ********************************************** Word *******************************************************
-# 139. Word Break - all solutions - dfs memoization O(n^2)
+# ************************************************* Word **********************************************************
+# 140. Word Break - all solutions - dfs memoization O(n^2)
 #                                 - backtrack O(2^n) TLE
 class Solution:
     def wordBreak(self, s, wordDict):
