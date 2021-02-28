@@ -1,18 +1,18 @@
 """
 
 # 40. Combination Sum - all solutions - backtrack O(2^n)
-# 377. Combination Sum - different sequences are counted as different combinations - number of solutions - dp O(S*n)
-# 518. Coin Change - number of solutions - dp O(n*S)
+# 377.                - number of solutions - different sequences are counted as different combinations - dp O(S*n)
 # 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
-# 322. Coin Change - fewest coins - dp O(S*n)
+# 518. Coin Change - number of solutions - dp O(n*S)
+# 322.             - fewest coins - dp O(S*n)
 # 47. Permutation - O(n!)
 
 # 216. K Sum - all positive - all solutions - backtrack O(2^n)
-# 18. K Sum - negative exists - all solutions - two pointers O(n^(k-1))
+# 18.        - negative exists - all solutions - two pointers O(n^(k-1))
+ 
 
-
-# 112. Binary Tree Path Sum - if exists - dfs top-down
-# 113. Binary Tree Path Sum - all solutions - dfs backtrack
+# 112. Binary Tree Path Sum - if exists - d&q
+# 113.                      - all solutions - backtrack
 # 437.          Subpath Sum - number of solutions - psum
 
 
@@ -61,8 +61,8 @@ def combinationSum(self, nums, target):
         return dp[target]
 
 
-# 518. Coin Change - number of solutions - dp O(n*S)
 # 416. Partiton Equal Subset Sum - if possible - dp O(n*S)
+# 518. Coin Change - number of solutions - dp O(n*S)
 class Solution:
     def change(self, amount: int, coins: List[int]) -> int:
         if amount == 0:
@@ -207,7 +207,7 @@ def dfs(nums, target, k, subset, results):
                 r -= 1
         return
        
-    for i in range(0, len(nums) - k + 1):  
+    for i in range(len(nums) - k + 1):  
         if target < nums[i] * k or target > nums[-1] * k:      # trim 
             break
 
