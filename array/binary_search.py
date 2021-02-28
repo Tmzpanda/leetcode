@@ -2,7 +2,7 @@
 sorted 
 # 704. Target
 # 34. Last Position of Target
-# 702. Search in a Big Sorted Array - first position
+# 702. Search in a Big Sorted Array - First Position of Target
 # 35. Search Insert Position
 # 354. Russian Doll Envelopes - dp O(n^2)
                               - binary search O(nlogn)
@@ -83,7 +83,8 @@ def searchBigSortedArray(reader, target):
          return -1
       
       
-# 35. Search Insert Position - K Closest
+# 35. Search Insert Position
+
 def findUpperClosest(self, A, target):
     l, r = 0, len(A) - 1
     while l + 1 < r:
