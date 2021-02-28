@@ -5,7 +5,6 @@
 309.                                        - ∞ transactions with cooldown - dp O(n)
 714.                                        - ∞ transactions with transaction fee - dp O(n)
 
-
 256. Paint House - minimum cost - dp O(n*k)
 276. Paint Fence - number of solutions - dp O(n)
 
@@ -129,8 +128,6 @@ def maxProfit(prices, fee):
     return dp[-1]
 
 
-  
-# ********************************************** Paint *******************************************************
 # 256. Paint House - minimum cost - dp O(n*k)
 def minCost(costs):
         
