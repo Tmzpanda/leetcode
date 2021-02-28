@@ -5,9 +5,6 @@
 309.                                        - ∞ transactions with cooldown - dp O(n)
 714.                                        - ∞ transactions with transaction fee - dp O(n)
 
-256. Paint House - minimum cost - dp O(n*k)
-276. Paint Fence - number of solutions - dp O(n)
-
 
 198. Rob House - Non-adjacent Elements Sum - maximum profit - array - dp O(n)
 213.                                                        - cycle - dp O(n)
@@ -26,9 +23,9 @@
 79. Word Search - if exists - dfs O(mn * 3^length)
 212.            - several words - trie
 
-290. Word Pattern - given string is separated - O(n)
-                  - given string is not separated - dfs O(len(string)^len(pattern))
-44. Wildcard Matching - dp O(m*n)
+290. Word Pattern - if match - given string is separated - O(n)
+                             - given string is not separated - dfs O(len(string)^len(pattern))
+44. Wildcard Matching - if match - dp O(m*n)
 
 """
 # ********************************************** Stock *******************************************************
@@ -126,30 +123,6 @@ def maxProfit(prices, fee):
         dp[i] = max(dp[i - 1], prices[i - 1] + profit)
 
     return dp[-1]
-
-
-# 256. Paint House - minimum cost - dp O(n*k)
-def minCost(costs):
-        
-    n, k = len(costs), len(costs[0])
-    dp = [[0] * k for _ in range(n + 1)]
-
-    for i in range(1, n + 1):
-        for j in range(k):
-            dp[i][j] = costs[i - 1][j] + min(dp[i-1][(j-1 + 3)%3], dp[i-1][(j+1 + 3)%3])
-
-    return min(dp[-1])
-
-  
-# 276. Paint Fence - number of solutions - dp O(n)
-def numWays(n, k):
-    dp = [0] * n
-    dp[0], dp[1] = k, k*k
-
-    for i in range(2, n):
-        dp[i] = (k - 1) * (dp[i - 1] + dp[i - 2])
-
-    return dp[n - 1]
 
 
 # ************************************************* Rob **********************************************************
