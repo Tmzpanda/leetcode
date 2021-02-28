@@ -169,6 +169,7 @@ class Solution:
 
         for i in range(2, n):
             dp[i] = max(nums[i] + dp[i - 2], dp[i - 1])
+#           dp[i % 3] = max(nums[i] + dp[(i - 2) % 3], dp[(i - 1) % 3])     # space optimization
 
         return dp[n - 1]
 
