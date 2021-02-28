@@ -20,6 +20,7 @@ O(n^2)
 O(k*n) 
 # 188. Sell Stock - maximum profit - at most K transactions - dp O(k*n) 
 # 999. Pass the Flower - number of paths - dp O(k*n) 
+                       - all possible paths - backtrack O(2^m)
                                             
 O(n*S)
 # knapsack
@@ -280,7 +281,26 @@ def find_paths(n, k):
     return dp[k][0]
     
            
-    
+# all possible paths - backtrack O(2^m)
+def find_paths(n, m): 
+    def dfs(i, n, m, path, res):
+        if m < 0:
+            return 
+        
+        if m == 0 and i == 0:
+            res.append('->'.join(list(path)))
+            return 
+        
+        for j in ((i-1+n)%n, (i+1+n)%n):
+            path.append(str(j))
+            dfs(j, n, m - 1, path, res)
+            path.pop()
+            
+    res = []
+    dfs(0, n, m, [], res)
+    return res
+
+
 # ****************************************** O(n*S) **********************************************  
 # knapsack  O(n*S)
 """
