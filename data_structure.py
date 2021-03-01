@@ -68,8 +68,7 @@ class TrieNode:
         self.children = {}
         self.is_word = False
         self.word = None
-        
-        
+             
 class Trie:
     def __init__(self):
         self.root = TrieNode()
