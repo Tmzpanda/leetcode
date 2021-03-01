@@ -342,7 +342,7 @@ def findOrder(numCourses, prerequisites):
     queue = deque([node for node in range(numCourses) if in_degrees[node] == 0])    # indegree
     order = []
     while queue:
-        node = queue.popleft()      # not necessarily popoleft in tops
+        node = queue.popleft()      # not necessarily popoleft in topsort
         order.append(node)
         for next_node in out_edges[node]:
             in_degrees[next_node] -= 1
