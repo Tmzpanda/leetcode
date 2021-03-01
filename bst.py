@@ -1,6 +1,6 @@
 
 """
-Iterator
+iterator
 # 230. Kth Smallest Element in a BST - iterator O(k)
 # 999. Intersection of two BST - m ≈ n - recursion merge O(m + n)   
                                        - iteration merge O(m + n)    
@@ -11,7 +11,7 @@ Iterator
                             - binary search + iterator O(logn + k)
                             
 
-Operation
+operation
 # 450. Delete Node in a BST
 
 """
