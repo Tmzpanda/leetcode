@@ -1,4 +1,5 @@
 """
+shortest path
 # 127. Word Ladder - shortest path - bfs O(n * m^2)
                                    - bidirectional bfs
 # 126.             - all possible solutions - bfs + dfs
@@ -8,21 +9,13 @@
 # 863. All Nodes Distance K in Binary Tree - bfs 
 
 
-
+topsort
 # 207. Course Schedule - if possible solution exists
                        - one possible solution - bfs
 # 444. Sequence Reconstruction - bfs
 
 
-
-difference 
-# bfs - visited = set()
-# tops - indegree[t]
-     
 """
-
-
-
 # ********************************************* Shortest Path **********************************************************
 # 127. Word Ladder - shortest path - bfs O(n * m^2), where m = len(s)
 from collections import deque
