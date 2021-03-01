@@ -1,19 +1,17 @@
 """
-shortest path 
 # 127. Word Ladder - shortest path - bfs O(n * m^2)
                                    - bidirectional bfs
 # 126.             - all possible solutions - bfs + dfs
 # 200. Number of Islands - bfs
                          - dfs
 # 1091. Shortest Path in Binary Matrix - bfs
-# 863. All Nodes Distance K in Binary Tree - bfs O(n)
+# 863. All Nodes Distance K in Binary Tree - bfs 
 
 
 
-topological sort 
 # 207. Course Schedule - if possible solution exists
                        - one possible solution - bfs
-# 444. Sequence Reconstruction  - bfs
+# 444. Sequence Reconstruction - bfs
 
 
 
@@ -34,8 +32,8 @@ class Solution:
         dictionary = set(dict)
         dictionary.add(end)
         
-        queue = deque([start])      # queue, visited
-        visited = set()
+        queue = deque([start])      
+        visited = set()             # visited
         level = 0
         while queue:
             level += 1
@@ -130,9 +128,12 @@ class Solution:
         dictionary.add(start)
         dictionary.add(end)
 
-        word_to_distance = self.bfs(end, dictionary)    # build graph
+        # build graph
+        word_to_distance = self.bfs(end, dictionary)  
+        
+        # backtrack
         result = []
-        self.dfs(start, end, word_to_distance, [start], result, dictionary)     # backtrack
+        self.dfs(start, end, word_to_distance, [start], result, dictionary)     
         return result 
 
     
@@ -163,13 +164,12 @@ class Solution:
         
         
     def dfs(self, word, end, word_to_distance, path, result, dictionary):
-        
         if word == end:
             result.append(path[:])
             return
 
         for next_word in self.get_next_words(word, dictionary):
-            if word_to_distance[next_word] != word_to_distance[word] - 1:  # shortest
+            if word_to_distance[next_word] != word_to_distance[word] - 1:   # shortest
                 continue
             path.append(next_word)
             self.dfs(next_word, end, word_to_distance, path, result, dictionary)
@@ -374,7 +374,7 @@ def sequenceReconstruction(org, seqs):
     queue = [node for node in org if in_degrees[node] == 0]
     order = []
     while queue:
-        if len(queue) != 1:     # only one sequence
+        if len(queue) != 1:     # unique reconstruction
             return False
         node = queue.pop()
         order.append(node)
