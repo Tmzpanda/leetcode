@@ -138,8 +138,8 @@ def wordBreak(s, wordSet):
            if dp[i] and s[i: j] in wordDict:
                dp[j] = True
                 
-#            if s[i: j] in wordSet:         # number of solutions
-#                 dp[j] += dp[i] 
+#          if s[i: j] in wordSet:         # number of solutions
+#              dp[j] += dp[i] 
                     
     return dp[n]
     
