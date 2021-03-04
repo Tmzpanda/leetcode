@@ -3,7 +3,10 @@
 -- 177. Nth Highest Salary
 -- 184. Highest Salary For each Department
 -- 185. Top Three Salaries For each Department -- DENSE_RANK()
+
+
 -- 615. Average Salary for each Month: Departments vs Company -- CASE WHEN THEN END
+-- 999. Employee Department Onboard Departure Time - SCD
 -- 1398. Customers Who Bought Products A and B but Not C - SUM(Expr)
 
 
@@ -15,7 +18,7 @@
 
 */
 
-/* ****************************************************************** Function ************************************************************************* */
+/* ****************************************************************** Window ************************************************************************* */
 -- 176. Second Highest Salary
 WITH temp(salary) AS
 (   
@@ -39,7 +42,6 @@ BEGIN
     );
 END
 SELECT db.getNthHighestSalary(10)
-
 
 
 
@@ -69,8 +71,7 @@ ON Temp.DepartmentId = Department.Id
 WHERE Temp.Rank <= 3
 
 
-
-
+/* ****************************************************************** Function ************************************************************************* */
 -- 615. Average Salary for each Month: Departments vs Company
 WITH 
 department_salary AS (
@@ -94,6 +95,43 @@ SELECT department_salary.pay_month, department_salary.department_id,
 FROM department_salary
 JOIN company_salary
 ON department_salary.pay_month = company_salary.pay_month
+
+
+
+-- 999. Employee Department Onboard Departure Time - SCD
+CREATE TABLE department(
+dept_id      INT,
+dept_name   VARCHAR(20),
+start_date    DATE, 
+end_date    DATE);
+INSERT INTO department VALUES
+(1, 'dept_1', '2013-02-23', '2013-09-20'),
+(1, 'dept_1a', '2013-09-21', '2013-12-25'),
+(1, 'dept_1b', '2013-12-26', NULL),
+(2, 'dept_2', '2013-01-21', NULL);
+
+CREATE TABLE employee(
+emp_id      INT,
+dept_id     INT,
+start_date    DATE, 
+end_date    DATE);
+INSERT INTO employee VALUES
+(1, 1, '2013-04-21', NULL),
+(2, 2, '2013-01-01', '2013-10-10');
+
+SELECT 
+e.emp_id, e.dept_id,
+CASE WHEN e.start_date IS NOT NULL AND d.start_date IS NOT NULL AND e.start_date >= d.start_date THEN e.start_date ELSE d.start_date END AS start_date,
+CASE 
+    WHEN e.end_date IS NOT NULL AND d.end_date IS NOT NULL AND e.end_date >= d.end_date THEN d.end_date
+    WHEN e.end_date IS NULL AND d.end_date IS NOT NULL THEN d.end_date
+    WHEN e.end_date IS NOT NULL AND d.end_date IS NULL THEN e.end_date
+    WHEN e.end_date IS NULL AND d.end_date IS NULL THEN NULL
+END AS end_date,
+d.dept_name
+FROM employee e
+JOIN department d
+ON e.dept_id = d.dept_id
 
 
 
