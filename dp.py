@@ -21,6 +21,10 @@ O(k*n)
 # 188. Sell Stock - maximum profit - at most K transactions - dp O(k*n) 
 # 999. Pass the Flower - number of paths - dp O(k*n) 
                        - all possible paths - backtrack O(2^m)
+                       
+O(k * n^2)  
+# 410. Split Array Largest Sum - dp O(k * n^2)        
+
                                             
 O(n*S)
 # knapsack
@@ -36,7 +40,8 @@ O(m*n)
 # 688. Knight Probability in Chessboard - dp O(K*n^2)
 # 221. Maximal Square - dp O(n^2) 
 # 62. Unique Paths - number of solutions - dp O(m*n)
-# 1143. Longest Common Subsequence - dp O(n^2)                         
+# 1143. Longest Common Subsequence - dp O(n^2)  
+# 583. Delete Distance - dp(m*n)
 # 516. Longest Palindromic Subsequence - dp O(n^2)
 # 44. Wildcard Matching - if match - dp O(m*n)
 
