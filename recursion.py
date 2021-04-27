@@ -2,13 +2,14 @@
 # 139. Word Break 
 # 132. Palindrome Partitioning - minimum cut  
 # 583. Delete Distance 
+# 416. Partition Equal Subset Sum
 
-# 410. Split Array Largest Sum
+
 
 """
 
 
-# 139. Word Break 
+# 139. Word Break - dp O(n^2)
 def wordBreak(s, wordDict):
     
     def dfs(s, wordDict, memo):
@@ -25,9 +26,11 @@ def wordBreak(s, wordDict):
                 
         memo[s] = res
         return res
+    
+    return dfs(s, wordDict, {})
       
       
-# 132. Palindrome Partitioning - minimum cut   
+# 132. Palindrome Partitioning - minimum cut - dp O(n^2)
 class Solution:
     def minCut(self, s: str) -> int:
         def isPalindrome(s):
@@ -51,8 +54,7 @@ class Solution:
         return dfs(s, {})
             
 
-
-# 583. Delete Distance 
+# 583. Delete Distance - dp O(m*n)
 def minDistance(word1: str, word2: str) -> int:
 
     def dfs(word1, word2, memo):
@@ -68,7 +70,6 @@ def minDistance(word1: str, word2: str) -> int:
         if word2 == "":
             return len(word1)
 
-
         if word1[0] == word2[0]:
             res = dfs(word1[1:], word2[1:], memo)
 
@@ -83,3 +84,35 @@ def minDistance(word1: str, word2: str) -> int:
     return dfs(word1, word2, {})
 
 
+# 416. Partition Equal Subset Sum - dp O(n*S)
+def canPartition(nums):
+    
+    if sum(nums) % 2 != 0 or max(nums) > sum(nums)//2:
+            return False
+
+    n = len(nums)
+    S = sum(nums) // 2
+
+    def dfs(nums, target, memo):
+        if target in memo: 
+            return memo[target]
+
+        if target < 0: 
+            return False
+        if target == 0: 
+            return True
+
+        res = False
+        for i in range(len(nums)):
+            if dfs(nums[i+1:], target-nums[i], memo): 
+                res = True
+
+        memo[target] = res
+        return res
+
+    return dfs(nums, S, {})
+
+
+# 1043. Partition Array for Maximum Sum
+# 410. Split Array Largest Sum
+# 698. Partition to K Equal Sum Subsets
