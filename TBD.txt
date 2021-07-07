@@ -26,6 +26,7 @@ recursion
 # local feature change 2
 # local feature change 3
 # local feature change 4
+# local feature change 7
 
 # remote master change 1
 # remote master change 5
