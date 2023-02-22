@@ -1,9 +1,5 @@
 """
-dummy 
 # 21. Merge Two Sorted Lists
-
-
-pointers
 # 141. LinkedList Cycle
 # 876. LinkedList Middle
 # 19. Remove Nth Node from the end - one pass
@@ -12,11 +8,10 @@ pointers
 
 """
 
-#********************************* dummy node **********************************************
 # 21. Merge Two Sorted Lists
 def merge(l1, l2):
 
-    temp = dummy = ListNode(0)
+    temp = dummy = ListNode(0) # dummy node
     p1, p2 = l1, l2
     while p1 and p2:
         if p1.val <= p2.val:
@@ -32,15 +27,12 @@ def merge(l1, l2):
     return dummy.next 
     
  
-
-#********************************* pointers **********************************************
 # 141. LinkedList Cycle
-# 2 pointers
 def hasCycle(head):
     if head is None:            
         return False    
     
-    p1 = head.next       
+    p1 = head.next       # 2 pointers
     p2 = head       
     while p1 != p2:
         if p1 is None or p1.next is None:
@@ -97,7 +89,6 @@ def removeNthFromEnd(head, n):
 
 
 # 206. Reverse LinkedList
-# 3 pointers
 """
 prev cur next
       1 -> 2 -> 3 -> None
