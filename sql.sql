@@ -18,6 +18,29 @@
 
 */
 
+/* *************************************************************** deduplicate ********************************************************************** */
+-- Solution 1
+SELECT DISTINCT * FROM foo
+
+
+-- Solution 2
+CREATE TABLE new_table as
+SELECT * FROM old_table GROUP BY [column to remove duplicates by];
+
+DROP TABLE old_table;
+RENAME TABLE new_table TO old_table;
+
+
+-- Solution 3
+WITH CTE (col1, col2, dupcnt) AS
+(
+	SELECT col1, col2,
+	ROW_NUMBER() OVER (PARTITION BY col1, col2 ORDER BY col1) AS dupcnt
+	FROM Youtable
+)
+DELETE FROM CTE WHERE dupcnt > 1
+
+
 /* ****************************************************************** Window ************************************************************************* */
 -- 176. Second Highest Salary
 WITH temp(salary) AS
