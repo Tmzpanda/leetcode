@@ -20,3 +20,5 @@ class Solution:
 
         else:
             return nums[-1] + k - len(res)
+
+        
