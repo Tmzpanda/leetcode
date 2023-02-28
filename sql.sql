@@ -1,10 +1,12 @@
 /*
+-- 000. Deduplicate
+
 -- 176. Second Highest Salary
 -- 177. Nth Highest Salary
 -- 184. Highest Salary For each Department
 -- 185. Top Three Salaries For each Department -- DENSE_RANK()
 
-
+-- 000. Concatenate rows 
 -- 615. Average Salary for each Month: Departments vs Company -- CASE WHEN THEN END
 -- 999. Employee Department Onboard Departure Time - SCD
 -- 1398. Customers Who Bought Products A and B but Not C - SUM(Expr)
@@ -95,6 +97,13 @@ WHERE Temp.Rank <= 3
 
 
 /* ****************************************************************** Function ************************************************************************* */
+-- concatenate rows 
+SELECT department, LISTAGG(name, ', ') WITHIN GROUP (ORDER BY name) AS employee_names
+FROM employees
+GROUP BY department;
+
+
+
 -- 615. Average Salary for each Month: Departments vs Company
 WITH 
 department_salary AS (
