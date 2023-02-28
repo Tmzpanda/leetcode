@@ -97,7 +97,7 @@ WHERE Temp.Rank <= 3
 
 
 /* ****************************************************************** Function ************************************************************************* */
--- concatenate rows 
+-- 000. Concatenate rows 
 SELECT department, LISTAGG(name, ', ') WITHIN GROUP (ORDER BY name) AS employee_names
 FROM employees
 GROUP BY department;
