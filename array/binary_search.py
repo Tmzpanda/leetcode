@@ -19,6 +19,7 @@ condition of pointer moving
 
 """
 # ********************************************* sorted array ****************************************************
+# 704. Binary Search
 # Target
 def binary_search(nums, target):
     l, r = 0, len(nums) - 1
