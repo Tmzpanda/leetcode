@@ -36,15 +36,15 @@
 # ************************************************ Subarray *****************************************************************
 # 53. Maximum Subarray - greedy O(n)
 def maxSubArray(nums):
-    minSum, maxSum = 0, -sys.maxsize
-    prefixSum = 0
+    min_sum, max_sum = 0, -sys.maxsize
+    prefix_sum = 0
     
     for num in nums:
-        prefixSum += num
-        maxSum = max(maxSum, prefixSum - minSum)
-        minSum = min(minSum, prefixSum)
+        prefix_sum += num
+        max_sum = max(max_sum, prefix_sum - min_sum)
+        min_sum = min(min_sum, prefix_sum)
         
-    return maxSum
+    return max_sum
 
 
 # 560. Subarray with Sum Equals - K - hashmap O(n)
@@ -52,16 +52,16 @@ def subarraySum(nums, k):
     
     n = len(nums)
     psum = 0
-    psum_to_freq = defaultdict(int)
-    psum_to_freq[0] = 1
+    psum_freq_dict = defaultdict(int)
+    psum_freq_dict[0] = 1
     res = 0
     
     for i in range(n): 
         psum += nums[i]
-        if psum - k in psum_to_freq:
-            res += psum_to_freq[psum - k]
+        if psum - k in psum_freq_dict:
+            res += psum_freq_dict[psum - k]
             
-        psum_to_freq[psum] += 1
+        psum_freq_dict[psum] += 1
      
     return res
 
