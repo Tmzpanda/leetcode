@@ -3,7 +3,6 @@
 # O(n)
 def findKthPositive(nums: List[int], k: int) -> int:
     i, target = 0, 1
-    res = []
 
     while i < len(nums):
         if nums[i] == target:
