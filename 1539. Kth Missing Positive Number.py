@@ -22,7 +22,7 @@ def findKthPositive(nums: List[int], k: int) -> int:
 # binary search O(logn)
 """
 The nice part is, the indices can be used to get the positive numbers in sorted order.
-`nums[i] - (i+1)` denotes to #of missing number, i.e.
+`nums[i] - (i+1)` denotes to the number of missing number at a given index i, i.e.
 nums:            [1,3,4,6]
 nums[i] - (i+1): [0,1,1,2]
 
