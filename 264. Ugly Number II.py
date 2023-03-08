@@ -1,6 +1,5 @@
 # 264. Ugly Number II
 
-
 # heap O(nlogn)
 from heapq import heappush, heappop
 def nthUglyNumber(n: int) -> int:
@@ -38,3 +37,5 @@ def nthUglyNumber(n: int) -> int:
 
     return nums[n - 1]
 
+  
+  
