@@ -1,5 +1,6 @@
 # 287. Find the Duplicate Number
 
+# O(1) extra space
 def findDuplicates(nums):
     res = []
     
