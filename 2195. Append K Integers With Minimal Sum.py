@@ -1,7 +1,7 @@
 # 2195. Append K Integers With Minimal Sum
 
 # O(n) TLE
-def minimalKSum(self, nums: List[int], k: int) -> int:
+def minimalKSum(nums: List[int], k: int) -> int:
     nums.sort() 
     
     i, target = 0, 1
