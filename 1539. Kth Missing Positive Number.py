@@ -10,12 +10,14 @@ def findKthPositive(nums: List[int], k: int) -> int:
             i += 1
             target += 1
         elif nums[i] > target:
-            res.append(target)
+            k -= 1
+            if k == 0:
+                return target
             target += 1
         else:
             i += 1
 
-    return res[k - 1] if len(res) >= k else nums[-1] + (k - len(res))
+    return nums[-1] + k
   
   
 # binary search O(logn)
