@@ -14,7 +14,7 @@ def findKthPositive(nums: List[int], k: int) -> int:
                 return target
             target += 1
         else:
-            i += 1
+            i += 1  # deduplicate
 
     return nums[-1] + k
   
