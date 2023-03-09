@@ -1,0 +1,23 @@
+
+
+
+# merge sort
+def sort(nums):
+
+    def mergeSort(nums, l, r):
+        if l >= r:
+            return
+
+        mid = (l + r) // 2
+        mergeSort(nums, l, mid - 1)
+        mergeSort(nums, mid + 1, r)
+        merge(nums, l, r)
+
+
+    def merge(nums, l, r):
+
+
+    middle = (start + end) // 2
+    mergeSort(nums, start, middle)
+    mergeSort(nums, middle + 1, end)
+    merge(nums, start, end)
