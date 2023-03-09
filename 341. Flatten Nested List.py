@@ -13,6 +13,7 @@ def flatten(nestedList):
   
   
 # Iterator 
+from collections import deque
 class NestedIterator:
     def __init__(self, nestedList):
         self.queue = deque(nestedList)
