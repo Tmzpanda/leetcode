@@ -25,72 +25,58 @@ res = inorder_traverse(root)
 print(res)
 
 
-# insert
-def insert_node(root, val):
-    if not root:
-        return TreeNode(val)
-    if root.val > val:
-        root.left = insert_node(root.left, val)
-    else:
-        root.right = insert_node(root.right, val)
-    return root
 
 
-# delete
-def delete_node(root, val):
 
-    def find_smallest(root):
-        while root.left:
-            root = root.left
+# use this d&q problem to see how break condition can be reconcilidate in tree recursion problems
+
+from Tree import TreeNode
+from Tree import inorder_traverse
+
+
+# intuitive solution
+def sortedArrayToBST(nums) -> TreeNode:
+
+    def rec(nums, l, r) -> TreeNode:
+        if l > r:
+            return None
+
+        if l == r:      
+            root = TreeNode(nums[l])
+            root.left, root.right = None, None
+
+        else:
+            mid = (l+r) // 2   
+            root = TreeNode(nums[mid])
+            root.left, root.right = rec(nums, l, mid-1),  rec(nums, mid+1, r)
+
         return root
 
-    if not root:
-        return
+    if not nums:
+        return 
+    
+    l, r = 0, len(nums) - 1
+    mid = (l + r) // 2
+    root = TreeNode(nums[mid])
+    root.left, root.right = rec(nums, 0, mid-1), rec(nums, mid+1, len(nums)-1)
 
-    if root.val > val:
-        root.left = delete_node(root.left, val)
-    elif root.val < val:
-        root.right = delete_node(root.right, val)
-
-    else:
-        #  No Child or One Child
-        if not root.left:
-            return root.right
-
-        if not root.right:
-            return root.left
-
-        # Two children - Find min node in right subtree, copy the value, then delete min node from right subtree
-        else:
-            temp = find_smallest(root.right)
-            root.val = temp.val
-            root.right = delete_node(root.right, temp.val)
 
     return root
 
 
-# search
+# reconciliation 
+def sortedArrayToBST(nums):
+    
+    def rec(nums, l, r):  
+        if l > r:
+            return None
 
+        mid = (l + r) // 2
+        root = TreeNode(nums[mid])
+        root.left = rec(nums, l, mid - 1)
+        root.right = rec(nums, mid + 1, r)
 
-# Iterator
-class BSTIterator:
-    def __init__(self, root):
-        self.stack = []
-        while root:
-            self.stack.append(root)
-            root = root.left
+        return root
 
-    def hasNext(self):
-        return len(self.stack) > 0
+    return rec(nums, 0, len(nums) - 1)
 
-    def next(self):
-        node = self.stack.pop()
-        res = node
-
-        if node.right:
-            node = node.right
-            while node:
-                self.stack.append(node)
-                node = node.left
-
-        return res
