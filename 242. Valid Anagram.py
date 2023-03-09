@@ -4,7 +4,7 @@
 # hashmap
 from collections import defaultdict
 def isAnagram(s: str, t: str) -> bool:
-    char_freq = {}
+    char_freq = defaultdict(int)
     for char in s:
         char_freq[char] += 1
 
