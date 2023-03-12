@@ -2,7 +2,7 @@
 
 # dp O(S)
 def coinChange(coins, amount):
-    dp = [sys.maxsize for i in range(amount + 1)]
+    dp = [sys.maxsize for _ in range(amount + 1)]
     dp[0] = 0
     
     for s in range(1, amount + 1):
