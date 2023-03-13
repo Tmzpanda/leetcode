@@ -1,4 +1,28 @@
-# 416. Partition Equal Subset Sum - if possible - dp O(n*S)
+# 416. Partition Equal Subset Sum - if possible 
+
+# dp O(n*S)
+def canPartition(nums):
+    
+    if sum(nums) % 2 != 0:
+            return False
+
+    n = len(nums)
+    S = sum(nums) // 2
+    dp = [False] * (S + 1)
+    dp[0] = True
+    
+    for num in nums:
+        for s in range(S, num - 1, -1):
+            dp[s] = dp[s] or dp[s - num]
+
+    return dp[S]
+
+
+
+# ############################################
+
+
+
 def canPartition(nums):
     if not nums:
         return False
