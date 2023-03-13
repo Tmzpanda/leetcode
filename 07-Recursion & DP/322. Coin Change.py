@@ -1,4 +1,4 @@
-# 322. Coin Change 
+# 322. Coin Change - fewest coins
 
 # dp O(S)
 def coinChange(coins, amount):
