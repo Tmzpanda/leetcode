@@ -1,6 +1,6 @@
 # 207. Course Schedule - if possible
 
-def findOrder(numCourses, prerequisites):
+def canFinish(numCourses, prerequisites):
     
     # build graph
     graph = [[] for _ in range(numCourses)]
@@ -13,7 +13,7 @@ def findOrder(numCourses, prerequisites):
     queue = [node for node in range(numCourses) if in_degrees[node] == 0] 
     order = []
     while queue:
-        node = queue.pop()      # not necessarily popleft 
+        node = queue.pop()      # not necessarily popleft in topsort
         order.append(node)
         for next_node in graph[node]:
             in_degrees[next_node] -= 1
