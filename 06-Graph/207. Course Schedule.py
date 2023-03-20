@@ -1,4 +1,4 @@
-# 207. Course Schedule - one possible solution - bfs
+# 207. Course Schedule - if possible
 
 def findOrder(numCourses, prerequisites):
     
@@ -10,17 +10,15 @@ def findOrder(numCourses, prerequisites):
         in_degrees[t] += 1
 
     # topological sort
-    queue = deque([node for node in range(numCourses) if in_degrees[node] == 0])    
+    queue = [node for node in range(numCourses) if in_degrees[node] == 0] 
     order = []
     while queue:
-        node = queue.pop()      # not necessarily popoleft in topsort
+        node = queue.pop()      # not necessarily popleft 
         order.append(node)
         for next_node in graph[node]:
             in_degrees[next_node] -= 1
             if in_degrees[next_node] == 0:
                 queue.append(next_node)
 
-    if len(order) == numCourses:
-        return order
-
-    return []
+    return len(order) == numCourses
+        
