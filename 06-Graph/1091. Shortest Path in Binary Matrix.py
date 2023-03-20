@@ -1,39 +1,23 @@
-# 1091. Shortest Path in Binary Matrix - bfs
-DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0), (-1, -1), (1, 1), (-1, 1), (1, -1)]
-class Solution:
-    def shortestPathBinaryMatrix(self, grid: List[List[int]]) -> int:
-        if grid[0][0] == 1 or grid[-1][-1] == 1:
-            return -1
-        
-        n = len(grid)
-        start, end = (0, 0), (n - 1, n - 1)
-        
-        queue = deque([start])      
-        visited = set()
-        level = 0
-        while queue:
-            level += 1
-            for _ in range(len(queue)):
-                x, y = queue.popleft()
-                if (x, y) == end:
-                    return level
-                    
-                for delta_x, delta_y in DIRECTIONS:
-                    next_x = x + delta_x
-                    next_y = y + delta_y
-                    if not self.isValid(grid, next_x, next_y, visited):
-                        continue
-                    queue.append((next_x, next_y))
-                    visited.add((next_x, next_y))
-                    
+# 1091. Shortest Path in Binary Matrix 
+# bfs
+def shortestPathBinaryMatrix(grid: List[List[int]]) -> int:
+    n = len(grid)
+    if grid[0][0] == 1 or grid[n-1][n-1] == 1:
         return -1
-                    
-    def isValid(self, grid, i, j, visited):
-        n, m = len(grid), len(grid[0])
-        if not (0 <= i < n and 0 <= j < m):
-            return False
-        if (i, j) in visited:
-            return False
+    
+    directions = [(-1, 0), (-1, -1), (-1, 1), (0, 1), (0, -1), (1, 0), (1, 1), (1, -1)]
+    queue = deque([(0, 0, 1)])
 
-        return not grid[i][j]
-      
+    while queue:
+        i, j, dist = queue.popleft()
+        
+        if i == n-1 and j == n-1:
+            return dist
+        
+        for d in directions:
+            x, y = i + d[0], j + d[1]
+            if 0 <= x < n and 0 <= y < n and grid[x][y] == 0:
+                grid[x][y] = 1 
+                queue.append((x, y, dist+1))
+
+    return -1
