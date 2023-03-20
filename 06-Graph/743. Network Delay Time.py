@@ -1,4 +1,10 @@
 # 743. Network Delay Time
+"""
+        A
+     1 / \ 3
+      B - C
+        1
+"""
 def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
 
     # build graph
