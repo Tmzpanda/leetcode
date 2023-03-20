@@ -24,7 +24,3 @@ def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
 
     return total_time if len(visited) == n else -1
 
-
-
-
-        
