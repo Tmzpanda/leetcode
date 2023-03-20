@@ -1,30 +1,32 @@
 # 444. Sequence Reconstruction 
-from functools import reduce
-def sequenceReconstruction(org, seqs):
+
+def sequenceReconstruction(nums: List[int], sequences: List[List[int]]) -> bool:
     
     # edge case  
-    nodes = reduce(set.union, seqs, set())   # set.union(set([1, 2]), set([2, 3]))
-    if nodes != set(org):                     
+    if set(reduce(lambda x, y: x + y, sequences)) != set(nums):         
         return False
 
-    n = len(org)
-    out_edges = [[] for _ in range(n + 1)]
-    in_degrees = [0 for _ in range(n + 1)]
-    for seq in seqs:
-        for f, t in zip(seq, seq[1:]):      
-            out_edges[f].append(t)
+    # build graph
+    n = len(nums)
+    graph = defaultdict(list)
+    in_degrees = defaultdict(int)
+
+    for seq in sequences:
+        for f, t in zip(seq, seq[1:]):  
+            graph[f].append(t)
             in_degrees[t] += 1
 
-    queue = [node for node in org if in_degrees[node] == 0]
+    # topological sort
+    queue = [node for node in nums if in_degrees[node] == 0]
     order = []
     while queue:
         if len(queue) != 1:     # unique reconstruction
             return False
         node = queue.pop()
         order.append(node)
-        for next_node in out_edges[node]:
+        for next_node in graph[node]:
             in_degrees[next_node] -= 1
             if not in_degrees[next_node]:
                 queue.append(next_node)
 
-    return org == order         # reconstruct
+    return nums == order        # reconstruct
