@@ -13,15 +13,13 @@ def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
     total_time = 0
     while min_heap:
         current_weight, current_node = heappop(min_heap)
-        if current_node in visited:
-            continue
-        visited.add(current_node)
-        total_time = max(total_time, current_weight)
+        if current_node not in visited:     # 
+            visited.add(current_node)
+            total_time = max(total_time, current_weight)
 
         for next_node, next_weight in graph[current_node]:
-            if next_node in visited:
-                continue
-            heappush(min_heap, (current_weight + next_weight, next_node))
+            if next_node not in visited:
+                heappush(min_heap, (current_weight + next_weight, next_node))
 
     return total_time if len(visited) == n else -1
 
