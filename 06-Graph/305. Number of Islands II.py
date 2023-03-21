@@ -1,3 +1,46 @@
+def numIslands2(m: int, n: int, positions: List[List[int]]) -> List[int]:
+
+    def union(a, b):
+        a_root, b_root = find_root(a), find_root(b)
+        if a_root == b_root:
+            return False
+        else:
+            parent[a_root] = b_root
+            return True
+
+    def find_root(a):
+        a_root = a
+        while parent[a_root] != -1:
+            a_root = parent[a_root]
+
+        return a_root
+
+    parent = defaultdict(lambda: -1)
+    count = 0
+    visited = set()
+    res = []
+
+    for r, c in positions:
+        if (r, c) not in visited:
+            visited.add((r, c))
+            count += 1
+            for (rr, cc) in [(r-1, c), (r+1, c), (r, c-1), (r, c+1)]:
+                if (rr, cc) in visited and union((r, c), (rr, cc)):
+                    count -= 1
+        res.append(count)
+
+    return res
+
+
+
+
+
+
+##############
+
+
+
+
 """
 https://www.youtube.com/watch?v=gpmOaSBcbYA 黄浩杰 并查集 第二讲
 https://www.youtube.com/watch?v=zos--xohLT0 黄浩杰 第三讲 union优化
@@ -7,6 +50,9 @@ https://www.youtube.com/watch?v=zos--xohLT0 黄浩杰 第三讲 union优化
     |\ |
     5  4 
 """
+
+
+
 
 
 from collections import defaultdict
