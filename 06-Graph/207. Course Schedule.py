@@ -13,7 +13,7 @@ def canFinish(numCourses, prerequisites):
     queue = [node for node in range(numCourses) if in_degrees[node] == 0] 
     order = []
     while queue:
-        node = queue.pop()      # not necessarily popleft in topsort
+        node = queue.pop()      # not necessarily popleft in topological sort
         order.append(node)
         for next_node in graph[node]:
             in_degrees[next_node] -= 1
