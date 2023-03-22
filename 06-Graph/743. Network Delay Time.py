@@ -1,5 +1,4 @@
 # 743. Network Delay Time
-
 def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
 
     # build graph
