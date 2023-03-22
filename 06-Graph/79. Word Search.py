@@ -21,7 +21,7 @@ def dfs(board, i, j, visited, word, index):
             visited.add((x, y))
             if self.dfs(board, x, y, visited, word, index + 1):
                 return True
-            visited.discard((x, y))
+            visited.discard((x, y))         # backtrack
 
     return False
  
