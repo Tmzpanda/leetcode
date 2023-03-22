@@ -6,7 +6,7 @@ def exist(self, board, word):
     for i in range(m):
         for j in range(n):
             if board[i][j] == word[0]:
-                if self.dfs(board, i, j, {(i, j)}, word, 1):
+                if dfs(board, i, j, {(i, j)}, word, 1):
                     return True
     return False
     
