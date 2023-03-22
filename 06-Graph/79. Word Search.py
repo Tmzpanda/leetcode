@@ -1,7 +1,7 @@
 # 79. Word Search - if exists
 
 # dfs O(mn * 3^L)
-def exist(self, board, word):
+def exist(self, board: List[List[str]], word: str) -> bool:
     m, n = len(board), len(board[0])
     for i in range(m):
         for j in range(n):
