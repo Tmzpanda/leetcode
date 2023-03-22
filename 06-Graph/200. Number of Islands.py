@@ -18,25 +18,28 @@ def numIslands(grid):
 
 # bfs
 def bfs(grid, i, j, visited):
+    m, n = len(grid), len(grid[0])
     directions = [(-1, 0), (0, 1), (0, -1), (1, 0)]
     queue = deque([(i, j)])
     visited.add((i, j))
     while queue:
         i, j = queue.popleft()
-        for delta in DIRECTIONS:
+        for delta in directions:
             x, y = i + delta[0], j + delta[1]
-            if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == "1" and (x, y) not in visited:
-                queue.append((x, y))
+            if 0 <= x < m and 0 <= y < n and (x, y) not in visited and grid[x][y] == "1":
                 visited.add((x, y))
+                queue.append((x, y))
+                
 
       
 # dfs
 def dfs(grid, i, j, visited):
+    m, n = len(grid), len(grid[0])
     directions = [(-1, 0), (0, 1), (0, -1), (1, 0)]
     visited.add((i, j))
     for delta in directions:
         x, y = i + delta[0], j + delta[1]
-        if 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == "1" and (x, y) not in visited:
+        if 0 <= x < m and 0 <= y < n and (x, y) not in visited and grid[x][y] == "1":
             visited.add((x, y))
             dfs(grid, x, y, visited)
         
