@@ -3,8 +3,8 @@
 def canFinish(numCourses, prerequisites):
     
     # build graph
-    graph = [[] for _ in range(numCourses)]
-    in_degrees = [0 for _ in range(numCourses)]
+    graph = defaultdict(list)
+    in_degrees = defaultdict(int)
     for t, f in prerequisites:
         graph[f].append(t)
         in_degrees[t] += 1
