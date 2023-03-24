@@ -5,14 +5,14 @@ def findLadders(beginWord: str, endWord: str, wordList: List[str]) -> List[List[
 
     # bfs build graph
     graph = defaultdict(set)
-    distance_map = {beginWord: 0} 
+    distance_dict = {beginWord: 0} 
 
     queue = deque([(beginWord, 0)])
     visited = set([beginWord])
     while queue:
         for i in range(len(queue)):
             word, distance = queue.popleft()
-            distance_map[word] = distance
+            distance_dict[word] = distance
             
             for j in range(len(word)):
                 for char in "abcdefghijklmnopqrstuvwxyz":       
@@ -31,7 +31,7 @@ def findLadders(beginWord: str, endWord: str, wordList: List[str]) -> List[List[
             return
 
         for previous_word in graph[word]:
-            if distance_map[previous_word] == distance_map[word] - 1:   # sequences of shortest length
+            if distance_dict[previous_word] == distance_map[word] - 1:   # sequences of shortest length
                 path.append(previous_word)
                 dfs(previous_word, path)
                 path.pop()
