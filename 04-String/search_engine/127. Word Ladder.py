@@ -22,7 +22,7 @@ def ladderLength(beginWord: str, endWord: str, wordList: List[str]) -> int:
     return 0
 
 
-# another solution
+# another bfs
 def ladderLength(beginWord: str, endWord: str, wordList: List[str]) -> int:
     
     # build graph
