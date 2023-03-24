@@ -30,7 +30,7 @@ def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
     for word in words:		
         trie.insert(word)
 
-    def dfs(i, j, trie_node, prefix):  # 
+    def dfs(i, j, trie_node, prefix):  
         if trie_node.is_word:
             res.append(prefix)
             trie.delete(prefix)     # optimize
