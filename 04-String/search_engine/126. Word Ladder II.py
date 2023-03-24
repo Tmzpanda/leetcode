@@ -1,55 +1,48 @@
-# 126. Word Ladder - all possible solutions - bfs + dfs
-from collections import deque
-class Solution:
-    
-    def findLadders(self, start, end, dict):
-        dictionary = set(dict)
-        dictionary.add(start)
-        dictionary.add(end)
+# 126. Word Ladder - all shortest sequences 
 
-        # build graph
-        word_to_distance = self.bfs(end, dictionary)  
-        
-        # backtrack
-        result = []
-        self.dfs(start, end, word_to_distance, [start], result, dictionary)     
-        return result 
+def findLadders(beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+    word_set = set(wordList)
 
-    
-    def bfs(self, start, dictionary):
-        queue = deque([start])
-        word_to_distance = {start: 0}
+    # bfs build graph
+    graph = defaultdict(set)
+    distance_map = {beginWord: 0} 
 
-        while queue:
-            word = queue.popleft()
-            for next_word in self.get_next_words(word, dictionary):
-                if next_word not in word_to_distance:
-                        queue.append(next_word)
-                        word_to_distance[next_word] = word_to_distance.get(word, 0) + 1
+    queue = deque([(beginWord, 0)])
+    visited = set([beginWord])
+    while queue:
+        for i in range(len(queue)):
+            word, distance = queue.popleft()
+            distance_map[word] = distance
+            
+            for j in range(len(word)):
+                for char in "abcdefghijklmnopqrstuvwxyz":       
+                    next_word = word[:j] + char + word[j + 1:]
+                    if next_word in word_set:
+                        graph[next_word].add(word)
+                        
+                        if next_word not in visited:
+                            visited.add(next_word)
+                            queue.append((next_word, distance + 1))
 
-        return word_to_distance
-        
-
-    def get_next_words(self, word, dictionary):
-        words = []
-        for i in range(len(word)):
-            left, right = word[:i], word[i + 1:]
-            for char in "abcdefghijklmnopqrstuvwxyz":
-                next_word = left + char + right
-                if next_word != word and next_word in dictionary:
-                    words.append(next_word)
-    
-        return words
-        
-        
-    def dfs(self, word, end, word_to_distance, path, result, dictionary):
-        if word == end:
-            result.append(path[:])
+    # backtrack
+    def dfs(word, path):
+        if word == beginWord:
+            res.append(path[::-1])
             return
 
-        for next_word in self.get_next_words(word, dictionary):
-            if word_to_distance[next_word] != word_to_distance[word] - 1:   # shortest
-                continue
-            path.append(next_word)
-            self.dfs(next_word, end, word_to_distance, path, result, dictionary)
-            path.pop()
+        for previous_word in graph[word]:
+            if distance_map[previous_word] == distance_map[word] - 1:   # sequences of shortest length
+                path.append(previous_word)
+                dfs(previous_word, path)
+                path.pop()
+
+    res = []
+    dfs(endWord, [endWord])
+
+    return res
+
+
+
+
+
+
