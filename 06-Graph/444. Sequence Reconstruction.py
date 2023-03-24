@@ -10,7 +10,6 @@ def sequenceReconstruction(nums: List[int], sequences: List[List[int]]) -> bool:
     n = len(nums)
     graph = defaultdict(list)
     in_degrees = defaultdict(int)
-    
     for seq in sequences:
         for f, t in zip(seq, seq[1:]):  
             graph[f].append(t)
