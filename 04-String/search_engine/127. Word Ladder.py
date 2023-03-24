@@ -1,5 +1,6 @@
 # 127. Word Ladder - length of shortest sequences
 
+# bfs
 def ladderLength(beginWord: str, endWord: str, wordList: List[str]) -> int:
     word_set = set(wordList)
     queue = deque([beginWord])
