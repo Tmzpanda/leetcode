@@ -31,7 +31,7 @@ def findLadders(beginWord: str, endWord: str, wordList: List[str]) -> List[List[
             return
 
         for previous_word in graph[word]:
-            if distance_dict[previous_word] == distance_map[word] - 1:   # sequences of shortest length
+            if distance_dict[previous_word] == distance_dict[word] - 1:   # sequences of shortest length
                 path.append(previous_word)
                 dfs(previous_word, path)
                 path.pop()
