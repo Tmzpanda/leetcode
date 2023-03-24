@@ -7,18 +7,17 @@ def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
         graph[f].append((t, w))
 
     # dijkstra
-    min_heap = [(0, k)] # (distance_to_origin, current_node)
-    visited = set()
-    res = 0
+    min_heap = [(0, k)] 
+    visited = set([k])
     while min_heap:
         weight, node = heappop(min_heap)
-        if node not in visited:     # 
-            visited.add(node)
-            res = max(res, weight)
+        visited.add(node)
+        if len(visited) == n:
+            return weight
 
         for next_node, next_weight in graph[node]:
             if next_node not in visited:
-                heappush(min_heap, (current_weight + next_weight, next_node))
+                heappush(min_heap, (weight + next_weight, next_node))
 
-    return res if len(visited) == n else -1
+    return -1
 
