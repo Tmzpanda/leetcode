@@ -13,7 +13,7 @@ class WordDistance:
         arr2 = self.index_dict[word2]
         res = sys.maxsize
 
-        p1, p2 = 0, 0
+        p1, p2 = 0, 0                               # two pointers
         while p1 < len(arr1) and p2 < len(arr2):
             res = min(res, abs(arr1[p1] - arr2[p2]))
             if arr1[p1] < arr2[p2]:
