@@ -15,9 +15,8 @@ def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
         if len(visited) == n:
             return weight
 
-        for next_node, next_weight in graph[node]:
-            if next_node not in visited:
-                heappush(min_heap, (weight + next_weight, next_node))
+        for next_node, next_weight in graph[node]:      # directed graph
+            heappush(min_heap, (weight + next_weight, next_node)) 
 
     return -1
 
