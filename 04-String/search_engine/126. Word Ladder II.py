@@ -5,7 +5,7 @@ def findLadders(beginWord: str, endWord: str, wordList: List[str]) -> List[List[
 
     # bfs build graph
     graph = defaultdict(set)
-    distance_dict = {beginWord: 0} 
+    distance_dict = {beginWord: 0}      # distance to origin
 
     queue = deque([(beginWord, 0)])
     visited = set([beginWord])
