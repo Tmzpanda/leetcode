@@ -150,3 +150,26 @@ graph = weighted_graph
 distance_map, previous_map = dijkstra(graph, "A")
 print(distance_map)
 print(previous_map)
+
+
+
+# bellman_ford
+def bellman_ford(graph, start):
+    """
+    Find the shortest path from start node to all other nodes in a weighted graph using Bellman-Ford algorithm.
+    """
+    distances = {node: float('inf') for node in graph}
+    distances[start] = 0
+
+    for _ in range(len(graph) - 1):
+        for u in graph:
+            for v, weight in graph[u].items():
+                if distances[u] + weight < distances[v]:
+                    distances[v] = distances[u] + weight
+
+    for u in graph:
+        for v, weight in graph[u].items():
+            if distances[u] + weight < distances[v]:
+                raise ValueError("Negative weight cycle detected")
+
+    return distances
