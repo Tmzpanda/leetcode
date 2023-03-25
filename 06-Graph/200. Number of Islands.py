@@ -15,7 +15,7 @@ def numIslands(grid):
             for delta in directions:
                 x, y = i + delta[0], j + delta[1]
                 if 0 <= x < m and 0 <= y < n and grid[x][y] == "1":
-                    grid[x][y] = "0"
+                    grid[x][y] = "0"    # visited
                     queue.append((x, y))
 
     res = 0
@@ -23,7 +23,7 @@ def numIslands(grid):
         for j in range(len(grid[0])):
             if grid[i][j] == "1":
                 res += 1
-                grid[i][j] = "0"    # visited
+                grid[i][j] = "0"    
                 bfs(i, j)        
 
     return res   
@@ -41,7 +41,7 @@ def numIslands(grid):
         for delta in directions:
             x, y = i + delta[0], j + delta[1]
             if 0 <= x < m and 0 <= y < n and grid[x][y] == "1":
-                grid[x][y] = "0"
+                grid[x][y] = "0"        # visited
                 dfs(x, y)
 
     res = 0
