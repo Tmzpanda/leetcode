@@ -8,7 +8,7 @@ def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
 
     # dijkstra
     min_heap = [(0, k)] 
-    visited = set([k])
+    visited = set()
     while min_heap:
         weight, node = heappop(min_heap)
         visited.add(node)
