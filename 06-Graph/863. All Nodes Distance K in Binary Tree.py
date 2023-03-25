@@ -1,7 +1,4 @@
 # 863. All Nodes Distance K in Binary Tree
-
-# All nodes Distance K in a Binary Tree - O(m + n) = O(n-1 + n) = O(n)
-
 def distanceK(root: TreeNode, target: TreeNode, K: int) -> List[int]:
   
     # build graph
