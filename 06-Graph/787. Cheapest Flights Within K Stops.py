@@ -1,6 +1,6 @@
 # 787. Cheapest Flights Within K Stops
 
-# Dijkstra
+# Dijkstra O(E + VlogV)
 def findCheapestPrice(n: int, flights, src: int, dst: int, k: int) -> int:
 
     # build graph
@@ -22,7 +22,7 @@ def findCheapestPrice(n: int, flights, src: int, dst: int, k: int) -> int:
     return -1
 
 
-# Bellman-Ford
+# Bellman-Ford O(V*E)
 def findCheapestPrice(n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
 
     prices = [sys.maxsize] * n
