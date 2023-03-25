@@ -15,7 +15,7 @@ def numIslands(grid):
             for delta in directions:
                 x, y = i + delta[0], j + delta[1]
                 if 0 <= x < m and 0 <= y < n and grid[x][y] == "1":
-                    grid[x][y] = "0"    # visited
+                    grid[x][y] = "0"        # visited
                     queue.append((x, y))
 
     res = 0
