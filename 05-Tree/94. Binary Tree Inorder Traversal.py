@@ -1,30 +1,24 @@
 # 94. Binary Tree Inorder Traversal 
 
-
-# inorder
 # recursion
-def inorder_traverse(root):    
-    
-    def rec(node, res):
+def inorderTraversal(root: TreeNode) -> List[int]: 
+    def dfs(node):
         if node is None:
             return
-
-        rec(node.left, res)
+        dfs(node.left)
         res.append(node.val)
-        rec(node.right, res)
+        dfs(node.right)
 
-        # return
-
-    res = []    # closure
-    rec(root, res) 
+    res = []    
+    dfs(root) 
     return res
 
+
 # iteration
-def inorder_traverse(root):
+def inorderTraversal(root: TreeNode) -> List[int]: 
 
     res = []
     stack = []
-
     # initialize
     while root:
         stack.append(root)
