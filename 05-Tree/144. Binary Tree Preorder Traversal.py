@@ -1,34 +1,28 @@
 # 144. Binary Tree Preorder Traversal
 
 # recursion
-from collections import deque
-
-
-def preorder_traverse(root):
-
-    def rec(node, res):
+def preorderTraversal(root: TreeNode) -> List[int]:
+    def dfs(node):
         if node is None:
             return
-
         res.append(node.val)
-        rec(node.left, res)
-        rec(node.right, res)
+        dfs(node.left)
+        dfs(node.right)
 
     res = []
-    rec(root, res)
+    dfs(root)
     return res
 
   
 # iteration
-def preorder_traverse(root):
-
+def preorderTraversal(root: TreeNode) -> List[int]:
     res = []
     stack = [root]
     while stack:
-        curr_node = stack.pop()
-        if curr_node:
-            res.append(curr_node.val)
-            stack.append(curr_node.right)
-            stack.append(curr_node.left)
+        node = stack.pop()
+        if node:
+            res.append(node.val)
+            stack.append(node.right)
+            stack.append(node.left)
         
     return res
