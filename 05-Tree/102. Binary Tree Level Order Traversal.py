@@ -1,10 +1,11 @@
-# 102. Binary Tree Level Order Traversal - bfs
-def levelOrder(root):
+# 102. Binary Tree Level Order Traversal 
+
+def levelOrder(root: Optional[TreeNode]) -> List[List[int]]:  
     if root is None:
         return []
-        
-    queue = deque([root])
+
     res = []
+    queue = deque([root])
     while queue:
         level = []
         for _ in range(len(queue)):
@@ -14,6 +15,8 @@ def levelOrder(root):
                 queue.append(node.left)
             if node.right:
                 queue.append(node.right)
+
         res.append(level)
-        
+
     return res
+
