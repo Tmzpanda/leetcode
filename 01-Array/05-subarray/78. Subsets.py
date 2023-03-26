@@ -1,7 +1,7 @@
 # 78. Subsets
 
 def subsets(nums: List[int]) -> List[List[int]]:
-    nums = sorted(nums)
+    
     n = len(nums)
 
     def dfs(index, subset):
