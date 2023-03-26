@@ -1,7 +1,7 @@
 # 589. N-ary Tree Preorder Traversal
 
 def preorder(self, root: Optional[TreeNode]) -> List[int]:
-    def dfs(root):
+    def dfs(node):
         if node is None:
             return
         res.append(node.val)
