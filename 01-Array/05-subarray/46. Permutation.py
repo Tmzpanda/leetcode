@@ -1,4 +1,4 @@
-# 47. Permutation
+# 46. Permutation
 def permute(nums: List[int]) -> List[List[int]]:
     n = len(nums)
 
