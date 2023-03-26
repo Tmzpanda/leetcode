@@ -2,7 +2,7 @@
 
 def binaryTreePaths(root: TreeNode) -> List[str]:
     def dfs(node, path):
-        if not node.left and not node.right:
+        if node.left is None and node.right is None:
             res.append(list(path))
             return
 
