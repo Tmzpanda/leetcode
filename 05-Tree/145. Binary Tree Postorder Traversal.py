@@ -2,32 +2,15 @@
 # 145. Binary Tree Postorder Traversal
 
 # recursion
-def postorder_traverse(root):      
-
-    def rec(node, res):
+def postorderTraversal(self, root: TreeNode) -> List[int]:    
+    def dfs(node):
         if node is None:
             return
         
-        rec(node.left, res)
-        rec(node.right, res)
+        dfs(node.left)
+        dfs(node.right)
         res.append(node.val)
 
-        # return
-
     res = []
-    rec(root, res)
-    return res
-
-# iteration
-def postorder_traverse(root):
-
-    res = deque()
-    stack = [root]
-    while stack:
-        curr_node = stack.pop()
-        if curr_node:
-            res.appendleft(curr_node.val)   # appendleft
-            stack.append(curr_node.left)
-            stack.append(curr_node.right)
-
+    dfs(root)
     return res
