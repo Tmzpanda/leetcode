@@ -31,4 +31,4 @@ def mergeSort(nums: List[int]) -> List[int]:
         j += 1
         k += 1
 
-    return merged       # pure function
+    return merged       
