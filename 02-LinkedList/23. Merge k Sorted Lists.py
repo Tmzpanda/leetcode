@@ -25,5 +25,4 @@ def merge(l1: ListNode, l2: ListNode) -> ListNode:
         cur = cur.next
         
     cur.next = p1 or p2
-   
     return dummy.next 
