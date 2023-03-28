@@ -3,7 +3,7 @@
 def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
     if not nums:
         return None
-
+    
     mid = len(nums) // 2
     root = TreeNode(nums[mid])
     root.left = sortedArrayToBST(nums[:mid])
