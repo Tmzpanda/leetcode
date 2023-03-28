@@ -1,5 +1,4 @@
 # 108. Convert Sorted Array to Binary Search Tree
-
 # divide and conquer
 def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
     if not nums:
