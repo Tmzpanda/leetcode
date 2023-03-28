@@ -10,10 +10,10 @@ def mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
 
     # divide and conquer
     mid = len(lists) // 2
-    left = self.mergeKLists(lists[:mid])
-    right = self.mergeKLists(lists[mid:])
+    left = mergeKLists(lists[:mid])
+    right = mergeKLists(lists[mid:])
 
-    return self.merge(left, right)
+    return merge(left, right)
     
     
 def merge(l1: ListNode, l2: ListNode) -> ListNode:
