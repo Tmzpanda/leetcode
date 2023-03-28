@@ -11,7 +11,7 @@ def mergeSort(nums: List[int]) -> List[int]:
     right = mergeSort(nums[mid:])
 
     # merge
-    merged = []     
+    merged = [0] * len(nums)     
     i, j, k = 0, 0, 0
     while i < len(left) and j < len(right):
         if left[i] < right[j]:
