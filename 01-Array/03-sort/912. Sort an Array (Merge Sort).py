@@ -1,8 +1,22 @@
 # 912. Sort an Array (Merge Sort)
+"""
+            [1, 2, 3, 4]
+           /       ^    \ mid = 2
+       [1, 2]          [3, 4]  
+       /   ^ \ mid = 1
+     [1]     [2] 
+
+
+            
+            [1, 2, 3]
+           /    ^    \ mid = 1
+        [1]         [2, 3]   
+           
+"""
 # O(nlogn)
 def mergeSort(nums: List[int]) -> List[int]:
     # base
-    if len(nums) <= 1:
+    if len(nums) == 1:
         return nums
     
     # divide and conquer
