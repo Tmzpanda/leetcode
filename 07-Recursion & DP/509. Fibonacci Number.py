@@ -11,7 +11,7 @@ def fib(n: int) -> int:
             return 0
         elif n == 1:
             return 1
-        # main
+        # transition
         memo[n] = dfs(n - 1) + dfs(n - 2)
         return memo[n]
     
@@ -38,9 +38,10 @@ def fib(n: int) -> int:
     if n == 1:
         return 1
 
-    # dp
+    # base
     dp = [0] * (n + 1)
     dp[1] = 1
+    # transition
     for i in range(2, n + 1):
         dp[i] = dp[i - 1] + dp[i - 2]
 
