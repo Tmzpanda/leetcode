@@ -12,7 +12,8 @@ def mergeKLists(lists: List[Optional[ListNode]]) -> Optional[ListNode]:
     mid = len(lists) // 2
     left = mergeKLists(lists[:mid])
     right = mergeKLists(lists[mid:])
-
+    
+    # combine
     return merge(left, right)
     
     
