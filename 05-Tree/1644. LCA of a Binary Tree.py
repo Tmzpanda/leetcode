@@ -1,42 +1,43 @@
 # 1644. Lowest Common Ancestor of a Binary Tree II - node may not exist
 """
+                      4 (T, F, None)
+                     / \
+       (T, F, None) 3   7 (F, F, None)
+                       / \
+         (F, F, None) 5   6 (F, F, None)
+
 (3,9) -> None
 
-                      4 (T, F, 3) -> None
-                     / \
-          (T, F, 3) 3   7 (F, F, None)
-                       / \
-         (F, F, None) 5   6(F, F, None)
-        
 """
-class Solution:
-
-    def lowestCommonAncestor3(self, root, A, B):
-        a, b, lca = self.helper(root, A, B) 
-
-        if a and b:                                         
-            return lca
-        else:
-            return None
-
-    def helper(self, root, A, B):
+def lowestCommonAncestor(root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    def dfs(root):
+        # base
         if root is None:
             return False, False, None
-            
-        leftA, leftB, left = self.helper(root.left, A, B)
-        rightA, rightB, right = self.helper(root.right, A, B)
+        # d&q
+        left_found_p, left_found_q, left_lca = dfs(root.left)     # return lca
+        right_found_p, right_found_q, right_lca = dfs(root.right)
         
-        a = leftA or rightA or root == A
-        b = leftB or rightB or root == B
+        # combine
+        found_p = left_found_p or right_found_p or root == p
+        found_q = left_found_q or right_found_q or root == q
+        lca = None
         
-        if root is A or root is B:                           
-            return a, b, root
+        if left_lca is not None:
+            lca = left_lca
+        elif right_lca is not None:
+            lca = right_lca
+        elif found_p and found_q:
+            lca = root
             
-        if left and right:
-            return a, b, root
-        if left:                        
-            return a, b, left
-        if right:                 
-            return a, b, right
+        return found_p, found_q, lca
+      
+    _, _, lca = dfs(root)
+    return lca
+      
+    
+  
+  
+  
+  
 
-        return a, b, None 
