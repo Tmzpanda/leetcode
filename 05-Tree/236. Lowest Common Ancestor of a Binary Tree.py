@@ -1,4 +1,4 @@
-# 236. LCA in Binary Tree - d&q O(n) O(n)(recursion stack)
+# 236. Lowest Common Ancestor of a Binary Tree
 """
             4 (4)
            / \
