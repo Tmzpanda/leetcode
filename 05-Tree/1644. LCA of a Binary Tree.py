@@ -22,7 +22,6 @@ def lowestCommonAncestor(root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'Tre
         found_p = left_found_p or right_found_p or root == p
         found_q = left_found_q or right_found_q or root == q
         lca = None
-        
         if left_lca is not None:
             lca = left_lca
         elif right_lca is not None:
