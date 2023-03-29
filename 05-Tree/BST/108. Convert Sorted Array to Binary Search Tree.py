@@ -19,7 +19,7 @@ def sortedArrayToBST(nums: List[int]) -> TreeNode:
         # base
         if l > r:
             return None
-        
+        # d&q
         mid = (l + r) // 2
         root = TreeNode(nums[mid])
         root.left = dfs(l, mid - 1)     # using indices avoids creating new subarrays in each recursion
