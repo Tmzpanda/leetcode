@@ -15,7 +15,7 @@ def lowestCommonAncestor(root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'Tre
         if root is None or root == p or root == q:
             return root
     
-        l = dfs(root.left)
+        l = dfs(root.left)     # return lca, or p or q        
         r = dfs(root.right)
         
         if l and r:
