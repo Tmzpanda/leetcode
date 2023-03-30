@@ -1,5 +1,4 @@
 # 322. Coin Change - fewest coins
-
 # dp O(S)
 def coinChange(coins, amount):
     dp = [sys.maxsize for _ in range(amount + 1)]
