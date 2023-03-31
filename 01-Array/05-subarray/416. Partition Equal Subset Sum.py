@@ -1,8 +1,7 @@
 # 416. Partition Equal Subset Sum - if possible 
 
 # dp O(n*S)
-def canPartition(nums):
-    
+def canPartition(nums: List[int]) -> bool:
     if sum(nums) % 2 != 0:
             return False
 
@@ -18,21 +17,13 @@ def canPartition(nums):
     return dp[S]
 
 
-
-# ############################################
-
-
-
-def canPartition(nums):
-    if not nums:
-        return False
-    
+# another way
+def canPartition(nums: List[int]) -> bool:
     if sum(nums) % 2 != 0:
         return False
 
     n = len(nums)
     S = sum(nums) // 2
-    
     dp = [[False for _ in range(S + 1)] for _ in range(n + 1)]
     dp[0][0] = True
 
