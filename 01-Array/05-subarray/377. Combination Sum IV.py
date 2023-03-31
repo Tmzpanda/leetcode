@@ -1,5 +1,5 @@
 # 377. Combination Sum IV - number of solutions 
-# dp O(S*n)
+# dp O(S*n), O(S)
 def combinationSum(nums, target):
     dp = [0] * (target + 1)
     dp[0] = 1
