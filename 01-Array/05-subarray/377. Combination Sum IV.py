@@ -5,7 +5,7 @@ def combinationSum(nums, target):
     dp[0] = 1
 
     for s in range(1, target + 1):
-        for num in nums:            # order differences are considered different solutions 
+        for num in nums:            # combinations in different orders are considered different
             if num <= s:
                 dp[s] += dp[s - num]
                 
