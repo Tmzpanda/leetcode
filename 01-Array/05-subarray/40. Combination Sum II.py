@@ -15,8 +15,6 @@ def combinationSum2(nums: List[int], target: int) -> List[List[int]]:
                 continue
             combination.append(nums[i])
             dfs(target - nums[i], i + 1, combination)   # used once
-#             dfs(target - nums[i], i, combination)       # repeated use
-#             dfs(target - nums[i], combination)          # combinations in different orders are considered different
             combination.pop()
 
     dfs(target, 0, [])
