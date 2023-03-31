@@ -12,9 +12,8 @@ def combinationSum(nums: List[int], target: int) -> List[List[int]]:
 
         for i in range(index, len(nums)):
             combination.append(nums[i])
-            dfs(target - nums[i], i, combination)   # deduplicate
+            dfs(target - nums[i], i, combination)   # unique combinations
             combination.pop()
 
     dfs(target, 0, [])
-
     return res
