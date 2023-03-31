@@ -6,7 +6,6 @@ def combinationSum(nums: List[int], target: int) -> List[List[int]]:
         if target == 0:
             res.append(list(combination)) 
             return
-
         if target < 0:
             return 
 
