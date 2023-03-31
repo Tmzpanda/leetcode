@@ -1,5 +1,4 @@
-# 216. Combination Sum III 
-# backtrack
+# 216. Combination Sum III - k sum
 def combinationSum3(k: int, n: int) -> List[List[int]]:
     res = []
     def dfs(index, k, target, path):
