@@ -11,7 +11,7 @@ def combinationSum(nums: List[int], target: int) -> List[List[int]]:
 
         for i in range(index, len(nums)):
             combination.append(nums[i])
-            dfs(target - nums[i], i, combination)   # each can be used infinite times
+            dfs(target - nums[i], i, combination)   # repeated use
             combination.pop()
 
     dfs(target, 0, [])
