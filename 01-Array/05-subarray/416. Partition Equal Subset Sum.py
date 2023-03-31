@@ -1,5 +1,4 @@
 # 416. Partition Equal Subset Sum - if possible 
-
 # dp O(n*S)
 def canPartition(nums: List[int]) -> bool:
     if sum(nums) % 2 != 0:
