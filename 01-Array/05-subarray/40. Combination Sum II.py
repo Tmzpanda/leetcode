@@ -1,24 +1,24 @@
-# 40. Combination Sum - all solutions - backtrack O(2^n)
-class Solution:
-    def combinationSum2(self, nums, target):
-        nums.sort()
-        result = []
-        self.dfs(nums, 0, target, [], result)
-        return result
-        
-    def dfs(self, nums, index, target, subset, result):
+# 40. Combination Sum II
+def combinationSum2(nums: List[int], target: int) -> List[List[int]]:
+    nums = sorted(nums)
+    res = []
+
+    def dfs(target, index, combination):
+        if target == 0:
+            res.append(list(combination)) 
+            return
         if target < 0:
             return 
-        
-        if target == 0:
-            result.append(list(subset)) 
-            return
-        
+
         for i in range(index, len(nums)):
-            if i > 0 and nums[i] == nums[i - 1] and i != index:    # deduplicate
+            if i != 0 and nums[i] == nums[i - 1] and i != index:    # deduplicate
                 continue
-            subset.append(nums[i])
-            self.dfs(nums, i + 1, target - nums[i], subset, result)   # used once
-#             self.dfs(nums, i, target - nums[i], subset, result)     # repeated use
-#             self.dfs(nums, target - nums[i], subset, result)        # different sequences are counted as different combinations
-            subset.pop()
+            combination.append(nums[i])
+            dfs(target - nums[i], i + 1, combination)   # used once
+#             dfs(target - nums[i], i, combination)       # repeated use
+#             dfs(target - nums[i], combination)          # combinations in different orders are considered different
+            combination.pop()
+
+    dfs(target, 0, [])
+
+    return res
