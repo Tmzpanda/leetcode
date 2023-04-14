@@ -1,5 +1,4 @@
 # 53. Maximum Subarray 
-
 # greedy O(n)
 def maxSubArray(nums):
     min_sum = 0
