@@ -1,5 +1,4 @@
 # 263. Ugly Number
-
 def isUgly(n: int) -> bool:
     if n <= 0:
         return False
