@@ -1,7 +1,5 @@
 # 244. Shortest Word Distance II - data structure for frequent queries
-
 class WordDistance:
-
     def __init__(self, wordsDict: List[str]):
         self.index_dict = defaultdict(list)
         for i, word in enumerate(wordsDict):
