@@ -1,4 +1,4 @@
-# 658. K Closest Elements in a Sorted Array - binary search merge O(logn + k)    
+# 658. Find K Closest Elements - binary search merge O(logn + k)    
 class Solution:
     def kClosestNumbers(self, A, target, k):
         r = self.findUpperClosest(A, target)
