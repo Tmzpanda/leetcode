@@ -1,5 +1,4 @@
 # 287. Find the Duplicate Number
-
 # O(1) extra space
 def findDuplicates(nums):
     res = []
@@ -19,3 +18,4 @@ def findDuplicate(nums):
     for i in range(len(nums)):
         if i > 0 and nums[i] == nums[i-1]:
             return nums[i]
+
