@@ -1,5 +1,4 @@
 # 1539. Kth Missing Positive Number
-
 # O(n)
 def findKthPositive(nums: List[int], k: int) -> int:
     i, target = 0, 1
@@ -30,7 +29,6 @@ binary search the largest index so that `nums[i] - (i+1) <= k`
 the kth missing number is `nums[i-1] + (k - (nums[i-1] - i))` = k + i
 
 """
-
 def findKthPositive(nums: List[int], k: int) -> int:
     l, r = 0, len(nums) - 1
 
