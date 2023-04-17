@@ -5,7 +5,7 @@ def shortestSubarray(nums: List[int], k: int) -> int:
     window_sum = 0
     shortest = sys.maxsize
 
-    queue = deque([(0, 0)])  # (i, window_sum)
+    queue = deque([(0, 0)])  # (start, window_sum)
     for i in range(n):
         window_sum += nums[i]
         while queue and window_sum - queue[0][1] >= k:
