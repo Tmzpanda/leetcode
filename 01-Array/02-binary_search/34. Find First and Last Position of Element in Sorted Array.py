@@ -1,4 +1,4 @@
-# 34. Last Position of Target
+# 34. Find First and Last Position of Element in Sorted Array
 def lastPosition(nums, target):
     l, r = 0, len(nums) - 1
 
