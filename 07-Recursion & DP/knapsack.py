@@ -1,4 +1,5 @@
-# knapsack  
+# O(n*W)
+# dp  
 """
 wt = [1, 3, 4, 5]
 val = [1, 4, 5, 7]
@@ -12,7 +13,6 @@ W = 7
     4 0   o         o
     5 0             x = dp[i][w] denotes the maximum value that can be obtained by selecting from the first i items, subject to a weight capacity of w.
 """
-# O(n*W)
 def knapSack(wt, val, W): 
     n = len(wt)
     dp = [[0] * (W + 1) for _ in range(n + 1)] 
@@ -26,26 +26,15 @@ def knapSack(wt, val, W):
   
     return dp[n][W] 
 
+
 # space optimization
 def knapSack(wt, val, W):
     n = len(wt)
     dp = [0 for _ in range(W + 1)]
     
     for i in range(1, n + 1):
-        for w in range(1, W + 1):
+        for w in range(W, wt[i] - 1, -1):
             if wt[i-1] <= w:
                 dp[w] = max(val[i-1] + dp[w-wt[i-1]], dp[w])
     
-    return dp[W]
-
-# another way
-def knapSack(wt, val, W):
-    n = len(wt)
-    dp = [0] * (W + 1)
-
-    for w in range(1, W + 1):
-        for i in range(n):
-            if wt[i] <= w:
-                dp[w] = max(dp[w], val[i] + dp[w - wt[i]])
-
     return dp[W]
