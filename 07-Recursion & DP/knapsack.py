@@ -15,7 +15,7 @@ W = 7
 # O(n*W)
 def knapSack(wt, val, W): 
     n = len(wt)
-    dp = [[0 for _ in range(W + 1)] for _ in range(n + 1)] 
+    dp = [[0] * (W + 1) for _ in range(n + 1)] 
     
     for i in range(1, n + 1): 
         for w in range(1, W + 1): 
@@ -32,12 +32,13 @@ def knapSack(wt, val, W):
     dp = [0 for _ in range(W + 1)]
     
     for i in range(1, n + 1):
-        for w in range(W, 0, -1):
+        for w in range(1, W + 1):
             if wt[i-1] <= w:
                 dp[w] = max(val[i-1] + dp[w-wt[i-1]], dp[w])
     
     return dp[W]
 
+# another way
 def knapSack(wt, val, W):
     n = len(wt)
     dp = [0] * (W + 1)
