@@ -11,10 +11,12 @@ def wordBreak(s: str, wordDict: List[str]) -> bool:
             return True
 
         for i in range(len(s)):
-            if s[:i+1] in wordDict and dfs(s[i+1:]) == True:
+            word = s[:i+1]
+            if word in wordDict and dfs(s[i+1:]) == True:
                 memo[s] = True
+                return memo[s]
+                
         memo[s] = False
-
         return memo[s]
 
     return dfs(s)
